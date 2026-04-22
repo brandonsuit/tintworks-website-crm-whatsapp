@@ -70,8 +70,12 @@ const config: Config = {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
-        sm: "calc(var(--radius) - 4px)",
+        md: "calc(var(--radius) - 1px)",
+        sm: "calc(var(--radius) - 2px)",
+      },
+      boxShadow: {
+        glow: "0 0 0 1px hsl(var(--accent) / 0.4), 0 0 28px -4px hsl(var(--accent) / 0.45)",
+        "glow-sm": "0 0 18px -4px hsl(var(--accent) / 0.5)",
       },
       fontFamily: {
         sans: ["var(--font-sans)", "system-ui", "sans-serif"],

@@ -4,6 +4,10 @@ import { SiteHeader } from "@/components/marketing/site-header";
 import { SiteFooter } from "@/components/marketing/site-footer";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { Button } from "@/components/ui/button";
+import { business } from "@/lib/business";
+import { telHref } from "@/lib/phone";
+import { buildWaMeLink } from "@/lib/whatsapp/link";
+import { getWhatsAppMessage } from "@/lib/whatsapp/messages";
 
 /**
  * Site-wide 404. Renders the marketing header + footer shell so strangers
@@ -18,15 +22,22 @@ export const metadata = {
 };
 
 export default function NotFound() {
+  const whatsAppHref = buildWaMeLink({
+    phoneE164: business.phoneE164,
+    message: getWhatsAppMessage("landing"),
+  });
+
   return (
     <div className="flex min-h-screen flex-col">
-      <SiteHeader />
+      <SiteHeader
+        phoneDisplay={business.phoneDisplay}
+        phoneTelHref={telHref(business.phoneE164)}
+        whatsAppHref={whatsAppHref}
+      />
       <main className="flex-1">
         <section className="container py-20 md:py-28">
-          <p className="text-xs uppercase tracking-widest text-accent">
-            404
-          </p>
-          <h1 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
+          <p className="text-xs uppercase tracking-widest text-accent">404</p>
+          <h1 className="mt-3 font-display text-5xl uppercase tracking-tight text-balance md:text-6xl">
             That page has drifted off the map.
           </h1>
           <p className="mt-4 max-w-prose text-muted-foreground">

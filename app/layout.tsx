@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from "next";
 import Script from "next/script";
-import { Inter, Space_Grotesk } from "next/font/google";
+import { Inter, Bebas_Neue } from "next/font/google";
 
 import { business } from "@/lib/business";
 import { publicEnv } from "@/lib/env";
+import { socials } from "@/lib/social";
 
 import "./globals.css";
 
@@ -13,8 +14,9 @@ const fontSans = Inter({
   display: "swap",
 });
 
-const fontDisplay = Space_Grotesk({
+const fontDisplay = Bebas_Neue({
   subsets: ["latin"],
+  weight: "400",
   variable: "--font-display",
   display: "swap",
 });
@@ -119,7 +121,7 @@ function LocalBusinessJsonLd() {
       "@type": "City",
       name: "Leeds",
     },
-    sameAs: [],
+    sameAs: socials.map((s) => s.href),
   };
 
   return (

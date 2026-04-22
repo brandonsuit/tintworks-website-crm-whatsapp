@@ -3,50 +3,51 @@
 @tailwind utilities;
 
 /*
- * Tintworks theme — dark automotive.
+ * Tintworks theme — dark, aggressive, tuning-scene.
  * All tokens are HSL triples so Tailwind's `hsl(var(--x) / <alpha>)` works.
  *
- * Accent: electric blue (HSL 210 100% 56%) — LOCKED.
- * To retune the whole site: edit this file. No component changes needed.
+ * Accent: electric blue #00B4FF (HSL 198 100% 50%) — LOCKED.
+ * To retune: edit this file only.
  */
 
 @layer base {
   :root {
-    /* Near-black base, slightly warm so it doesn't feel clinical. */
-    --background: 220 14% 7%;
-    --foreground: 210 20% 96%;
+    /* Near-black base (#0A0A0A / #141414 / #1C1C1C). */
+    --background: 0 0% 4%;
+    --foreground: 0 0% 96%;
 
-    --card: 220 14% 10%;
-    --card-foreground: 210 20% 96%;
+    --card: 0 0% 8%;
+    --card-foreground: 0 0% 96%;
 
-    --popover: 220 14% 9%;
-    --popover-foreground: 210 20% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
 
-    --primary: 210 20% 96%;
-    --primary-foreground: 220 14% 7%;
+    --primary: 0 0% 96%;
+    --primary-foreground: 0 0% 4%;
 
-    --secondary: 220 13% 16%;
-    --secondary-foreground: 210 20% 96%;
+    --secondary: 0 0% 11%;
+    --secondary-foreground: 0 0% 96%;
 
-    --muted: 220 13% 14%;
-    --muted-foreground: 215 15% 65%;
+    --muted: 0 0% 11%;
+    --muted-foreground: 240 5% 65%;
 
-    /* Accent — electric blue. */
-    --accent: 210 100% 56%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent — electric blue #00B4FF. */
+    --accent: 198 100% 50%;
+    --accent-foreground: 0 0% 4%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 13% 18%;
-    --input: 220 13% 18%;
-    --ring: 210 100% 56%;
+    --border: 240 4% 16%;
+    --input: 240 4% 16%;
+    --ring: 198 100% 50%;
 
-    /* WhatsApp brand green — only used on CTAs that explicitly open WhatsApp. */
+    /* WhatsApp brand green — only on CTAs that explicitly open WhatsApp. */
     --whatsapp: 142 70% 45%;
     --whatsapp-foreground: 0 0% 100%;
 
-    --radius: 0.5rem;
+    /* Sharp geometric feel — max 4px radius. */
+    --radius: 0.25rem;
   }
 
   * {
@@ -75,6 +76,49 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-20 md:py-28;
+  }
+
+  /* Subtle grain overlay — pair with `bg-grain` on dark sections for depth. */
+  .bg-grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .bg-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: overlay;
+  }
+
+  /* Radial accent glow — use behind hero headlines, CTAs etc. */
+  .accent-glow {
+    background: radial-gradient(
+      ellipse at center,
+      hsl(var(--accent) / 0.45) 0%,
+      hsl(var(--accent) / 0) 70%
+    );
+    filter: blur(60px);
+  }
+
+  /* Diagonal section divider — mount on a wrapper <div>. */
+  .slant-top {
+    clip-path: polygon(0 3%, 100% 0, 100% 100%, 0 100%);
+  }
+  .slant-bottom {
+    clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
+  }
+
+  /* Hover glow — subtle electric-blue halo on interactive elements. */
+  .hover-glow {
+    transition: box-shadow 200ms ease, border-color 200ms ease;
+  }
+  .hover-glow:hover {
+    box-shadow: 0 0 0 1px hsl(var(--accent) / 0.5),
+      0 0 28px -4px hsl(var(--accent) / 0.35);
   }
 }
