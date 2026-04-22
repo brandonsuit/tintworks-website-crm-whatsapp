@@ -11,6 +11,7 @@ import {
   AlertTriangle,
   ArrowRight,
   Palette,
+  Droplets,
 } from "lucide-react";
 
 import { PageHeader } from "@/components/marketing/page-header";
@@ -136,6 +137,19 @@ const servicePackages = [
       "Useful for campervan conversions",
       "Light-weight to a full-wrap treatment",
     ],
+  },
+  {
+    id: "chameleon",
+    icon: Palette,
+    title: "Chameleon finish",
+    blurb:
+      "Colour-shifting film that flips between blue, purple and gold depending on angle and light. Show-car finish that still does proper UV and heat rejection.",
+    points: [
+      "Pairs with any package above",
+      "Full UV + heat rejection",
+      "Legal-VLT option available for the front",
+    ],
+    badge: "Statement",
   },
 ];
 
