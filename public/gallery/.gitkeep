@@ -1,0 +1,2 @@
+# Drop real gallery photos into this directory, then update gallery.config.ts
+# to point each entry's `src` at the local filename.
