@@ -1,7 +1,7 @@
 /**
  * Phone helpers. We store E.164 without the leading "+" (e.g. "447735839280")
  * because wa.me links want exactly that format. For display we render the UK
- * national format ("07735 839280"); for tel: links we use "+" + E.164.
+ * international format ("+44 7735 839280"); for tel: links we use "+" + E.164.
  */
 
 export const UK_DIALLING_CODE = "44";
@@ -32,23 +32,23 @@ export function normaliseUkToE164(input: string): string | null {
 }
 
 /**
- * Render an E.164 (no "+") as UK national format for humans.
- * "447735839280" → "07735 839280". Non-UK numbers render as "+<digits>".
+ * Render an E.164 (no "+") as UK international format for humans.
+ * "447735839280" → "+44 7735 839280". Non-UK numbers render as "+<digits>".
  */
 export function formatUkDisplay(e164: string): string {
   const digits = digitsOnly(e164);
   if (!digits.startsWith(UK_DIALLING_CODE)) return `+${digits}`;
 
-  const national = "0" + digits.slice(UK_DIALLING_CODE.length);
-  // Mobile (11 digits starting 07): "07xxx xxxxxx"
-  if (national.length === 11 && national.startsWith("07")) {
-    return `${national.slice(0, 5)} ${national.slice(5)}`;
+  const subscriber = digits.slice(UK_DIALLING_CODE.length);
+  // Mobile (10 digits after 44, starting 7): "+44 7xxx xxxxxx"
+  if (subscriber.length === 10 && subscriber.startsWith("7")) {
+    return `+${UK_DIALLING_CODE} ${subscriber.slice(0, 4)} ${subscriber.slice(4)}`;
   }
-  // Geographic fallback: "0xxx xxx xxxx"
-  if (national.length === 11) {
-    return `${national.slice(0, 4)} ${national.slice(4, 7)} ${national.slice(7)}`;
+  // Geographic fallback: "+44 xxx xxx xxxx"
+  if (subscriber.length === 10) {
+    return `+${UK_DIALLING_CODE} ${subscriber.slice(0, 3)} ${subscriber.slice(3, 6)} ${subscriber.slice(6)}`;
   }
-  return national;
+  return `+${digits}`;
 }
 
 /** tel: href, always with leading "+". */
