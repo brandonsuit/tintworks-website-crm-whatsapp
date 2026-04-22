@@ -3,158 +3,243 @@ import Link from "next/link";
 import Image from "next/image";
 import {
   ShieldCheck,
-  Clock,
-  MapPin,
   Sparkles,
   Eye,
   Sun,
-  Car,
+  Truck,
+  ArrowRight,
+  Star,
+  ExternalLink,
 } from "lucide-react";
 
 import { Hero } from "@/components/marketing/hero";
 import { SectionCta } from "@/components/marketing/section-cta";
+import { ServiceCard } from "@/components/marketing/service-card";
+import {
+  StatsCounter,
+  FadeIn,
+} from "@/components/marketing/stats-counter";
+import { ReviewCarousel } from "@/components/marketing/review-carousel";
+import { ProcessTimeline } from "@/components/marketing/process-timeline";
+import { FaqAccordion, type FaqItem } from "@/components/marketing/faq-accordion";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
 import { galleryItems } from "@/gallery.config";
+import { reviews, reviewStats, googleReviewsProfileUrl } from "@/lib/reviews";
 import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
   description:
-    "Tintworks — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. Lifetime fitting warranty.",
+    "Tint Works — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. 200+ 5-star reviews, lifetime fitting warranty.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Car Window Tinting Leeds — Tintworks",
-    images: [ogImage("Car Window Tinting Leeds — Tintworks")],
+    title: "Car Window Tinting Leeds — Tint Works",
+    images: [ogImage("Car Window Tinting Leeds — Tint Works")],
   },
 };
 
-const filmTypes = [
+const services = [
   {
-    name: "Ceramic",
+    href: "/services#full-car",
     icon: Sparkles,
-    blurb:
-      "Highest heat rejection, signal-friendly, no phone or key-fob interference.",
+    title: "Full car tint",
+    description:
+      "Every legal window wrapped. Ceramic or carbon film, dialled in to your shade of choice.",
+    badge: "Most popular",
   },
   {
-    name: "Carbon",
-    icon: ShieldCheck,
-    blurb:
-      "Strong mid-tier option. Matte finish, doesn't fade to purple over time.",
-  },
-  {
-    name: "Limo black",
+    href: "/services#rear-only",
     icon: Eye,
-    blurb:
-      "Darkest legal tint for rear glass — maximum privacy for passengers and luggage.",
+    title: "Rear set",
+    description:
+      "Rear sides + rear windscreen. Maximum privacy, heat rejection, and a factory-tidy finish.",
   },
   {
-    name: "Sun strips",
+    href: "/services#front-only",
+    icon: ShieldCheck,
+    title: "Front windows",
+    description:
+      "UK law-compliant front pair (min 70% VLT). Cuts glare on motorway drives.",
+  },
+  {
+    href: "/services#sun-strip",
     icon: Sun,
-    blurb:
-      "A narrow strip across the windscreen to cut low-sun glare on motorway drives.",
+    title: "Windscreen sun strip",
+    description:
+      "Narrow gradient strip across the top of the windscreen — kills low-sun glare fast.",
+  },
+  {
+    href: "/services#commercial",
+    icon: Truck,
+    title: "Commercial / van",
+    description:
+      "Transit, Sprinter, VW Transporter and more. Secure your tools, stay comfortable.",
+  },
+] as const;
+
+const faqs: FaqItem[] = [
+  {
+    q: "Is window tinting legal in the UK?",
+    a: (
+      <>
+        <p>
+          Yes — within the rules. UK law (Construction & Use Regulations) says:
+        </p>
+        <ul className="mt-3 list-disc pl-5">
+          <li>
+            Front windscreen must let through at least{" "}
+            <strong className="text-foreground">75%</strong> of light (VLT).
+          </li>
+          <li>
+            Front side windows must let through at least{" "}
+            <strong className="text-foreground">70%</strong> of light.
+          </li>
+          <li>
+            Rear windows and rear windscreen have{" "}
+            <strong className="text-foreground">no restriction</strong> — go as
+            dark as you like.
+          </li>
+        </ul>
+        <p className="mt-3">
+          We&apos;ll never fit a front tint that&apos;s below the legal limit.
+        </p>
+      </>
+    ),
+  },
+  {
+    q: "How long does it take?",
+    a: "Most tints are completed the same day. A full rear set typically takes 2–3 hours; a full car around 3–4 hours. We'll give you an exact slot when you book.",
+  },
+  {
+    q: "How much does it cost?",
+    a: "Pricing depends on your vehicle and which windows you're doing. Use the instant quote tool for a same-day estimate, or message us on WhatsApp.",
+  },
+  {
+    q: "How long does it last?",
+    a: "Our ceramic and carbon films are colour-stable — no purple fade. Fitting is covered by a lifetime warranty against peeling, bubbling or delamination.",
+  },
+  {
+    q: "Can I wash my car after?",
+    a: "Give it 3–5 days before washing the windows so the film can fully cure. You'll still see a little cloudiness during curing — that's normal and will vanish.",
+  },
+  {
+    q: "Do you offer a warranty?",
+    a: "Yes — lifetime fitting warranty on all work. If you ever have an issue, bring the car back.",
   },
 ];
 
 export default function LandingPage() {
-  // Show three gallery teasers — pull the first three from the config.
-  const teaserItems = galleryItems.slice(0, 3);
+  const teaser = galleryItems.slice(0, 3);
 
   return (
     <>
       <Hero pageKey="landing" />
 
-      {/* What we do — film types */}
-      <section className="container section-padding">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-accent">
-              What we fit
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">
-              Four film options covering every sensible use case.
+      {/* Services */}
+      <section
+        id="services"
+        className="container section-padding border-t border-border/60"
+      >
+        <FadeIn>
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+            What we fit
+          </p>
+          <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+            <h2 className="max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-6xl">
+              Built for every kind of vehicle.
             </h2>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/services" className="gap-1">
+                See all services <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/services">See full service page →</Link>
-          </Button>
-        </div>
+        </FadeIn>
         <ul
           role="list"
-          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3"
         >
-          {filmTypes.map((f) => {
-            const Icon = f.icon;
-            return (
-              <li key={f.name}>
-                <Card className="h-full p-5">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15 text-accent">
-                    <Icon className="h-5 w-5" aria-hidden />
-                  </div>
-                  <h3 className="mt-4 font-display text-lg font-semibold">
-                    {f.name}
-                  </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{f.blurb}</p>
-                </Card>
-              </li>
-            );
-          })}
+          {services.map((s, i) => (
+            <li key={s.title}>
+              <FadeIn delay={i * 0.05}>
+                <ServiceCard
+                  href={s.href}
+                  icon={s.icon}
+                  title={s.title}
+                  description={s.description}
+                  badge={"badge" in s ? s.badge : undefined}
+                />
+              </FadeIn>
+            </li>
+          ))}
         </ul>
       </section>
 
-      {/* Why Tintworks */}
-      <section className="container section-padding border-t border-border/60">
-        <p className="text-xs uppercase tracking-widest text-accent">
-          Why Tintworks
-        </p>
-        <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">
-          Leeds-local, studio-fitted, precision-focused.
-        </h2>
-        <div className="mt-10 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <FeatureBlock
-            icon={MapPin}
-            title="Holbeck, LS11"
-            body="Bring your vehicle to our dedicated workshop — controlled, dust-free, and set up for a proper finish."
-          />
-          <FeatureBlock
-            icon={ShieldCheck}
-            title="Premium films only"
-            body="Ceramic and carbon films from trusted manufacturers, backed by a lifetime warranty on fitting."
-          />
-          <FeatureBlock
-            icon={Clock}
-            title="Honest timelines"
-            body="Most tints are completed the same day. You'll know the fitting slot up-front — no vague windows."
-          />
+      {/* Stats */}
+      <section className="relative isolate border-t border-border/60 bg-card bg-grain">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 opacity-40"
+          style={{
+            background:
+              "radial-gradient(circle at 15% 50%, hsl(var(--accent) / 0.22), transparent 55%)",
+          }}
+        />
+        <div className="container relative z-10 section-padding">
+          <FadeIn>
+            <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+              By the numbers
+            </p>
+            <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
+              Leeds-local. Trusted by hundreds.
+            </h2>
+          </FadeIn>
+          <div className="mt-10">
+            <StatsCounter
+              stats={[
+                { value: 200, suffix: "+", label: "5-star Google reviews" },
+                { value: 5, suffix: "★", label: "Average rating" },
+                { value: 10, suffix: "+", label: "Years in the game" },
+                { value: 100, suffix: "%", label: "Lifetime warranty" },
+              ]}
+            />
+          </div>
         </div>
       </section>
 
       {/* Gallery teaser */}
       <section className="container section-padding border-t border-border/60">
-        <div className="flex flex-wrap items-end justify-between gap-4">
-          <div>
-            <p className="text-xs uppercase tracking-widest text-accent">
-              Recent work
-            </p>
-            <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">
-              A taste of what we&apos;ve been fitting.
-            </h2>
+        <FadeIn>
+          <div className="flex flex-wrap items-end justify-between gap-4">
+            <div>
+              <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+                Recent work
+              </p>
+              <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
+                A taste of the portfolio.
+              </h2>
+            </div>
+            <Button asChild variant="ghost" size="sm">
+              <Link href="/gallery" className="gap-1">
+                See full gallery <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
           </div>
-          <Button asChild variant="ghost" size="sm">
-            <Link href="/gallery">See full gallery →</Link>
-          </Button>
-        </div>
-        <ul role="list" className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {teaserItems.map((item) => (
+        </FadeIn>
+        <ul
+          role="list"
+          className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-3"
+        >
+          {teaser.map((item) => (
             <li key={item.src}>
-              <figure className="overflow-hidden rounded-lg border border-border bg-card">
+              <figure className="group relative overflow-hidden rounded-sm border border-border bg-card hover-glow">
                 <div className="relative aspect-[4/3]">
                   <Image
                     src={item.src}
                     alt={item.alt}
                     fill
                     sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover"
+                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                   />
                 </div>
                 <figcaption className="p-4 text-sm text-muted-foreground">
@@ -166,55 +251,74 @@ export default function LandingPage() {
         </ul>
       </section>
 
-      {/* Reviews block — deliberately empty until real reviews collected */}
-      <section className="container section-padding border-t border-border/60">
-        <div className="rounded-lg border border-border bg-card p-8 md:p-10">
-          <p className="text-xs uppercase tracking-widest text-accent">
-            Reviews
-          </p>
-          <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">
-            Reviews coming soon — find us on Google.
-          </h2>
-          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
-            We&apos;re collecting reviews from recent customers. In the
-            meantime, search for Tintworks on Google Maps to see the latest.
-          </p>
-          {/* {# TODO: swap href for real Google Business Profile review URL before launch #} */}
-          <div className="mt-5">
-            <Button asChild variant="outline" size="sm">
-              <Link href="#" aria-disabled>
-                Google Business Profile (pending)
-              </Link>
-            </Button>
+      {/* Reviews */}
+      <section className="relative border-t border-border/60 bg-grain">
+        <div className="container section-padding">
+          <FadeIn>
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+                  Reviews
+                </p>
+                <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
+                  What our customers say.
+                </h2>
+              </div>
+              <a
+                href={googleReviewsProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-accent underline-offset-4 hover:underline"
+              >
+                <Star className="h-4 w-4 fill-accent text-accent" aria-hidden />
+                See all {reviewStats.count}+ on Google
+                <ExternalLink className="h-3.5 w-3.5" aria-hidden />
+              </a>
+            </div>
+          </FadeIn>
+          <div className="mt-10 max-w-3xl">
+            <ReviewCarousel reviews={reviews} />
           </div>
+          {reviewStats.isPlaceholder && (
+            <p className="mt-4 text-xs text-muted-foreground">
+              Showing a selection of recent feedback. For the live feed see our
+              Google Business Profile.
+            </p>
+          )}
         </div>
       </section>
 
-      <SectionCta
-        pageKey="landing"
-        heading="Thinking about tinting your car? Let's talk."
-        lead="Tell us the make, model, and windows you'd like done — we'll come back with a quote the same day."
-      />
-    </>
-  );
-}
+      {/* Process */}
+      <section className="container section-padding border-t border-border/60">
+        <FadeIn>
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+            How it works
+          </p>
+          <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
+            Four steps from enquiry to new glass.
+          </h2>
+        </FadeIn>
+        <div className="mt-10">
+          <ProcessTimeline />
+        </div>
+      </section>
 
-function FeatureBlock({
-  icon: Icon,
-  title,
-  body,
-}: {
-  icon: typeof Car;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div>
-      <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15 text-accent">
-        <Icon className="h-5 w-5" aria-hidden />
-      </div>
-      <h3 className="mt-4 font-display text-lg font-semibold">{title}</h3>
-      <p className="mt-2 text-sm text-muted-foreground">{body}</p>
-    </div>
+      {/* FAQ */}
+      <section className="container section-padding border-t border-border/60">
+        <FadeIn>
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+            FAQ
+          </p>
+          <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
+            Answers before you book.
+          </h2>
+        </FadeIn>
+        <div className="mt-10 max-w-3xl">
+          <FaqAccordion items={faqs} />
+        </div>
+      </section>
+
+      <SectionCta pageKey="landing" />
+    </>
   );
 }
