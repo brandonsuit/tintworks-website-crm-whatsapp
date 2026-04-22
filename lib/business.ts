@@ -17,14 +17,11 @@ export const business = {
   phoneDisplay: formatUkDisplay(serverEnv.BUSINESS_PHONE_E164),
   phoneTel: `+${serverEnv.BUSINESS_PHONE_E164}`,
   siteUrl: publicEnv.NEXT_PUBLIC_SITE_URL,
-  // {# TODO: confirm hours #}
+  // Appointment-only — no fixed opening hours. Deliberately omitted from
+  // LocalBusiness JSON-LD so Google doesn't show incorrect "open now" state.
   openingHours: {
-    display: "Mon–Fri 9–6, Sat 10–4, Sun closed",
-    // Schema.org openingHours format, used in JSON-LD.
-    schema: [
-      "Mo-Fr 09:00-18:00",
-      "Sa 10:00-16:00",
-    ],
+    display:
+      "By appointment only — message us on WhatsApp to arrange a booking.",
   },
   // Verified Google Maps coordinates for Brown Place, Holbeck, Leeds LS11.
   geo: {

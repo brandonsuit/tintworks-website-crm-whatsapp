@@ -5,39 +5,30 @@ import { GalleryGrid } from "@/components/marketing/gallery-grid";
 import { SectionCta } from "@/components/marketing/section-cta";
 
 export const metadata: Metadata = {
-  title: "Our Work — Window Tinting Gallery Leeds",
+  title: "Gallery — Car Window Tinting Leeds",
   description:
-    "Recent window tinting work from Tintworks in Leeds — car tints, residential film, and commercial jobs. Filter by category to see examples.",
+    "Recent car window tinting work from Tintworks in Leeds — ceramic, carbon, limo-black, and sun strips. Fitted in-studio at our Holbeck workshop.",
   alternates: { canonical: "/gallery" },
 };
 
 /**
- * Gallery page. The category filter is URL-param-driven (`?category=...`),
- * so server-rendered filter links drive the state — no client JS needed
- * for navigation. Images are placeholders from picsum for v1; swap to real
- * photos via gallery.config.ts when they land.
- *
- * Next 15 makes `searchParams` a Promise — awaited below before passing
- * the category string on to the grid.
+ * Gallery page. v1 shows every gallery item ungrouped, with the film type
+ * (ceramic / carbon / limo black / sun strip) as a badge per tile. A
+ * future filter UI can drop straight into components/marketing/gallery-grid.tsx
+ * — `tintType` is already captured per entry in gallery.config.ts.
  */
-export default async function GalleryPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ category?: string }>;
-}) {
-  const { category } = await searchParams;
-
+export default function GalleryPage() {
   return (
     <>
       <PageHeader
         eyebrow="Gallery"
-        title="Recent work from the Holbeck studio."
-        lead="A rotating selection of car, residential, and commercial jobs. Filter by category below."
+        title="Recent tints from the Holbeck studio."
+        lead="A rotating selection of ceramic, carbon, limo-black, and sun-strip work."
         crumbs={[{ href: "/gallery", label: "Gallery" }]}
       />
 
       <section className="container pb-8">
-        <GalleryGrid category={category} />
+        <GalleryGrid />
         <p className="mt-6 text-xs text-muted-foreground">
           {/* {# TODO: swap placeholder images in public/gallery/ — see gallery.config.ts #} */}
           Images shown are placeholders until the real gallery lands.

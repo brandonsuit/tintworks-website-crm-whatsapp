@@ -1,85 +1,100 @@
 /**
  * Gallery content source. Hard-coded for v1 — no CMS, no database.
  *
- * When the real photos land:
- *   1. Drop the files into public/gallery/ (sizes 1600×1200 or similar 4:3).
- *   2. Swap each `src` below to a local path like "/gallery/automotive-01.jpg".
- *   3. Update `alt` + `caption`; keep `category` one of
- *      "automotive" | "residential" | "commercial".
+ * ─── How to swap in real photos ────────────────────────────────────────
+ *   1. Drop files into `public/gallery/` (use a naming convention like
+ *      `tint-ceramic-bmw-01.jpg`). Recommended dimensions: 1600×1200
+ *      (4:3 ratio) so they sit neatly in the grid without cropping.
+ *      Keep each image under ~300 KB — compress with something like
+ *      Squoosh.app or `cwebp` to keep the page fast.
  *
- * Placeholder images via picsum.photos (seeded so each entry renders the
- * same image on reload). next.config.js already allowlists picsum.photos
- * and fastly.picsum.photos for <Image> remotePatterns.
+ *   2. Swap each `src` below to a local path, e.g.
+ *      `/gallery/tint-ceramic-bmw-01.jpg`.
+ *
+ *   3. Update `alt` (written description for screen readers + SEO),
+ *      `caption` (short visible label under the image), and `tintType`
+ *      (one of the TintType values below).
+ *
+ *   4. Remove the picsum allowlist in `next.config.js` once every item
+ *      points at a local path — it's only there for placeholders.
+ *
+ *   5. Order matters: entries render top-to-bottom on the gallery page
+ *      and the first three are teased on the landing.
+ *
+ * The `tintType` field is retained (even though the gallery page no
+ * longer filters by it in v1) so that adding a tint-type filter later
+ * is a cheap UI change, not a data migration.
  */
 
-export type GalleryCategory = "automotive" | "residential" | "commercial";
+export type TintType = "ceramic" | "carbon" | "limo-black" | "sun-strip";
 
 export type GalleryItem = {
   src: string;
   alt: string;
   caption: string;
-  category: GalleryCategory;
+  tintType: TintType;
 };
-
-export const galleryCategories: { key: GalleryCategory; label: string }[] = [
-  { key: "automotive", label: "Car tinting" },
-  { key: "residential", label: "Residential" },
-  { key: "commercial", label: "Commercial" },
-];
 
 export const galleryItems: GalleryItem[] = [
   {
-    src: "https://picsum.photos/seed/tintworks-auto-1/1600/1200",
-    alt: "Placeholder — car window tint, driver side",
+    src: "https://picsum.photos/seed/tintworks-01/1600/1200",
+    alt: "Placeholder — BMW 3 Series with ceramic 20% rear tint",
     caption: "Ceramic 20% — BMW 3 Series",
-    category: "automotive",
+    tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-auto-2/1600/1200",
-    alt: "Placeholder — rear glass tint finish",
+    src: "https://picsum.photos/seed/tintworks-02/1600/1200",
+    alt: "Placeholder — Mercedes GLC rear glass ceramic tint",
     caption: "Rear glass ceramic tint — Mercedes GLC",
-    category: "automotive",
+    tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-auto-3/1600/1200",
-    alt: "Placeholder — full-vehicle tint completed",
-    caption: "Full tint, 5-window package",
-    category: "automotive",
+    src: "https://picsum.photos/seed/tintworks-03/1600/1200",
+    alt: "Placeholder — full-vehicle 5-window tint",
+    caption: "Full vehicle, 5-window package",
+    tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-res-1/1600/1200",
-    alt: "Placeholder — residential lounge window film",
-    caption: "Privacy film, lounge windows — Leeds LS8",
-    category: "residential",
+    src: "https://picsum.photos/seed/tintworks-04/1600/1200",
+    alt: "Placeholder — carbon film rear tint",
+    caption: "Carbon rear-3 package — Audi A4",
+    tintType: "carbon",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-res-2/1600/1200",
-    alt: "Placeholder — bedroom solar film",
-    caption: "Solar control film, south-facing bedroom",
-    category: "residential",
+    src: "https://picsum.photos/seed/tintworks-05/1600/1200",
+    alt: "Placeholder — carbon film on van rear windows",
+    caption: "Carbon rear tint — Ford Transit Custom",
+    tintType: "carbon",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-res-3/1600/1200",
-    alt: "Placeholder — conservatory UV film",
-    caption: "UV-reduction film for conservatory",
-    category: "residential",
+    src: "https://picsum.photos/seed/tintworks-06/1600/1200",
+    alt: "Placeholder — limo-black rear tint on SUV",
+    caption: "Limo black — rear package on Range Rover",
+    tintType: "limo-black",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-com-1/1600/1200",
-    alt: "Placeholder — office privacy tint on meeting-room glass",
-    caption: "Frosted privacy film — office meeting room",
-    category: "commercial",
+    src: "https://picsum.photos/seed/tintworks-07/1600/1200",
+    alt: "Placeholder — limo-black privacy tint on rear glass",
+    caption: "Limo black — privacy pack on VW Transporter",
+    tintType: "limo-black",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-com-2/1600/1200",
-    alt: "Placeholder — shopfront solar film",
-    caption: "Solar film for shopfront, reduced glare",
-    category: "commercial",
+    src: "https://picsum.photos/seed/tintworks-08/1600/1200",
+    alt: "Placeholder — windscreen sun strip",
+    caption: "Sun strip — reduces low-sun glare",
+    tintType: "sun-strip",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-com-3/1600/1200",
-    alt: "Placeholder — branded window graphic with tint",
-    caption: "Tint + branded vinyl, Leeds city-centre premises",
-    category: "commercial",
+    src: "https://picsum.photos/seed/tintworks-09/1600/1200",
+    alt: "Placeholder — close-up windscreen sun strip detail",
+    caption: "Sun strip detail — precision cut edge",
+    tintType: "sun-strip",
   },
 ];
+
+export const tintTypeLabel: Record<TintType, string> = {
+  ceramic: "Ceramic",
+  carbon: "Carbon",
+  "limo-black": "Limo black",
+  "sun-strip": "Sun strip",
+};

@@ -25,19 +25,19 @@ const plausibleDomain = publicEnv.NEXT_PUBLIC_PLAUSIBLE_DOMAIN;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${business.name} — Window Tinting Leeds`,
+    default: `${business.name} — Car Window Tinting Leeds`,
     template: `%s | ${business.name}`,
   },
   description:
-    "Professional window tinting in Leeds. In-studio car, residential and commercial tinting at our Holbeck workshop. Bring your vehicle to us.",
+    "Professional car window tinting in Leeds. In-studio ceramic and carbon vehicle tints at our Holbeck workshop. Bring your car to us.",
   applicationName: business.name,
   keywords: [
+    "car window tinting Leeds",
+    "vehicle window tinting Leeds",
+    "ceramic car tint Leeds",
     "window tinting Leeds",
-    "car tinting Leeds",
-    "car window tint Leeds",
-    "residential window tinting Leeds",
-    "commercial window tinting Leeds",
     "Holbeck window tinting",
+    "car tint Holbeck",
     "Tintworks Leeds",
   ],
   authors: [{ name: business.name }],
@@ -48,15 +48,15 @@ export const metadata: Metadata = {
     locale: "en_GB",
     siteName: business.name,
     url: siteUrl,
-    title: `${business.name} — Window Tinting Leeds`,
+    title: `${business.name} — Car Window Tinting Leeds`,
     description:
-      "In-studio window tinting in Holbeck, Leeds. Automotive, residential and commercial.",
+      "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${business.name} — Window Tinting Leeds`,
+    title: `${business.name} — Car Window Tinting Leeds`,
     description:
-      "In-studio window tinting in Holbeck, Leeds. Automotive, residential and commercial.",
+      "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
   },
   robots: {
     index: true,
@@ -76,8 +76,12 @@ export const viewport: Viewport = {
 function LocalBusinessJsonLd() {
   const data = {
     "@context": "https://schema.org",
-    "@type": ["LocalBusiness", "AutomotiveBusiness"],
+    // AutomotiveBusiness is a subtype of LocalBusiness; single type keeps
+    // the category signal tight for Google's local pack.
+    "@type": "AutomotiveBusiness",
     name: business.name,
+    description:
+      "Professional car window tinting in Leeds. In-studio ceramic and carbon tints at our Holbeck workshop.",
     image: `${siteUrl}/og-default.png`,
     url: siteUrl,
     telephone: business.phoneTel,
@@ -96,7 +100,8 @@ function LocalBusinessJsonLd() {
       latitude: business.geo.latitude,
       longitude: business.geo.longitude,
     },
-    openingHours: business.openingHours.schema,
+    // Appointment-only business — openingHoursSpecification omitted
+    // deliberately so Google doesn't surface incorrect "open now" state.
     areaServed: {
       "@type": "City",
       name: "Leeds",

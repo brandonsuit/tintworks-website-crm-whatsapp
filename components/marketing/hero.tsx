@@ -30,17 +30,17 @@ export function Hero({
       />
       <div className="max-w-3xl">
         <Badge variant="accent" className="font-semibold">
-          Window tinting Leeds · In-studio, Holbeck LS11
+          Car window tinting Leeds · In-studio, Holbeck LS11
         </Badge>
         <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-balance md:text-6xl">
-          Professional window tinting —{" "}
+          Professional car window tinting —{" "}
           <span className="text-accent">bring your vehicle to us</span> in
           Leeds.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground text-balance md:text-xl">
-          Ceramic car tints, residential privacy film, and commercial solar
-          control — fitted in-studio at our Holbeck workshop. Precision work,
-          no compromises.
+          Ceramic and carbon car tints fitted in-studio at our Holbeck
+          workshop. Heat rejection, UV protection, and a factory-tidy
+          finish — backed by a lifetime fitting warranty.
         </p>
         <div className="mt-8 flex flex-wrap gap-3">
           <Button asChild variant="accent" size="xl">
@@ -49,7 +49,7 @@ export function Hero({
           <WhatsAppCta pageKey={pageKey} appearance="filled" size="xl" />
         </div>
         <p className="mt-4 text-sm text-muted-foreground">
-          Typical response within the hour during opening times.
+          By appointment only — message us on WhatsApp to arrange a booking.
         </p>
       </div>
     </section>

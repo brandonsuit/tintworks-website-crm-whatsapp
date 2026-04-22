@@ -3,15 +3,14 @@ import Image from "next/image";
 import { Mail, MapPin, Phone, Clock } from "lucide-react";
 
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
-import { primaryNav, serviceSubNav } from "@/components/marketing/nav-links";
+import { primaryNav } from "@/components/marketing/nav-links";
 import { business } from "@/lib/business";
 import { telHref } from "@/lib/phone";
 import type { WhatsAppPageKey } from "@/lib/whatsapp/messages";
 
 /**
- * Site-wide footer. Mirrors the LocalBusiness JSON-LD on the page —
- * identical address, phone, and opening hours so Google's crawler
- * sees consistent NAP data (name/address/phone) across structured
+ * Site-wide footer. Mirrors the AutomotiveBusiness JSON-LD — same address
+ * and phone everywhere so Google sees consistent NAP data across structured
  * data and visible content.
  */
 
@@ -27,7 +26,7 @@ export function SiteFooter({
       <div className="container py-12 md:py-16">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           {/* Brand + contact */}
-          <div className="md:col-span-5">
+          <div className="md:col-span-7">
             <Link
               href="/"
               aria-label="Tintworks — home"
@@ -42,8 +41,8 @@ export function SiteFooter({
               />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Professional window tinting in Leeds. In-studio only — bring your
-              vehicle to us in Holbeck.
+              Professional car window tinting in Leeds. In-studio only —
+              bring your vehicle to us in Holbeck.
             </p>
 
             <dl className="mt-6 space-y-3 text-sm">
@@ -88,7 +87,6 @@ export function SiteFooter({
                 <Clock className="mt-0.5 h-4 w-4 shrink-0 text-accent" aria-hidden />
                 <div>
                   <dt className="sr-only">Opening hours</dt>
-                  {/* {# TODO: confirm hours #} — also published in JSON-LD via lib/business.ts */}
                   <dd className="text-foreground">
                     {business.openingHours.display}
                   </dd>
@@ -102,7 +100,7 @@ export function SiteFooter({
           </div>
 
           {/* Nav column */}
-          <div className="md:col-span-3">
+          <div className="md:col-span-5">
             <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">
               Site
             </h3>
@@ -125,25 +123,6 @@ export function SiteFooter({
                   Get a quote
                 </Link>
               </li>
-            </ul>
-          </div>
-
-          {/* Services column */}
-          <div className="md:col-span-4">
-            <h3 className="font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Services
-            </h3>
-            <ul className="mt-4 space-y-2 text-sm">
-              {serviceSubNav.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="text-foreground/90 underline-offset-4 hover:text-accent hover:underline"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
             </ul>
             <p className="mt-6 text-xs text-muted-foreground">
               Serving Leeds and surrounding West Yorkshire — all work

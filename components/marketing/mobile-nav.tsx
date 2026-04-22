@@ -12,7 +12,7 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { primaryNav, serviceSubNav } from "@/components/marketing/nav-links";
+import { primaryNav } from "@/components/marketing/nav-links";
 import { cn } from "@/lib/utils";
 
 /**
@@ -61,20 +61,6 @@ export function MobileNav({
                 "rounded-md px-3 py-2 text-base font-medium transition-colors",
                 "hover:bg-muted",
               )}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <div className="my-2 h-px bg-border" />
-          <p className="px-3 pb-1 pt-2 text-xs uppercase tracking-wider text-muted-foreground">
-            Our services
-          </p>
-          {serviceSubNav.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              onClick={() => setOpen(false)}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
             >
               {link.label}
             </Link>

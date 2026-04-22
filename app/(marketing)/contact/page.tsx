@@ -11,9 +11,9 @@ import { business } from "@/lib/business";
 import { telHref } from "@/lib/phone";
 
 export const metadata: Metadata = {
-  title: "Contact Us — Tintworks Leeds",
+  title: "Contact — Tintworks Car Window Tinting Leeds",
   description:
-    "Visit Tintworks at Brown Place, Holbeck, Leeds LS11. In-studio window tinting only — bring your vehicle to us. Call, email, or chat on WhatsApp.",
+    "Visit Tintworks at Brown Place, Holbeck, Leeds LS11. In-studio car window tinting only — bring your vehicle to us. Appointment only — message us on WhatsApp.",
   alternates: { canonical: "/contact" },
 };
 
@@ -34,9 +34,8 @@ export default function ContactPage() {
           </h2>
           <p className="mt-2 text-sm text-muted-foreground">
             All car window tinting is completed at our workshop on Brown
-            Place, Holbeck (LS11). We don&apos;t operate a mobile service for
-            vehicles. For residential and commercial enquiries, send a few
-            photos and we&apos;ll scope the job from there.
+            Place, Holbeck (LS11). We don&apos;t operate a mobile service.
+            By appointment only — message us on WhatsApp to arrange a booking.
           </p>
         </div>
       </section>

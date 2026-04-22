@@ -14,9 +14,3 @@ export const primaryNav: NavLink[] = [
   { href: "/gallery", label: "Gallery" },
   { href: "/contact", label: "Contact" },
 ];
-
-export const serviceSubNav: NavLink[] = [
-  { href: "/services/automotive", label: "Car tinting" },
-  { href: "/services/residential", label: "Residential tinting" },
-  { href: "/services/commercial", label: "Commercial tinting" },
-];

@@ -1,72 +1,100 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { Car, Home, Building2, ShieldCheck, Clock, MapPin } from "lucide-react";
+import {
+  ShieldCheck,
+  Clock,
+  MapPin,
+  Sparkles,
+  Eye,
+  Sun,
+  Car,
+} from "lucide-react";
 
 import { Hero } from "@/components/marketing/hero";
-import { ServiceCard } from "@/components/marketing/service-card";
 import { SectionCta } from "@/components/marketing/section-cta";
-import { TestimonialCard } from "@/components/marketing/testimonial-card";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { galleryItems } from "@/gallery.config";
 
 export const metadata: Metadata = {
-  title: "Window Tinting Leeds — Car, Home & Commercial",
+  title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
   description:
-    "Tintworks — professional window tinting in Leeds. Ceramic car tints, residential privacy film, and commercial solar control. In-studio in Holbeck, LS11.",
+    "Tintworks — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. Lifetime fitting warranty.",
   alternates: { canonical: "/" },
 };
 
+const filmTypes = [
+  {
+    name: "Ceramic",
+    icon: Sparkles,
+    blurb:
+      "Highest heat rejection, signal-friendly, no phone or key-fob interference.",
+  },
+  {
+    name: "Carbon",
+    icon: ShieldCheck,
+    blurb:
+      "Strong mid-tier option. Matte finish, doesn't fade to purple over time.",
+  },
+  {
+    name: "Limo black",
+    icon: Eye,
+    blurb:
+      "Darkest legal tint for rear glass — maximum privacy for passengers and luggage.",
+  },
+  {
+    name: "Sun strips",
+    icon: Sun,
+    blurb:
+      "A narrow strip across the windscreen to cut low-sun glare on motorway drives.",
+  },
+];
+
 export default function LandingPage() {
-  // Show three gallery teasers on the landing, one from each category.
-  const teaserItems = [
-    galleryItems.find((i) => i.category === "automotive"),
-    galleryItems.find((i) => i.category === "residential"),
-    galleryItems.find((i) => i.category === "commercial"),
-  ].filter((x): x is NonNullable<typeof x> => Boolean(x));
+  // Show three gallery teasers — pull the first three from the config.
+  const teaserItems = galleryItems.slice(0, 3);
 
   return (
     <>
       <Hero pageKey="landing" />
 
-      {/* Services teaser */}
+      {/* What we do — film types */}
       <section className="container section-padding">
         <div className="flex flex-wrap items-end justify-between gap-4">
           <div>
             <p className="text-xs uppercase tracking-widest text-accent">
-              What we do
+              What we fit
             </p>
             <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">
-              Three tinting specialisms, one studio in Leeds.
+              Four film options covering every sensible use case.
             </h2>
           </div>
           <Button asChild variant="ghost" size="sm">
-            <Link href="/services">See all services →</Link>
+            <Link href="/services">See full service page →</Link>
           </Button>
         </div>
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          <ServiceCard
-            href="/services/automotive"
-            title="Car window tinting"
-            description="Ceramic and carbon films for cars, vans, and SUVs. Heat rejection, UV protection, and a factory-finish look — fitted in-studio."
-            icon={Car}
-            cta="Car tinting →"
-          />
-          <ServiceCard
-            href="/services/residential"
-            title="Residential tinting"
-            description="Privacy film, solar control, and UV reduction for homes across Leeds. Keep rooms cooler in summer without losing natural light."
-            icon={Home}
-            cta="Residential →"
-          />
-          <ServiceCard
-            href="/services/commercial"
-            title="Commercial tinting"
-            description="Offices, shopfronts, meeting rooms. Frosted privacy films, solar control, and branded graphics — quoted per site."
-            icon={Building2}
-            cta="Commercial →"
-          />
-        </div>
+        <ul
+          role="list"
+          className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4"
+        >
+          {filmTypes.map((f) => {
+            const Icon = f.icon;
+            return (
+              <li key={f.name}>
+                <Card className="h-full p-5">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-md bg-accent/15 text-accent">
+                    <Icon className="h-5 w-5" aria-hidden />
+                  </div>
+                  <h3 className="mt-4 font-display text-lg font-semibold">
+                    {f.name}
+                  </h3>
+                  <p className="mt-2 text-sm text-muted-foreground">{f.blurb}</p>
+                </Card>
+              </li>
+            );
+          })}
+        </ul>
       </section>
 
       {/* Why Tintworks */}
@@ -91,7 +119,7 @@ export default function LandingPage() {
           <FeatureBlock
             icon={Clock}
             title="Honest timelines"
-            body="Most car tints completed the same day. Residential and commercial jobs quoted with a firm fitting date up-front."
+            body="Most tints are completed the same day. You'll know the fitting slot up-front — no vague windows."
           />
         </div>
       </section>
@@ -133,41 +161,34 @@ export default function LandingPage() {
         </ul>
       </section>
 
-      {/* Testimonials — placeholders until real reviews collected */}
+      {/* Reviews block — deliberately empty until real reviews collected */}
       <section className="container section-padding border-t border-border/60">
-        <p className="text-xs uppercase tracking-widest text-accent">
-          What customers say
-        </p>
-        <h2 className="mt-2 font-display text-3xl font-bold md:text-4xl">
-          Trusted by drivers and homeowners across Leeds.
-        </h2>
-        <div className="mt-8 grid grid-cols-1 gap-4 md:grid-cols-3">
-          {/* {# TODO: replace all three testimonials with real Google/Facebook reviews before launch #} */}
-          <TestimonialCard
-            isPlaceholder
-            quote="Turned up in the morning, drove away a few hours later with a flawless ceramic tint. Huge difference to how the car feels in the sun."
-            author="Placeholder — real review pending"
-            context="BMW 3 Series — Leeds"
-          />
-          <TestimonialCard
-            isPlaceholder
-            quote="South-facing lounge was unusable in summer. The solar film made an immediate difference and you can't tell it's there from inside."
-            author="Placeholder — real review pending"
-            context="Residential — Leeds LS8"
-          />
-          <TestimonialCard
-            isPlaceholder
-            quote="Fast, tidy, professional. Did the whole shopfront over a Sunday so we didn't lose trading hours. Straight dealing, fair price."
-            author="Placeholder — real review pending"
-            context="Commercial — Leeds city centre"
-          />
+        <div className="rounded-lg border border-border bg-card p-8 md:p-10">
+          <p className="text-xs uppercase tracking-widest text-accent">
+            Reviews
+          </p>
+          <h2 className="mt-2 font-display text-2xl font-bold md:text-3xl">
+            Reviews coming soon — find us on Google.
+          </h2>
+          <p className="mt-3 max-w-xl text-sm text-muted-foreground">
+            We&apos;re collecting reviews from recent customers. In the
+            meantime, search for Tintworks on Google Maps to see the latest.
+          </p>
+          {/* {# TODO: swap href for real Google Business Profile review URL before launch #} */}
+          <div className="mt-5">
+            <Button asChild variant="outline" size="sm">
+              <Link href="#" aria-disabled>
+                Google Business Profile (pending)
+              </Link>
+            </Button>
+          </div>
         </div>
       </section>
 
       <SectionCta
         pageKey="landing"
-        heading="Thinking about tinting? Let's talk."
-        lead="Tell us about your car or property and we'll come back with a quote the same day."
+        heading="Thinking about tinting your car? Let's talk."
+        lead="Tell us the make, model, and windows you'd like done — we'll come back with a quote the same day."
       />
     </>
   );
@@ -178,7 +199,7 @@ function FeatureBlock({
   title,
   body,
 }: {
-  icon: typeof MapPin;
+  icon: typeof Car;
   title: string;
   body: string;
 }) {
