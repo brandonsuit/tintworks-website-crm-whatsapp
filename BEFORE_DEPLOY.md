@@ -6,9 +6,16 @@ Grep the codebase for `TODO` to see every marker in context.
 
 ## Content placeholders
 
-- [ ] **Gallery photos** — currently 9 picsum seeds via `gallery.config.ts`. Drop real images into `public/gallery/` and swap each `src` to the local path. The file has an instruction block at the top covering dimensions (1600×1200 / 4:3), compression, and `tintType` values.
-- [ ] **Google Business Profile URL** — landing-page reviews block currently has an `href="#"` placeholder. Grep `app/(marketing)/page.tsx` for `TODO: Google Business Profile`.
-- [ ] **Testimonials** — deferred to v1.5. When real reviews land, decide whether to re-introduce a quotes carousel or keep pointing at the Google Business Profile.
+- [ ] **Quote wizard pricing** — `lib/pricing.ts` ships with every price at `£0`. While it's zeros the wizard shows *Price on request* instead of `£0`, so nothing breaks — but you'll want real numbers before launch. Fill in:
+  - `pricingData.vehicleType` — base fee per body type (hatchback, saloon, etc).
+  - `pricingData.windows` — per-window-set fee (front pair, rear pair, full car, etc).
+  - `pricingData.shadeMultiplier` — 1.0 for flat pricing, or raise for darker shades.
+  - `pricingData.extras` — flat add-ons (ceramic upgrade, heat rejection, privacy, mobile).
+- [ ] **Gallery photos** — currently picsum placeholders. Swap in real images:
+  - `gallery.config.ts` — grid items (9 seed entries).
+  - `lib/before-after.ts` — 3 before/after pairs for the slider at the top of `/gallery`. Drop pairs into `public/gallery/before-after/`.
+- [ ] **Real reviews** — `lib/reviews.ts` contains seed testimonials (marked `isPlaceholder: true`). When the Google Reviews API is wired up, replace the seed array and flip the flag.
+- [ ] **Google Business Profile URL** — `lib/reviews.ts` → `googleReviewsProfileUrl` is a plain search fallback. Swap for the canonical GBP URL once it exists.
 
 ## Legal pages (must be reviewed)
 

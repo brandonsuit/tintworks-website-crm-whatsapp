@@ -14,20 +14,18 @@ export function GoogleMap() {
   const mapsUrl = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`;
 
   return (
-    <figure className="overflow-hidden rounded-lg border border-border bg-card">
-      <div className="relative aspect-[16/10] w-full">
+    <figure className="overflow-hidden rounded-sm border border-border bg-card hover-glow">
+      <div className="relative aspect-[16/11] w-full">
         <iframe
           src={src}
           title={`Map showing ${business.name} at ${business.address}`}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          className="absolute inset-0 h-full w-full border-0"
+          className="absolute inset-0 h-full w-full border-0 grayscale-[0.2] contrast-125"
         />
       </div>
-      <figcaption className="flex flex-col gap-1 p-4 text-sm md:flex-row md:items-center md:justify-between">
-        <span className="text-muted-foreground">
-          {business.address}
-        </span>
+      <figcaption className="flex flex-col gap-1 border-t border-border p-4 text-sm md:flex-row md:items-center md:justify-between">
+        <span className="text-muted-foreground">{business.address}</span>
         <a
           href={mapsUrl}
           target="_blank"
