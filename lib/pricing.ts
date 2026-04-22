@@ -71,19 +71,14 @@ export const tintShadeLabels: Record<TintShade, string> = {
 };
 
 // ── Extras ───────────────────────────────────────────────────────────────────
-export const EXTRAS = [
-  "ceramic",
-  "heatRejection",
-  "privacy",
-  "mobileService",
-] as const;
+// NOTE: Mobile service is deliberately absent — Tint Works is studio-only.
+export const EXTRAS = ["ceramic", "heatRejection", "privacy"] as const;
 export type ExtraKey = (typeof EXTRAS)[number];
 
 export const extraLabels: Record<ExtraKey, string> = {
   ceramic: "Ceramic film upgrade",
   heatRejection: "Heat rejection film",
   privacy: "Privacy film",
-  mobileService: "Mobile service",
 };
 
 // ── Pricing data — TODO: fill in real prices ─────────────────────────────────
@@ -125,7 +120,6 @@ export const pricingData = {
     ceramic: 0,
     heatRejection: 0,
     privacy: 0,
-    mobileService: 0,
   } satisfies Record<ExtraKey, number>,
 } as const;
 

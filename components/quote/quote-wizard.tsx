@@ -9,11 +9,9 @@ import {
   CheckCircle2,
   Loader2,
   ExternalLink,
-  Phone,
   Car as CarIcon,
   Truck,
   Sparkles,
-  Shield,
   Flame,
   Eye,
 } from "lucide-react";
@@ -670,7 +668,6 @@ const EXTRA_ICONS: Record<ExtraKey, React.ComponentType<{ className?: string }>>
   ceramic: Sparkles,
   heatRejection: Flame,
   privacy: Eye,
-  mobileService: Shield,
 };
 
 function StepExtras({
