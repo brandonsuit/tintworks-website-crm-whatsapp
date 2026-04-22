@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Tintworks theme — dark automotive.
+ * All tokens are HSL triples so Tailwind's `hsl(var(--x) / <alpha>)` works.
+ *
+ * To retune the whole site: edit this file. No component changes needed.
+ *   - Accent currently electric blue (HSL 210 100% 56%).
+ *   - Swap to red by setting --accent to `0 84% 55%` and --ring to match.
+ */
+
+@layer base {
+  :root {
+    /* Near-black base, slightly warm so it doesn't feel clinical. */
+    --background: 220 14% 7%;
+    --foreground: 210 20% 96%;
+
+    --card: 220 14% 10%;
+    --card-foreground: 210 20% 96%;
+
+    --popover: 220 14% 9%;
+    --popover-foreground: 210 20% 96%;
+
+    --primary: 210 20% 96%;
+    --primary-foreground: 220 14% 7%;
+
+    --secondary: 220 13% 16%;
+    --secondary-foreground: 210 20% 96%;
+
+    --muted: 220 13% 14%;
+    --muted-foreground: 215 15% 65%;
+
+    /* Accent — electric blue. */
+    --accent: 210 100% 56%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 13% 18%;
+    --input: 220 13% 18%;
+    --ring: 210 100% 56%;
+
+    /* WhatsApp brand green — only used on CTAs that explicitly open WhatsApp. */
+    --whatsapp: 142 70% 45%;
+    --whatsapp-foreground: 0 0% 100%;
+
+    --radius: 0.5rem;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background: hsl(var(--accent) / 0.35);
+    color: hsl(var(--accent-foreground));
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+}
