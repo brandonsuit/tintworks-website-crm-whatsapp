@@ -1,18 +1,18 @@
 import type { Metadata } from "next";
 
 import { PageHeader } from "@/components/marketing/page-header";
-import { QuoteForm } from "@/components/forms/quote-form";
+import { QuoteWizard } from "@/components/quote/quote-wizard";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Get a Quote — Car Window Tinting Leeds",
+  title: "Instant Quote — Car Window Tinting Leeds",
   description:
-    "Request a quote from Tintworks — tell us about your vehicle and preferred tint, and we'll reply on WhatsApp. Studio-fitted in Holbeck, Leeds.",
+    "Build your car window tinting quote in under two minutes. Pick vehicle, windows, shade, and extras — we'll reply on WhatsApp with a fitting slot.",
   alternates: { canonical: "/quote" },
   openGraph: {
-    title: "Get a Quote — Tintworks",
-    images: [ogImage("Get a Quote — Tintworks")],
+    title: "Instant Quote — Tint Works",
+    images: [ogImage("Instant Quote — Tint Works")],
   },
 };
 
@@ -20,20 +20,20 @@ export default function QuotePage() {
   return (
     <>
       <PageHeader
-        eyebrow="Get a quote"
-        title="Tell us about your vehicle."
-        lead="We'll come back with a quote and a fitting slot. WhatsApp is our primary channel — we'll pre-fill your details for you."
+        eyebrow="Instant quote"
+        title="Build your quote in under two minutes."
+        lead="Tell us the vehicle, the windows, and the shade. We'll pre-fill WhatsApp with your details so you can tap send and we'll reply the same day."
         crumbs={[{ href: "/quote", label: "Quote" }]}
       />
 
       <section className="container grid grid-cols-1 gap-8 pb-16 md:grid-cols-3">
         <div className="md:col-span-2">
-          <QuoteForm />
+          <QuoteWizard />
         </div>
         <aside className="space-y-4 md:col-span-1">
-          <div className="rounded-lg border border-border bg-card p-6">
-            <h2 className="font-display text-lg font-semibold">
-              Prefer to skip the form?
+          <div className="rounded-sm border border-border bg-card p-6">
+            <h2 className="font-display text-lg uppercase tracking-tight">
+              Prefer to skip it?
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Drop us a WhatsApp message directly — send the make, model,
@@ -44,25 +44,34 @@ export default function QuotePage() {
               <WhatsAppCta pageKey="quote" appearance="filled" size="default" />
             </div>
           </div>
-          <div className="rounded-lg border border-accent/30 bg-accent/5 p-6">
-            <h2 className="font-display text-lg font-semibold text-accent">
+          <div className="rounded-sm border border-accent/30 bg-accent/5 p-6">
+            <h2 className="font-display text-lg uppercase tracking-tight text-accent">
               How it works
             </h2>
             <ol className="mt-3 space-y-2 text-sm text-muted-foreground">
               <li>
-                <strong className="text-foreground">1.</strong> Fill in the
-                form — takes about a minute.
+                <strong className="text-foreground">1.</strong> Pick your
+                vehicle, windows, shade, and any extras.
               </li>
               <li>
-                <strong className="text-foreground">2.</strong> Tap{" "}
-                <em>Continue on WhatsApp</em> — your details will be
-                pre-filled into the message.
+                <strong className="text-foreground">2.</strong> Add your
+                contact details on the last step.
               </li>
               <li>
-                <strong className="text-foreground">3.</strong> We reply on
-                WhatsApp with a quote and fitting slot.
+                <strong className="text-foreground">3.</strong> Tap{" "}
+                <em>Send Quote via WhatsApp</em> — we&apos;ll reply the same
+                day.
               </li>
             </ol>
+          </div>
+          <div className="rounded-sm border border-border bg-card p-6">
+            <h2 className="font-display text-lg uppercase tracking-tight">
+              Your progress is saved
+            </h2>
+            <p className="mt-2 text-sm text-muted-foreground">
+              Close the tab and come back — we remember where you got to.
+              Cleared automatically once your quote is sent.
+            </p>
           </div>
         </aside>
       </section>
