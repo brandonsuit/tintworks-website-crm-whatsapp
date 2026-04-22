@@ -9,12 +9,17 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { business } from "@/lib/business";
 import { telHref } from "@/lib/phone";
+import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Contact — Tintworks Car Window Tinting Leeds",
   description:
     "Visit Tintworks at Brown Place, Holbeck, Leeds LS11. In-studio car window tinting only — bring your vehicle to us. Appointment only — message us on WhatsApp.",
   alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Tintworks — Holbeck, Leeds",
+    images: [ogImage("Contact Tintworks — Holbeck, Leeds")],
+  },
 };
 
 export default function ContactPage() {

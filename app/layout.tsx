@@ -51,12 +51,25 @@ export const metadata: Metadata = {
     title: `${business.name} — Car Window Tinting Leeds`,
     description:
       "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
+    images: [
+      {
+        url: `/og?title=${encodeURIComponent(
+          "Car Window Tinting Leeds — Tintworks",
+        )}`,
+        width: 1200,
+        height: 630,
+        alt: "Tintworks — Car window tinting Leeds",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: `${business.name} — Car Window Tinting Leeds`,
     description:
       "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
+    images: [
+      `/og?title=${encodeURIComponent("Car Window Tinting Leeds — Tintworks")}`,
+    ],
   },
   robots: {
     index: true,

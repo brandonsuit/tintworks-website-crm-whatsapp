@@ -3,12 +3,17 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/marketing/page-header";
 import { QuoteForm } from "@/components/forms/quote-form";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
+import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Get a Quote — Car Window Tinting Leeds",
   description:
     "Request a quote from Tintworks — tell us about your vehicle and preferred tint, and we'll reply on WhatsApp. Studio-fitted in Holbeck, Leeds.",
   alternates: { canonical: "/quote" },
+  openGraph: {
+    title: "Get a Quote — Tintworks",
+    images: [ogImage("Get a Quote — Tintworks")],
+  },
 };
 
 export default function QuotePage() {

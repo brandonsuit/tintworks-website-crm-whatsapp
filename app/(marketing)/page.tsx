@@ -16,12 +16,17 @@ import { SectionCta } from "@/components/marketing/section-cta";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { galleryItems } from "@/gallery.config";
+import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
   description:
     "Tintworks — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. Lifetime fitting warranty.",
   alternates: { canonical: "/" },
+  openGraph: {
+    title: "Car Window Tinting Leeds — Tintworks",
+    images: [ogImage("Car Window Tinting Leeds — Tintworks")],
+  },
 };
 
 const filmTypes = [

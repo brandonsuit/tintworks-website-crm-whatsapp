@@ -3,12 +3,17 @@ import type { Metadata } from "next";
 import { PageHeader } from "@/components/marketing/page-header";
 import { GalleryGrid } from "@/components/marketing/gallery-grid";
 import { SectionCta } from "@/components/marketing/section-cta";
+import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Gallery — Car Window Tinting Leeds",
   description:
     "Recent car window tinting work from Tintworks in Leeds — ceramic, carbon, limo-black, and sun strips. Fitted in-studio at our Holbeck workshop.",
   alternates: { canonical: "/gallery" },
+  openGraph: {
+    title: "Gallery — Tintworks",
+    images: [ogImage("Gallery — Tintworks")],
+  },
 };
 
 /**

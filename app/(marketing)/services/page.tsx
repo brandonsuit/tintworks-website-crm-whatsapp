@@ -5,12 +5,17 @@ import { PageHeader } from "@/components/marketing/page-header";
 import { SectionCta } from "@/components/marketing/section-cta";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { Card } from "@/components/ui/card";
+import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
   title: "Car Window Tinting Leeds — Services & Tint Options",
   description:
     "Tintworks — ceramic, carbon, and limo-black car window tinting in Leeds. Rear-3, rear-5, and full-vehicle packages fitted in-studio at our Holbeck workshop.",
   alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services — Car Window Tinting Leeds",
+    images: [ogImage("Services — Car Window Tinting Leeds")],
+  },
 };
 
 const benefits = [
