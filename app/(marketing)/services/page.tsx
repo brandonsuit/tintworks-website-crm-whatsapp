@@ -10,6 +10,7 @@ import {
   Car,
   AlertTriangle,
   ArrowRight,
+  Palette,
 } from "lucide-react";
 
 import { PageHeader } from "@/components/marketing/page-header";
@@ -52,6 +53,13 @@ const filmTypes = [
     icon: ShieldCheck,
     blurb:
       "A strong mid-tier option. Good heat rejection, matte finish, and doesn't fade to purple like cheap dyed films.",
+  },
+  {
+    name: "Chameleon",
+    icon: Palette,
+    blurb:
+      "Colour-shifting film that flips between blue, purple, and gold depending on the angle and light. Show-car finish, still offers proper UV and heat rejection. Built for people who want the glass to be a feature.",
+    badge: "Statement",
   },
   {
     name: "Limo black",
@@ -271,9 +279,15 @@ export default function ServicesPage() {
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
           {filmTypes.map((f, i) => {
             const Icon = f.icon;
+            const badge = "badge" in f ? f.badge : undefined;
             return (
               <FadeIn key={f.name} delay={i * 0.05}>
-                <Card className="h-full p-6 hover-glow">
+                <Card className="relative h-full p-6 hover-glow">
+                  {badge && (
+                    <span className="absolute right-4 top-4 rounded-sm border border-accent/40 bg-accent/10 px-2 py-0.5 text-[10px] uppercase tracking-widest text-accent">
+                      {badge}
+                    </span>
+                  )}
                   <div className="flex items-center gap-3">
                     <div className="flex h-10 w-10 items-center justify-center rounded-sm border border-accent/40 bg-accent/10 text-accent">
                       <Icon className="h-5 w-5" aria-hidden />
