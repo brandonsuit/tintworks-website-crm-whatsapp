@@ -57,15 +57,15 @@ export function PageHeader({
         </nav>
       )}
       {eyebrow && (
-        <p className="text-xs uppercase tracking-widest text-accent">
+        <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
           {eyebrow}
         </p>
       )}
-      <h1 className="mt-3 font-display text-4xl font-bold text-balance md:text-5xl">
+      <h1 className="mt-3 max-w-4xl font-display text-5xl uppercase leading-[0.95] tracking-tight text-balance md:text-7xl">
         {title}
       </h1>
       {lead && (
-        <p className="mt-4 max-w-2xl text-lg text-muted-foreground text-balance">
+        <p className="mt-4 max-w-2xl text-lg text-muted-foreground md:text-xl">
           {lead}
         </p>
       )}
