@@ -6,9 +6,8 @@
  * Tintworks theme — dark automotive.
  * All tokens are HSL triples so Tailwind's `hsl(var(--x) / <alpha>)` works.
  *
+ * Accent: electric blue (HSL 210 100% 56%) — LOCKED.
  * To retune the whole site: edit this file. No component changes needed.
- *   - Accent currently electric blue (HSL 210 100% 56%).
- *   - Swap to red by setting --accent to `0 84% 55%` and --ring to match.
  */
 
 @layer base {
