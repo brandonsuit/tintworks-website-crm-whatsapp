@@ -39,15 +39,15 @@ export type GalleryItem = {
 
 export const galleryItems: GalleryItem[] = [
   {
-    src: "https://picsum.photos/seed/tintworks-01/1600/1200",
-    alt: "Placeholder — BMW 3 Series with ceramic 20% rear tint",
-    caption: "Ceramic 20% — BMW 3 Series",
+    src: "/gallery/glb35-front.jpg",
+    alt: "Mercedes GLB35 AMG — front three-quarter view after full ceramic tint, Tintworks studio Leeds",
+    caption: "Ceramic tint — Mercedes GLB35 AMG",
     tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-02/1600/1200",
-    alt: "Placeholder — Mercedes GLC rear glass ceramic tint",
-    caption: "Rear glass ceramic tint — Mercedes GLC",
+    src: "/gallery/glb35-rear.jpg",
+    alt: "Mercedes GLB35 AMG — rear view showing dark ceramic tint on all windows, Tintworks studio Leeds",
+    caption: "Full rear pack — Mercedes GLB35 AMG",
     tintType: "ceramic",
   },
   {

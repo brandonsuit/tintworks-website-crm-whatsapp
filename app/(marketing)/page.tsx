@@ -32,7 +32,7 @@ import { ogImage } from "@/lib/og";
 export const metadata: Metadata = {
   title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
   description:
-    "Tint Works — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. 200+ 5-star reviews, lifetime fitting warranty.",
+    "Tint Works — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. 200+ 5-star reviews, 2-year fitting warranty.",
   alternates: { canonical: "/" },
   openGraph: {
     title: "Car Window Tinting Leeds — Tint Works",
@@ -126,7 +126,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "How long does it last?",
-    a: "Our ceramic and carbon films are colour-stable — no purple fade. Fitting is covered by a lifetime warranty against peeling, bubbling or delamination.",
+    a: "Our ceramic and carbon films are colour-stable — no purple fade. Fitting is covered by a 2-year warranty against peeling, bubbling or delamination.",
   },
   {
     q: "Can I wash my car after?",
@@ -134,7 +134,7 @@ const faqs: FaqItem[] = [
   },
   {
     q: "Do you offer a warranty?",
-    a: "Yes — lifetime fitting warranty on all work. If you ever have an issue, bring the car back.",
+    a: "Yes — 2-year fitting warranty on all work. If you ever have an issue, bring the car back.",
   },
 ];
 
@@ -212,8 +212,8 @@ export default async function LandingPage() {
               stats={[
                 { value: 200, suffix: "+", label: "5-star Google reviews" },
                 { value: 5, suffix: "★", label: "Average rating" },
-                { value: 10, suffix: "+", label: "Years in the game" },
-                { value: 100, suffix: "%", label: "Lifetime warranty" },
+                { value: 5, suffix: "+", label: "Years in the game" },
+                { value: 2, suffix: " yr", label: "Fitting warranty" },
               ]}
             />
           </div>

@@ -24,7 +24,7 @@ const steps = [
   {
     icon: Sparkles,
     title: "Drive away fresh",
-    body: "Collect your vehicle. Lifetime fitting warranty, and we'll always answer aftercare questions.",
+    body: "Collect your vehicle. 2-year fitting warranty, and we'll always answer aftercare questions.",
   },
 ] as const;
 

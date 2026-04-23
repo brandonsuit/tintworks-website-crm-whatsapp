@@ -101,7 +101,7 @@ export default function TermsPage() {
           <p className="mt-2">
             {/* {# TODO: confirm warranty terms — placeholder below. #} */}
             Where we fit window film for you, we warrant the fitting
-            workmanship for the lifetime of the film under normal use.
+            workmanship for 2 years from the date of fitting under normal use.
             This warranty does not cover damage caused by accidents,
             modifications, cleaning with abrasive products, or third-party
             work on the tinted glass. Film-manufacturer warranties apply

@@ -39,7 +39,7 @@ const benefits = [
   "99% UV rejection — protects interior trim and skin on long drives",
   "Factory-tidy finish, no peeling or purple fade",
   "UK-legal VLT on front side windows on request",
-  "Lifetime warranty on the fitting workmanship",
+  "2-year warranty on the fitting workmanship",
 ];
 
 const filmTypes = [
@@ -159,7 +159,7 @@ export default function ServicesPage() {
       <PageHeader
         eyebrow="Car window tinting Leeds"
         title="Ceramic and carbon car tints, fitted in Holbeck."
-        lead="Bring your vehicle to the studio and drive away with a clean, heat-rejecting tint backed by a lifetime fitting warranty."
+        lead="Bring your vehicle to the studio and drive away with a clean, heat-rejecting tint backed by a 2-year fitting warranty."
         crumbs={[{ href: "/services", label: "Services" }]}
       />
 

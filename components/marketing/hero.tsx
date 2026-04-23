@@ -61,7 +61,7 @@ export function Hero({
             <p className="mt-6 max-w-xl text-lg text-muted-foreground md:text-xl">
               Ceramic, carbon and chameleon films fitted in-studio at our
               Holbeck workshop. Heat rejection, UV protection, and a
-              factory-tidy finish — backed by a lifetime fitting warranty.
+              factory-tidy finish — backed by a 2-year fitting warranty.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
@@ -101,7 +101,7 @@ export function Hero({
               <li className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-accent" aria-hidden />
                 <span>
-                  <strong className="text-foreground">Lifetime</strong> fitting
+                  <strong className="text-foreground">2-year</strong> fitting
                   warranty
                 </span>
               </li>
