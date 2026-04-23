@@ -113,6 +113,16 @@
     clip-path: polygon(0 0, 100% 0, 100% 97%, 0 100%);
   }
 
+  /* Mobile text centering — headings and body text centred on small screens only. */
+  @media (max-width: 767px) {
+    main h1,
+    main h2,
+    main h3,
+    main p:not(figcaption p) {
+      text-align: center;
+    }
+  }
+
   /* Hover glow — subtle electric-blue halo on interactive elements. */
   .hover-glow {
     transition: box-shadow 200ms ease, border-color 200ms ease;
