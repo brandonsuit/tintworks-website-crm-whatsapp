@@ -10,6 +10,7 @@ import {
 } from "@react-three/drei";
 
 import { Model } from "./model";
+import type { TintConfig } from "./tint-levels";
 
 /**
  * 3D hero scene. Right-weighted composition with a subtle camera
@@ -66,9 +67,17 @@ type OrbitControlsRef = React.ElementRef<typeof OrbitControls>;
 
 type SceneProps = {
   prefersReducedMotion: boolean;
+  /** Current tint-preview config. Plain prop (not context) because
+   *  R3F's Canvas creates its own React root and context from the
+   *  outer tree doesn't cross that boundary without a bridge. The
+   *  caller reads `useTint()` outside Canvas and passes the config in. */
+  tintConfig: TintConfig;
 };
 
-export default function Scene({ prefersReducedMotion }: SceneProps) {
+export default function Scene({
+  prefersReducedMotion,
+  tintConfig,
+}: SceneProps) {
   const controlsRef = React.useRef<OrbitControlsRef | null>(null);
   // Paused while the user is actively dragging OR during the post-drag
   // inactivity window. `useRef` rather than state so useFrame can read
@@ -143,7 +152,7 @@ export default function Scene({ prefersReducedMotion }: SceneProps) {
 
         <React.Suspense fallback={null}>
           <Environment preset="warehouse" />
-          <Model />
+          <Model tintConfig={tintConfig} />
           <ContactShadows
             position={[0, -0.25, 0]}
             opacity={0.78}

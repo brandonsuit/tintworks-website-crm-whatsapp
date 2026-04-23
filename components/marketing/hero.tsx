@@ -4,6 +4,8 @@ import { Star, MapPin, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { Hero3DBackground } from "@/components/marketing/hero-3d";
+import { TintProvider } from "@/components/marketing/hero-3d/tint-context";
+import { TintPicker } from "@/components/marketing/hero-3d/tint-picker";
 import { BrandMarquee } from "@/components/marketing/brand-marquee";
 import { business } from "@/lib/business";
 import { telHref } from "@/lib/phone";
@@ -34,7 +36,7 @@ export function Hero({
   pageKey?: WhatsAppPageKey;
 }) {
   return (
-    <>
+    <TintProvider>
       <section className="relative isolate overflow-hidden bg-grain">
         {/* Background atmosphere — sits behind the 3D layer in case the
             scene hasn't mounted yet or the perf gate falls back to poster. */}
@@ -100,6 +102,10 @@ export function Hero({
                 </Button>
               </div>
 
+              {/* Interactive tint preview — below CTAs, above trust
+                  badges. Hidden when the perf gate disables 3D. */}
+              <TintPicker className="mt-8" />
+
               <ul
                 role="list"
                 className="pointer-events-auto mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]"
@@ -126,6 +132,6 @@ export function Hero({
 
       {/* Brand marquee — automotive context continues below the fold. */}
       <BrandMarquee />
-    </>
+    </TintProvider>
   );
 }

@@ -6,6 +6,7 @@ import Image from "next/image";
 import { Loader2 } from "lucide-react";
 
 import { useEnable3D } from "./use-enable-3d";
+import { useTint } from "./tint-context";
 
 /**
  * Client wrapper for the 3D hero background.
@@ -35,6 +36,10 @@ const POSTER_ALT =
 
 export function Hero3DBackground() {
   const { enable3D, prefersReducedMotion } = useEnable3D();
+  // Read tint state OUTSIDE the Canvas — R3F's Canvas creates its own
+  // React root and outer-tree context doesn't cross that boundary
+  // without a bridge. Pass the config as a plain prop through to Model.
+  const { config: tintConfig } = useTint();
 
   // Before the gate has decided (SSR, first hydration tick), show the
   // poster. Avoids hydration mismatch and reserves the exact final
@@ -46,7 +51,10 @@ export function Hero3DBackground() {
   return (
     <div className="absolute inset-0">
       <Poster />
-      <Scene prefersReducedMotion={prefersReducedMotion} />
+      <Scene
+        prefersReducedMotion={prefersReducedMotion}
+        tintConfig={tintConfig}
+      />
     </div>
   );
 }
