@@ -1,25 +1,39 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" width="280" height="56" role="img" aria-label="Tint Works">
-  <defs>
-    <linearGradient id="tw-fade" x1="0" x2="1" y1="0" y2="0">
-      <stop offset="0" stop-color="#00B4FF"/>
-      <stop offset="1" stop-color="#0073A8"/>
-    </linearGradient>
-  </defs>
   <style>
-    .mark { fill: #ffffff; }
-    .bar { fill: url(#tw-fade); }
     .word { font-family: "Bebas Neue", "Impact", "Oswald", "Anton", system-ui, sans-serif; font-weight: 400; letter-spacing: 0.04em; fill: #ffffff; }
   </style>
-  <rect width="280" height="56" fill="transparent"/>
-  <!-- Monogram: stacked TW inside a square glyph, with a blue gradient tint stripe -->
-  <g transform="translate(4,8)">
-    <rect x="0" y="0" width="40" height="40" fill="#141414" stroke="#27272A"/>
-    <!-- T crossbar -->
-    <rect class="mark" x="6" y="8" width="28" height="4"/>
-    <!-- T stem -->
-    <rect class="mark" x="18" y="8" width="4" height="24"/>
-    <!-- Tint gradient stripe (the "window") -->
-    <rect class="bar" x="4" y="34" width="32" height="3"/>
+
+  <!-- GT coupe side profile icon -->
+  <g transform="translate(4,4)">
+
+    <!-- Car body -->
+    <path d="M 1,42 L 1,27 C 1,24 3,23 7,22 L 14,22 L 17,13 C 19,11 22,10 25,10 L 36,10 C 39,10 40,12 40,16 L 40,22 L 45,23 L 45,42 Z"
+          fill="#141414" stroke="#2a2a2a" stroke-width="1.2"/>
+
+    <!-- Tinted window — gold, matches service -->
+    <path d="M 14,22 L 17,13 C 19,11 22,10 25,10 L 36,10 C 39,10 40,12 40,16 L 40,22 Z"
+          fill="#d2a02a" opacity="0.88"/>
+
+    <!-- Side crease line -->
+    <line x1="2" y1="31" x2="44" y2="31" stroke="#444" stroke-width="0.8"/>
+
+    <!-- Wheel arch cutouts -->
+    <path d="M 1,42 a 9,9 0 0,1 18,0" fill="#0A0A0A"/>
+    <path d="M 27,42 a 9,9 0 0,1 18,0" fill="#0A0A0A"/>
+
+    <!-- Rear wheel -->
+    <circle cx="10" cy="42" r="8" fill="#1C1C1C" stroke="#3a3a3a" stroke-width="1.5"/>
+    <circle cx="10" cy="42" r="3" fill="#d2a02a"/>
+
+    <!-- Front wheel -->
+    <circle cx="36" cy="42" r="8" fill="#1C1C1C" stroke="#3a3a3a" stroke-width="1.5"/>
+    <circle cx="36" cy="42" r="3" fill="#d2a02a"/>
+
+    <!-- Headlight -->
+    <rect x="1" y="25" width="3" height="5" rx="1" fill="#d2a02a" opacity="0.9"/>
+
   </g>
-  <text class="word" x="54" y="38" font-size="30">TINT WORKS</text>
+
+  <!-- Brand name -->
+  <text class="word" x="62" y="39" font-size="30">TINT WORKS</text>
 </svg>
