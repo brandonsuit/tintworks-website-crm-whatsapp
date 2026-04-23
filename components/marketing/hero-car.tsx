@@ -33,8 +33,8 @@ export function HeroCar({ className }: { className?: string }) {
           <stop offset="1" stopColor="hsl(0 0% 4%)" />
         </linearGradient>
         <linearGradient id="tw-tint" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0" stopColor="hsl(198 100% 55% / 0.55)" />
-          <stop offset="1" stopColor="hsl(198 100% 35% / 0.15)" />
+          <stop offset="0" stopColor="hsl(42 67% 55% / 0.55)" />
+          <stop offset="1" stopColor="hsl(42 67% 35% / 0.15)" />
         </linearGradient>
         <linearGradient id="tw-sweep" x1="0" y1="0" x2="1" y2="0">
           <stop offset="0" stopColor="hsl(0 0% 100% / 0)" />
@@ -72,7 +72,7 @@ export function HeroCar({ className }: { className?: string }) {
           cy="170"
           rx="260"
           ry="55"
-          fill="hsl(198 100% 50%)"
+          fill="hsl(42 67% 49%)"
           opacity="0.45"
         />
       </motion.g>
@@ -115,7 +115,7 @@ export function HeroCar({ className }: { className?: string }) {
           Z
         "
         fill="url(#tw-tint)"
-        stroke="hsl(198 100% 50% / 0.7)"
+        stroke="hsl(42 67% 49% / 0.7)"
         strokeWidth="1"
       />
 
@@ -157,13 +157,13 @@ export function HeroCar({ className }: { className?: string }) {
       <Wheel cx={300} cy={310} />
       <Wheel cx={920} cy={310} />
 
-      {/* Headlight (front) — subtle electric-blue accent */}
+      {/* Headlight (front) — subtle gold accent */}
       <ellipse
         cx="118"
         cy="282"
         rx="14"
         ry="6"
-        fill="hsl(198 100% 75%)"
+        fill="hsl(42 67% 75%)"
         opacity="0.85"
       />
       <ellipse
@@ -171,7 +171,7 @@ export function HeroCar({ className }: { className?: string }) {
         cy="282"
         rx="28"
         ry="10"
-        fill="hsl(198 100% 60%)"
+        fill="hsl(42 67% 60%)"
         opacity="0.25"
         filter="url(#tw-glow)"
       />
@@ -226,7 +226,7 @@ function Wheel({ cx, cy }: { cx: number; cy: number }) {
         {spokes}
       </g>
       <circle cx={cx} cy={cy} r={12} fill="hsl(0 0% 18%)" />
-      <circle cx={cx} cy={cy} r={4} fill="hsl(198 100% 50%)" />
+      <circle cx={cx} cy={cy} r={4} fill="hsl(42 67% 49%)" />
     </g>
   );
 }
