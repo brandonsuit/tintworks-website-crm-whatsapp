@@ -45,12 +45,6 @@ export const galleryItems: GalleryItem[] = [
     tintType: "ceramic",
   },
   {
-    src: "/gallery/glb35-rear.jpg",
-    alt: "Mercedes GLB35 AMG — rear view showing dark ceramic tint on all windows, Tintworks studio Leeds",
-    caption: "Full rear pack — Mercedes GLB35 AMG",
-    tintType: "ceramic",
-  },
-  {
     src: "https://picsum.photos/seed/tintworks-03/1600/1200",
     alt: "Placeholder — full-vehicle 5-window tint",
     caption: "Full vehicle, 5-window package",
