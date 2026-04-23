@@ -18,3 +18,11 @@ yarn-error.log*
 .vercel
 next-env.d.ts
 tsconfig.tsbuildinfo
+
+# Local scratch for heavy asset processing — never commit these.
+# Compressed artefacts live under public/models/ and are explicitly
+# committed; the raw sources do not.
+/tmp-glb-work/
+/tmp-assets/
+*.glb.source
+*.uncompressed.glb
