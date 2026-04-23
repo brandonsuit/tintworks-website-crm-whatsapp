@@ -38,7 +38,7 @@ export function BrandMarquee({ className }: { className?: string }) {
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-      <div className="flex w-max animate-tw-marquee gap-10 py-4 [animation-duration:48s]">
+      <div className="flex w-max animate-tw-marquee gap-10 py-4 [animation-duration:48s] will-change-transform">
         {[...BRANDS, ...BRANDS].map((b, i) => (
           <span
             key={`${b}-${i}`}
