@@ -41,7 +41,7 @@ export const galleryItems: GalleryItem[] = [
   {
     src: "/gallery/glb35-front.jpg",
     alt: "Mercedes GLB35 AMG — front three-quarter view after full ceramic tint, Tintworks studio Leeds",
-    caption: "Ceramic tint — Mercedes GLB35 AMG",
+    caption: "Mercedes GLB35 AMG — Full Window Tints",
     tintType: "ceramic",
   },
   {
