@@ -45,9 +45,9 @@ export const galleryItems: GalleryItem[] = [
     tintType: "ceramic",
   },
   {
-    src: "/gallery/audi-tt.jpg",
-    alt: "Audi TT Coupe — full window tint in Tintworks studio Leeds",
-    caption: "Audi TT Coupe — Full Window Tints",
+    src: "/gallery/lamborghini-gallardo.jpg",
+    alt: "Lamborghini Gallardo — 2 windows tinted at 35% by Tintworks Leeds",
+    caption: "Lamborghini Gallardo — 2 Windows 35%",
     tintType: "ceramic",
   },
   {
@@ -81,9 +81,9 @@ export const galleryItems: GalleryItem[] = [
     tintType: "carbon",
   },
   {
-    src: "/gallery/lamborghini-gallardo.jpg",
-    alt: "Lamborghini Gallardo — 2 windows tinted at 35% by Tintworks Leeds",
-    caption: "Lamborghini Gallardo — 2 Windows 35%",
+    src: "/gallery/audi-tt.jpg",
+    alt: "Audi TT Coupe — full window tint in Tintworks studio Leeds",
+    caption: "Audi TT Coupe — Full Window Tints",
     tintType: "ceramic",
   },
 ];
