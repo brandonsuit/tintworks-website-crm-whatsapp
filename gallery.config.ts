@@ -26,7 +26,7 @@
  * is a cheap UI change, not a data migration.
  */
 
-export type TintType = "ceramic" | "carbon" | "limo-black" | "sun-strip";
+export type TintType = "ceramic" | "carbon" | "limo-black" | "sun-strip" | "chameleon";
 
 export type GalleryItem = {
   src: string;
@@ -78,7 +78,7 @@ export const galleryItems: GalleryItem[] = [
     src: "/gallery/ford-transit.jpg",
     alt: "Ford Transit Custom — pink haze chameleon windscreen tint by Tintworks Leeds",
     caption: "Transit Custom — Pink Haze Chameleon Windscreen",
-    tintType: "carbon",
+    tintType: "chameleon",
   },
   {
     src: "/gallery/audi-tt.jpg",
@@ -93,4 +93,5 @@ export const tintTypeLabel: Record<TintType, string> = {
   carbon: "Carbon",
   "limo-black": "Limo black",
   "sun-strip": "Sun strip",
+  chameleon: "Chameleon",
 };

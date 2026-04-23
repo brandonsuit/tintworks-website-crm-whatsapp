@@ -73,13 +73,6 @@ export default function GalleryPage() {
         <div className="mt-10">
           <GalleryGrid />
         </div>
-        <p className="mt-8 text-xs text-muted-foreground">
-          Placeholder images shown until the real gallery lands. See{" "}
-          <code className="rounded-sm bg-muted px-1.5 py-0.5">
-            gallery.config.ts
-          </code>{" "}
-          for how to swap them in.
-        </p>
       </section>
 
       <SectionCta

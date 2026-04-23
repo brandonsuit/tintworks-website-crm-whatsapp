@@ -16,6 +16,7 @@ const FILTERS: { value: Filter; label: string }[] = [
   { value: "carbon", label: "Carbon" },
   { value: "limo-black", label: "Limo" },
   { value: "sun-strip", label: "Sun strip" },
+  { value: "chameleon", label: "Chameleon" },
 ];
 
 export function GalleryGrid() {
