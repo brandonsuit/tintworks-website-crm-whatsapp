@@ -1,61 +1,117 @@
 "use client";
 
 import * as React from "react";
-import { Canvas } from "@react-three/fiber";
+import * as THREE from "three";
+import { Canvas, useFrame } from "@react-three/fiber";
 import {
   OrbitControls,
   ContactShadows,
   Environment,
-  Bounds,
 } from "@react-three/drei";
 
 import { Model } from "./model";
 
 /**
- * The actual R3F Canvas. Loaded only inside a next/dynamic ssr:false
- * boundary (see ./index.tsx) — three.js cannot SSR.
+ * 3D hero scene. Right-weighted composition with a subtle camera
+ * showcase orbit — not a full spin.
  *
- * Palette
- *   Background is #0A0A0A (matches globals.css `--background: 0 0% 4%`).
- *   Environment preset "warehouse" — warm indoor reflections that
- *   flatter the warm-gold (#d2a02a) accent; "studio" was too cool
- *   against this palette. Key light is tinted slightly warm for the
- *   same reason. All presets ship with the drei bundle (no external
- *   HDR fetch) so nothing can 404 on Railway.
+ * Composition
+ *   - Model sits at origin, scaled in `model.tsx` to realistic
+ *     world units (~1 m per unit).
+ *   - Camera looks from upper-right-front at an offset target
+ *     (`TARGET`), which pushes the car toward the right 30% of the
+ *     frame without moving the model. Tune `TARGET[0]` to slide the
+ *     car left/right; tune `CAMERA_POSITION` + `CAMERA_FOV` to
+ *     tighten or loosen framing.
+ *   - Soft `Environment preset="warehouse"` + warm key light carry
+ *     the gold accent palette.
+ *   - Strengthened `ContactShadows` anchor the car to a ground plane
+ *     (opacity 0.78, tight blur).
  *
- * Behaviour
- *   - Auto-rotate unless prefers-reduced-motion.
- *   - User drag pauses auto-rotate for 4s then resumes.
- *   - Zoom + pan disabled (keep the composition stable).
- *   - <Bounds fit clip observe> auto-frames the model.
- *   - <ContactShadows> soft shadow underneath.
+ * Animation
+ *   - Model is stationary.
+ *   - `CameraAnimator` drives `OrbitControls.setAzimuthalAngle()` on
+ *     every frame with a ±12° sine oscillation over a 28 s period —
+ *     gentle showcase arc, not a full 360° spin.
+ *   - User drag pauses the orbit; a 4 s inactivity timer resumes it
+ *     by computing a time offset so the sine position matches the
+ *     user's released angle — no jarring snap back to centre.
+ *   - prefers-reduced-motion disables the orbit entirely. Drag still
+ *     works, the scene just stays static until the user moves it.
  *
- * aria-label is on the wrapping div rather than the <canvas> because
- * R3F forwards the canvas ref internally; the outer div reads the same
- * for screen readers.
+ * All Environment presets ship inside the drei bundle — no external
+ * HDR fetch — so nothing can 404 on Railway.
  */
+
+const CAMERA_POSITION: [number, number, number] = [4, 1.2, 5];
+const CAMERA_FOV = 35;
+const TARGET: [number, number, number] = [-0.8, 0, 0];
+
+// OrbitControls' azimuth convention: atan2(x, z), measured from +Z
+// toward +X. Pre-compute the base angle once so the animator can
+// oscillate around it without reading camera state each frame.
+const DX = CAMERA_POSITION[0] - TARGET[0];
+const DZ = CAMERA_POSITION[2] - TARGET[2];
+const BASE_AZIMUTH = Math.atan2(DX, DZ);
+
+// Showcase orbit: ±12° swing, 28 s full cycle.
+const ORBIT_AMPLITUDE = Math.PI / 15;
+const ORBIT_PERIOD_SEC = 28;
+const ORBIT_OMEGA = (2 * Math.PI) / ORBIT_PERIOD_SEC;
+
+// Inactivity window before the auto-orbit resumes after a user drag.
+const PAUSE_MS = 4000;
+
+type OrbitControlsRef = React.ElementRef<typeof OrbitControls>;
 
 type SceneProps = {
   prefersReducedMotion: boolean;
 };
 
 export default function Scene({ prefersReducedMotion }: SceneProps) {
-  const [autoRotate, setAutoRotate] = React.useState(!prefersReducedMotion);
+  const controlsRef = React.useRef<OrbitControlsRef | null>(null);
+  // Paused while the user is actively dragging OR during the post-drag
+  // inactivity window. `useRef` rather than state so useFrame can read
+  // it without re-rendering the scene graph.
+  const pausedRef = React.useRef<boolean>(prefersReducedMotion);
+  const elapsedRef = React.useRef<number>(0);
   const pauseTimerRef = React.useRef<ReturnType<typeof setTimeout> | null>(
     null,
   );
 
-  // When the user drags, pause auto-rotation for 4s then resume.
-  const handleStart = React.useCallback(() => {
+  // Stable Vector3 so OrbitControls doesn't churn its target on each
+  // render. Memoised once — coords don't change at runtime.
+  const targetVec = React.useMemo(
+    () => new THREE.Vector3(...TARGET),
+    [],
+  );
+
+  const onStart = React.useCallback(() => {
     if (prefersReducedMotion) return;
-    setAutoRotate(false);
+    pausedRef.current = true;
     if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
   }, [prefersReducedMotion]);
 
-  const handleEnd = React.useCallback(() => {
+  const onEnd = React.useCallback(() => {
     if (prefersReducedMotion) return;
     if (pauseTimerRef.current) clearTimeout(pauseTimerRef.current);
-    pauseTimerRef.current = setTimeout(() => setAutoRotate(true), 4000);
+    pauseTimerRef.current = setTimeout(() => {
+      // Resume smoothly: pick an elapsed time whose sine output matches
+      // the current azimuth offset so the orbit continues from where
+      // the user released the camera rather than snapping back.
+      const controls = controlsRef.current;
+      if (controls) {
+        const currentAz = controls.getAzimuthalAngle();
+        const offset = currentAz - BASE_AZIMUTH;
+        const clamped = Math.max(
+          -ORBIT_AMPLITUDE,
+          Math.min(ORBIT_AMPLITUDE, offset),
+        );
+        elapsedRef.current =
+          Math.asin(clamped / ORBIT_AMPLITUDE) / ORBIT_OMEGA;
+      }
+      pausedRef.current = false;
+    }, PAUSE_MS);
   }, [prefersReducedMotion]);
 
   React.useEffect(
@@ -73,45 +129,84 @@ export default function Scene({ prefersReducedMotion }: SceneProps) {
     >
       <Canvas
         dpr={[1, 2]}
-        camera={{ position: [4, 2, 5], fov: 35 }}
+        camera={{ position: CAMERA_POSITION, fov: CAMERA_FOV }}
         gl={{ antialias: true, alpha: true }}
       >
         <color attach="background" args={["#0A0A0A"]} />
 
-        {/* Warehouse HDR handles reflections; the directional key is
-            tinted slightly warm to sit nicely with the gold accent. */}
         <ambientLight intensity={0.25} />
         <directionalLight
           position={[4, 6, 5]}
-          intensity={0.85}
+          intensity={0.9}
           color="#f4e3b8"
         />
 
         <React.Suspense fallback={null}>
           <Environment preset="warehouse" />
-          <Bounds fit clip observe margin={1.1}>
-            <Model autoRotate={autoRotate} />
-          </Bounds>
+          <Model />
           <ContactShadows
-            position={[0, -1.2, 0]}
-            opacity={0.55}
-            scale={12}
-            blur={2.5}
-            far={4}
+            position={[0, -0.25, 0]}
+            opacity={0.78}
+            scale={5}
+            blur={1.8}
+            far={2}
           />
         </React.Suspense>
 
         <OrbitControls
+          ref={controlsRef}
+          target={targetVec}
           enableZoom={false}
           enablePan={false}
           enableRotate
           minPolarAngle={Math.PI / 3}
           maxPolarAngle={Math.PI / 2.1}
-          onStart={handleStart}
-          onEnd={handleEnd}
+          onStart={onStart}
+          onEnd={onEnd}
           makeDefault
+        />
+
+        <CameraAnimator
+          enabled={!prefersReducedMotion}
+          pausedRef={pausedRef}
+          elapsedRef={elapsedRef}
+          controlsRef={controlsRef}
         />
       </Canvas>
     </div>
   );
+}
+
+/**
+ * Showcase camera orbit. Runs every frame via useFrame (only possible
+ * inside <Canvas>, hence its own component). Drives the camera by
+ * setting OrbitControls' azimuthal angle so it plays nicely with user
+ * drag and OrbitControls' internal damping + change events.
+ *
+ * Does nothing when `enabled` is false (reduced-motion users) or
+ * while `pausedRef.current` is true (user-drag or post-drag window).
+ */
+function CameraAnimator({
+  enabled,
+  pausedRef,
+  elapsedRef,
+  controlsRef,
+}: {
+  enabled: boolean;
+  pausedRef: React.RefObject<boolean>;
+  elapsedRef: React.RefObject<number>;
+  controlsRef: React.RefObject<OrbitControlsRef | null>;
+}) {
+  useFrame((_state, delta) => {
+    if (!enabled || pausedRef.current) return;
+    elapsedRef.current += delta;
+    const controls = controlsRef.current;
+    if (!controls) return;
+    const angle =
+      BASE_AZIMUTH +
+      ORBIT_AMPLITUDE * Math.sin(ORBIT_OMEGA * elapsedRef.current);
+    controls.setAzimuthalAngle(angle);
+    controls.update();
+  });
+  return null;
 }
