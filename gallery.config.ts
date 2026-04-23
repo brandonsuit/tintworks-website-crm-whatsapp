@@ -45,16 +45,16 @@ export const galleryItems: GalleryItem[] = [
     tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-03/1600/1200",
-    alt: "Placeholder — full-vehicle 5-window tint",
-    caption: "Full vehicle, 5-window package",
+    src: "/gallery/audi-tt.jpg",
+    alt: "Audi TT Coupe — full window tint in Tintworks studio Leeds",
+    caption: "Audi TT Coupe — Full Window Tints",
     tintType: "ceramic",
   },
   {
-    src: "https://picsum.photos/seed/tintworks-04/1600/1200",
-    alt: "Placeholder — carbon film rear tint",
-    caption: "Carbon rear-3 package — Audi A4",
-    tintType: "carbon",
+    src: "/gallery/vw-golf.jpg",
+    alt: "Volkswagen Golf — full window tint in Tintworks studio Leeds",
+    caption: "Volkswagen Golf — Full Window Tints",
+    tintType: "ceramic",
   },
   {
     src: "https://picsum.photos/seed/tintworks-05/1600/1200",
