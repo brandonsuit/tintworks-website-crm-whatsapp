@@ -1,11 +1,5 @@
 import { cn } from "@/lib/utils";
 
-/**
- * Continuously-scrolling strip of vehicle makes we've worked on — pure CSS
- * animation (translateX), duplicated inline so the loop is seamless. Aria-
- * hidden (it's decorative; the content is a vibe cue, not information).
- */
-
 const BRANDS = [
   "BMW",
   "Audi",
@@ -30,15 +24,18 @@ export function BrandMarquee({ className }: { className?: string }) {
     <div
       aria-hidden
       className={cn(
-        "relative overflow-hidden border-y border-border/60 bg-background/60",
+        "relative overflow-hidden border-y border-border/60 bg-background",
         className,
       )}
     >
-      {/* Edge fades so the brands drift in/out rather than hard-cutting */}
+      {/* Edge fades — must use solid bg-background (no alpha) to avoid compositing cost */}
       <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-background to-transparent" />
       <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-background to-transparent" />
 
-      <div className="flex w-max animate-tw-marquee gap-10 py-4 [animation-duration:48s] will-change-transform">
+      <div
+        className="flex w-max animate-tw-marquee gap-10 py-4 [animation-duration:48s]"
+        style={{ willChange: "transform", backfaceVisibility: "hidden" }}
+      >
         {[...BRANDS, ...BRANDS].map((b, i) => (
           <span
             key={`${b}-${i}`}
