@@ -53,7 +53,7 @@ export const galleryItems: GalleryItem[] = [
   {
     src: "/gallery/vw-golf.jpg",
     alt: "Volkswagen Golf — full window tint in Tintworks studio Leeds",
-    caption: "Volkswagen Golf — Full Window Tints",
+    caption: "Volkswagen MK8 — Rear Window Tints",
     tintType: "ceramic",
   },
   {
