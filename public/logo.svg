@@ -1,39 +1,12 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 56" width="280" height="56" role="img" aria-label="Tint Works">
-  <style>
-    .word { font-family: "Bebas Neue", "Impact", "Oswald", "Anton", system-ui, sans-serif; font-weight: 400; letter-spacing: 0.04em; fill: #ffffff; }
-  </style>
-
-  <!-- GT coupe side profile icon -->
-  <g transform="translate(4,4)">
-
-    <!-- Car body -->
-    <path d="M 1,42 L 1,27 C 1,24 3,23 7,22 L 14,22 L 17,13 C 19,11 22,10 25,10 L 36,10 C 39,10 40,12 40,16 L 40,22 L 45,23 L 45,42 Z"
-          fill="#141414" stroke="#2a2a2a" stroke-width="1.2"/>
-
-    <!-- Tinted window — gold, matches service -->
-    <path d="M 14,22 L 17,13 C 19,11 22,10 25,10 L 36,10 C 39,10 40,12 40,16 L 40,22 Z"
-          fill="#d2a02a" opacity="0.88"/>
-
-    <!-- Side crease line -->
-    <line x1="2" y1="31" x2="44" y2="31" stroke="#444" stroke-width="0.8"/>
-
-    <!-- Wheel arch cutouts -->
-    <path d="M 1,42 a 9,9 0 0,1 18,0" fill="#0A0A0A"/>
-    <path d="M 27,42 a 9,9 0 0,1 18,0" fill="#0A0A0A"/>
-
-    <!-- Rear wheel -->
-    <circle cx="10" cy="42" r="8" fill="#1C1C1C" stroke="#3a3a3a" stroke-width="1.5"/>
-    <circle cx="10" cy="42" r="3" fill="#d2a02a"/>
-
-    <!-- Front wheel -->
-    <circle cx="36" cy="42" r="8" fill="#1C1C1C" stroke="#3a3a3a" stroke-width="1.5"/>
-    <circle cx="36" cy="42" r="3" fill="#d2a02a"/>
-
-    <!-- Headlight -->
-    <rect x="1" y="25" width="3" height="5" rx="1" fill="#d2a02a" opacity="0.9"/>
-
-  </g>
-
-  <!-- Brand name -->
-  <text class="word" x="62" y="39" font-size="30">TINT WORKS</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 52" width="260" height="52" role="img" aria-label="Tint Works">
+  <text
+    x="4"
+    y="42"
+    font-family="'Bebas Neue', 'Impact', 'Oswald', 'Anton', system-ui, sans-serif"
+    font-size="48"
+    font-weight="700"
+    font-style="italic"
+    letter-spacing="2"
+    fill="#d2a02a"
+  >TINTWORKS</text>
 </svg>

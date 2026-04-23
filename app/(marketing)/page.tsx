@@ -7,6 +7,7 @@ import {
   Eye,
   Sun,
   Truck,
+  Palette,
   ArrowRight,
   Star,
   ExternalLink,
@@ -24,7 +25,8 @@ import { ProcessTimeline } from "@/components/marketing/process-timeline";
 import { FaqAccordion, type FaqItem } from "@/components/marketing/faq-accordion";
 import { Button } from "@/components/ui/button";
 import { galleryItems } from "@/gallery.config";
-import { reviews, reviewStats, googleReviewsProfileUrl } from "@/lib/reviews";
+import { reviews as staticReviews, reviewStats, googleReviewsProfileUrl } from "@/lib/reviews";
+import { fetchGoogleReviews } from "@/lib/google-reviews";
 import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
@@ -74,6 +76,14 @@ const services = [
     title: "Commercial / van",
     description:
       "Transit, Sprinter, VW Transporter and more. Secure your tools, stay comfortable.",
+  },
+  {
+    href: "/services#chameleon",
+    icon: Palette,
+    title: "Chameleon finish",
+    description:
+      "Colour-shifting film that flips between blue, purple and gold. Show-car look with full UV and heat rejection.",
+    badge: "Statement",
   },
 ] as const;
 
@@ -128,8 +138,11 @@ const faqs: FaqItem[] = [
   },
 ];
 
-export default function LandingPage() {
+export default async function LandingPage() {
   const teaser = galleryItems.slice(0, 3);
+  const liveReviews = await fetchGoogleReviews();
+  const reviews = liveReviews.length > 0 ? liveReviews : staticReviews;
+  const isPlaceholder = liveReviews.length === 0;
 
   return (
     <>
@@ -234,13 +247,25 @@ export default function LandingPage() {
             <li key={item.src}>
               <figure className="group relative overflow-hidden rounded-sm border border-border bg-card hover-glow">
                 <div className="relative aspect-[4/3]">
-                  <Image
-                    src={item.src}
-                    alt={item.alt}
-                    fill
-                    sizes="(min-width: 768px) 33vw, 100vw"
-                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                  />
+                  {item.type === "video" ? (
+                    <video
+                      src={item.src}
+                      poster={item.poster}
+                      muted
+                      loop
+                      autoPlay
+                      playsInline
+                      className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  ) : (
+                    <Image
+                      src={item.src}
+                      alt={item.alt}
+                      fill
+                      sizes="(min-width: 768px) 33vw, 100vw"
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  )}
                 </div>
                 <figcaption className="p-4 text-sm text-muted-foreground">
                   {item.caption}
@@ -279,7 +304,7 @@ export default function LandingPage() {
           <div className="mt-10 max-w-3xl">
             <ReviewCarousel reviews={reviews} />
           </div>
-          {reviewStats.isPlaceholder && (
+          {isPlaceholder && (
             <p className="mt-4 text-xs text-muted-foreground">
               Showing a selection of recent feedback. For the live feed see our
               Google Business Profile.

@@ -23,44 +23,43 @@ export const googleReviewsProfileUrl =
 export const reviewStats = {
   count: 200,
   averageRating: 5,
-  // Flip to `true` once real reviews are imported.
-  isPlaceholder: true,
+  isPlaceholder: false,
 };
 
 export const reviews: Review[] = [
   {
-    author: "Jordan P.",
+    author: "Holly Butler",
     rating: 5,
-    date: "2025-11-14",
-    text: "Proper clean finish. Booked in for a full rear set on my M140i and you can't tell it hasn't come out the factory. Gave honest advice on the shade — wouldn't have picked it without them.",
+    date: "2026-03-01",
+    text: "I recently had my car windows tinted at Tintworks, and I couldn't be happier with the experience. Stephen did a great job, super professional, friendly, and clearly knows what he's doing. The whole process was quicker than I expected, but the quality wasn't rushed. If you're thinking about getting your windows tinted, I'd definitely recommend Tintworks.",
     source: "google",
   },
   {
-    author: "Sarah M.",
+    author: "Leighton Redshaw",
     rating: 5,
-    date: "2025-10-02",
-    text: "Dropped my Golf off first thing, collected same day. The quote I got over WhatsApp was exactly what I paid — no sneaky add-ons. Heat rejection has been a game changer on the school run.",
+    date: "2026-02-01",
+    text: "Good tints did a good job had a issue with one window but was fast to sort it with no issues highly recommended.",
     source: "google",
   },
   {
-    author: "Dan K.",
+    author: "Wayne Roberts",
     rating: 5,
-    date: "2025-09-20",
-    text: "Top tier. Ceramic tints all round on the RS3 — zero bubbles, zero dust, zero excuses. Explained the UK law on the front windows which saved me a MOT headache.",
+    date: "2025-11-01",
+    text: "We had a sun visor tints on my Peugeot 3008, excellent tints, good quality tints fantastic job, easy access into the unit work done under cover. We would recommend if you need tints this is to go for. Well pleased with my results THANK YOU.",
     source: "google",
   },
   {
-    author: "Aisha R.",
+    author: "Kristens Krumins",
     rating: 5,
-    date: "2025-08-15",
-    text: "Honestly the best customer service I've had for any car work in Leeds. Replied on WhatsApp within minutes, booking was painless, and the finish is spotless.",
+    date: "2025-08-01",
+    text: "Had all my windows tinted including a blue chameleon with a sunstrip, he did a great job and tinted my car just how I wanted it. I would definitely recommend and will be coming back here in the future if I need any tints doing.",
     source: "google",
   },
   {
-    author: "Mike T.",
+    author: "Andy Sheard",
     rating: 5,
-    date: "2025-07-30",
-    text: "Had the whole rear of my Transporter done for a build I'm doing. Sharp work, sharp pricing, and they took the time to talk me through privacy vs heat rejection film.",
+    date: "2025-06-01",
+    text: "I had Steve tint the windows on my Cooper S yesterday, he also did a blue chameleon tint and sun strip on the windscreen and it looks absolutely mint, I couldn't be happier with his work. He gave me plenty of information before and after he did the work and provided a very professional and quick service with a great price, I'll have no problem recommending him to anyone else.",
     source: "google",
   },
 ];

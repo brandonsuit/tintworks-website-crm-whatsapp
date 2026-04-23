@@ -33,6 +33,8 @@ export type GalleryItem = {
   alt: string;
   caption: string;
   tintType: TintType;
+  type?: "image" | "video";
+  poster?: string;
 };
 
 export const galleryItems: GalleryItem[] = [

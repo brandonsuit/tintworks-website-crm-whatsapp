@@ -2,17 +2,11 @@
 
 import * as React from "react";
 import Image from "next/image";
-import { X } from "lucide-react";
+import { X, Play } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import { galleryItems, tintTypeLabel, type TintType, type GalleryItem } from "@/gallery.config";
 import { cn } from "@/lib/utils";
-
-/**
- * Filterable gallery grid + click-to-open lightbox. All client-side —
- * the grid animates when the filter changes and opens a modal viewer
- * with keyboard navigation (Esc to close, Arrow keys to step).
- */
 
 type Filter = "all" | TintType;
 
@@ -41,8 +35,7 @@ export function GalleryGrid() {
     (dir: 1 | -1) => {
       setLightboxIndex((i) => {
         if (i === null) return i;
-        const next = (i + dir + items.length) % items.length;
-        return next;
+        return (i + dir + items.length) % items.length;
       });
     },
     [items.length],
@@ -59,27 +52,20 @@ export function GalleryGrid() {
     return () => window.removeEventListener("keydown", onKey);
   }, [lightboxIndex, closeLightbox, stepLightbox]);
 
-  // Lock body scroll while lightbox is open.
   React.useEffect(() => {
     if (lightboxIndex === null) return;
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    return () => {
-      document.body.style.overflow = prev;
-    };
+    return () => { document.body.style.overflow = prev; };
   }, [lightboxIndex]);
 
   if (galleryItems.length === 0) {
-    return <p className="text-sm text-muted-foreground">No images yet.</p>;
+    return <p className="text-sm text-muted-foreground">No items yet.</p>;
   }
 
   return (
     <div>
-      <ul
-        role="tablist"
-        aria-label="Filter gallery"
-        className="flex flex-wrap gap-2"
-      >
+      <ul role="tablist" aria-label="Filter gallery" className="flex flex-wrap gap-2">
         {FILTERS.map((f) => {
           const active = filter === f.value;
           return (
@@ -103,10 +89,7 @@ export function GalleryGrid() {
         })}
       </ul>
 
-      <ul
-        role="list"
-        className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3"
-      >
+      <ul role="list" className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence initial={false}>
           {items.map((item, idx) => (
             <motion.li
@@ -124,13 +107,14 @@ export function GalleryGrid() {
               >
                 <figure>
                   <div className="relative aspect-[4/3] w-full overflow-hidden">
-                    <Image
-                      src={item.src}
-                      alt={item.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-                    />
+                    <GridMedia item={item} />
+                    {item.type === "video" && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background/70 text-accent backdrop-blur-sm transition-transform duration-200 group-hover:scale-110">
+                          <Play className="h-5 w-5 translate-x-0.5 fill-accent" />
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <figcaption className="flex items-center justify-between gap-3 p-4 text-sm">
                     <span className="text-foreground">{item.caption}</span>
@@ -155,6 +139,40 @@ export function GalleryGrid() {
         index={lightboxIndex}
       />
     </div>
+  );
+}
+
+function GridMedia({ item }: { item: GalleryItem }) {
+  const videoRef = React.useRef<HTMLVideoElement>(null);
+
+  if (item.type === "video") {
+    return (
+      <video
+        ref={videoRef}
+        src={item.src}
+        poster={item.poster}
+        muted
+        loop
+        playsInline
+        preload="none"
+        className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+        onMouseEnter={() => videoRef.current?.play()}
+        onMouseLeave={() => {
+          const v = videoRef.current;
+          if (v) { v.pause(); v.currentTime = 0; }
+        }}
+      />
+    );
+  }
+
+  return (
+    <Image
+      src={item.src}
+      alt={item.alt}
+      fill
+      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+      className="object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+    />
   );
 }
 
@@ -205,15 +223,29 @@ function Lightbox({
             className="relative max-h-[86vh] w-full max-w-5xl"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="relative aspect-[4/3] w-full">
-              <Image
-                src={item.src}
-                alt={item.alt}
-                fill
-                priority
-                sizes="(min-width: 1024px) 80vw, 100vw"
-                className="rounded-sm object-cover"
-              />
+            <div className="relative w-full overflow-hidden rounded-sm">
+              {item.type === "video" ? (
+                <video
+                  key={item.src}
+                  src={item.src}
+                  poster={item.poster}
+                  controls
+                  autoPlay
+                  playsInline
+                  className="max-h-[78vh] w-full rounded-sm object-contain"
+                />
+              ) : (
+                <div className="relative aspect-[4/3] w-full">
+                  <Image
+                    src={item.src}
+                    alt={item.alt}
+                    fill
+                    priority
+                    sizes="(min-width: 1024px) 80vw, 100vw"
+                    className="rounded-sm object-cover"
+                  />
+                </div>
+              )}
             </div>
             <figcaption className="mt-3 flex items-center justify-between gap-4 text-sm text-muted-foreground">
               <span>{item.caption}</span>
@@ -226,10 +258,7 @@ function Lightbox({
           </motion.figure>
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onPrev();
-            }}
+            onClick={(e) => { e.stopPropagation(); onPrev(); }}
             aria-label="Previous"
             className="absolute left-4 top-1/2 -translate-y-1/2 rounded-sm border border-border bg-background p-3 text-foreground transition-colors hover:border-accent hover:text-accent"
           >
@@ -237,10 +266,7 @@ function Lightbox({
           </button>
           <button
             type="button"
-            onClick={(e) => {
-              e.stopPropagation();
-              onNext();
-            }}
+            onClick={(e) => { e.stopPropagation(); onNext(); }}
             aria-label="Next"
             className="absolute right-4 top-1/2 -translate-y-1/2 rounded-sm border border-border bg-background p-3 text-foreground transition-colors hover:border-accent hover:text-accent"
           >

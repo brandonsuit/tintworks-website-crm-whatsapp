@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "cd \"$(git rev-parse --show-toplevel)\" && git status --porcelain | grep -q . && git add -A && git commit -m \"auto-deploy: $(date +%F)\" && git push origin main 2>&1 || true",
+            "timeout": 60,
+            "statusMessage": "Pushing to Railway..."
+          }
+        ]
+      }
+    ]
+  }
+}
