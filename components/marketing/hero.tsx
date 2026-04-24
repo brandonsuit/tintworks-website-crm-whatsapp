@@ -109,10 +109,6 @@ export function Hero({
           </div>
         </div>
 
-        {/* Mobile-only: car below text */}
-        <div className="relative h-72 overflow-hidden md:hidden">
-          <HeroCarStatic />
-        </div>
       </section>
 
       <BrandMarquee />
