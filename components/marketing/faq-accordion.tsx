@@ -54,6 +54,7 @@ export function FaqAccordion({ items }: { items: FaqItem[] }) {
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.25, ease: [0.2, 0.8, 0.2, 1] }}
+                  aria-live="polite"
                   className="overflow-hidden"
                 >
                   <div className="pb-6 pr-10 text-muted-foreground">

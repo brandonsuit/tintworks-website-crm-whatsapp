@@ -50,7 +50,7 @@ function StatBlock({ stat }: { stat: Stat }) {
 
   return (
     <div ref={ref}>
-      <p className="font-display text-5xl uppercase leading-none tracking-tight text-accent md:text-6xl">
+      <p className="font-display text-5xl uppercase leading-none tracking-tight text-accent md:text-6xl [font-variant-numeric:tabular-nums]">
         {display}
         {stat.suffix ?? ""}
       </p>

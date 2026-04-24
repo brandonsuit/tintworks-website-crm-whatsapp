@@ -30,6 +30,8 @@ import { reviews as staticReviews, reviewStats, googleReviewsProfileUrl } from "
 import { fetchGoogleReviews } from "@/lib/google-reviews";
 import { ogImage } from "@/lib/og";
 
+export const revalidate = 86400;
+
 export const metadata: Metadata = {
   title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
   description:

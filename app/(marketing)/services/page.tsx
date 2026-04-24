@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+
+export const revalidate = "force-static";
 import Link from "next/link";
 import {
   CheckCircle2,
