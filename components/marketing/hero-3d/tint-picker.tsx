@@ -20,7 +20,15 @@ import { useEnable3D } from "./use-enable-3d";
  * be useless (no model to modulate) and misleading.
  */
 
-export function TintPicker({ className }: { className?: string }) {
+export function TintPicker({
+  className,
+  label = "See the tint",
+}: {
+  className?: string;
+  /** Small uppercase caption above the button row. Pass `null` to
+   *  hide it entirely (consumer is providing its own heading). */
+  label?: string | null;
+}) {
   const { level, setLevel } = useTint();
   const { enable3D } = useEnable3D();
 
@@ -31,9 +39,11 @@ export function TintPicker({ className }: { className?: string }) {
 
   return (
     <div className={cn("pointer-events-auto", className)}>
-      <p className="mb-2 font-display text-xs uppercase tracking-widest text-muted-foreground">
-        See the tint
-      </p>
+      {label !== null && (
+        <p className="mb-2 font-display text-xs uppercase tracking-widest text-muted-foreground">
+          {label}
+        </p>
+      )}
       <div
         role="radiogroup"
         aria-label="Tint preview darkness"

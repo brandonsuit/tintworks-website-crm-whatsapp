@@ -23,6 +23,16 @@ export type TintConfig = {
   opacity: number;
   /** Linear RGB colour the film tends toward. Lerp target each frame. */
   color: readonly [number, number, number];
+  /** True at Limo: force the clear-glass material to full opacity AND
+   *  `transparent: false` so you can't see the interior through the
+   *  glass + film stack. Real-world limo tint is effectively blackout. */
+  glassBlackout?: boolean;
+  /** Optional override of the clear-glass material's base colour,
+   *  lerped to each frame (same pace as the film). Used by the static
+   *  hero instance only — forces the glass to pure black so the
+   *  interior/driver is invisible through the rear windows. The
+   *  shared interactive presets leave this undefined. */
+  glassColor?: readonly [number, number, number];
 };
 
 export const TINT_LEVELS: readonly TintConfig[] = [
@@ -37,39 +47,43 @@ export const TINT_LEVELS: readonly TintConfig[] = [
     id: "light",
     label: "Light (70%)",
     plausibleLabel: "Light 70%",
-    opacity: 0.35,
-    color: [0.45, 0.45, 0.45],
+    opacity: 0.25,
+    color: [0.5, 0.5, 0.5],
   },
   {
     id: "medium",
     label: "Medium (50%)",
     plausibleLabel: "Medium 50%",
-    opacity: 0.65,
-    color: [0.2, 0.2, 0.2],
+    opacity: 0.55,
+    color: [0.25, 0.25, 0.25],
   },
   {
     id: "dark",
     label: "Dark (35%)",
     plausibleLabel: "Dark 35%",
-    opacity: 0.85,
+    opacity: 0.8,
     color: [0.08, 0.08, 0.08],
   },
   {
     id: "limo",
     label: "Limo (20%)",
     plausibleLabel: "Limo 20%",
-    opacity: 0.95,
-    color: [0.02, 0.02, 0.02],
+    opacity: 0.99,
+    color: [0, 0, 0],
+    glassBlackout: true,
   },
 ] as const;
 
 /** Starting state on first visit. Reads as "car already tinted nicely". */
 export const DEFAULT_TINT_LEVEL: TintLevel = "medium";
 
-/** Material.name on PaletteMaterial001 — confirmed via debug branch as
- *  the tint-film layer. PaletteMaterial004 (clear glass) + "chrome"
- *  (trim) are left untouched. */
+/** Material.name on the tint-film layer — confirmed via the throwaway
+ *  debug/verify-window-material branch. */
 export const TINT_MATERIAL_NAME = "PaletteMaterial001";
+
+/** Material.name on the clear-glass pane. We only touch this at Limo,
+ *  to eliminate the interior see-through and give true blackout. */
+export const GLASS_MATERIAL_NAME = "PaletteMaterial004";
 
 /** localStorage key for persistence. Namespaced to avoid collision with
  *  any quote-wizard or other local state. */

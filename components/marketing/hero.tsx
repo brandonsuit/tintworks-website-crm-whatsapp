@@ -3,9 +3,7 @@ import { Star, MapPin, Phone } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
-import { Hero3DBackground } from "@/components/marketing/hero-3d";
-import { TintProvider } from "@/components/marketing/hero-3d/tint-context";
-import { TintPicker } from "@/components/marketing/hero-3d/tint-picker";
+import { HeroCarStatic } from "@/components/marketing/hero-car-static";
 import { BrandMarquee } from "@/components/marketing/brand-marquee";
 import { business } from "@/lib/business";
 import { telHref } from "@/lib/phone";
@@ -14,20 +12,19 @@ import type { WhatsAppPageKey } from "@/lib/whatsapp/messages";
 /**
  * Landing-page hero.
  *
- * Full-width, tall (min 60vh mobile / 80vh desktop). A rotating 3D
- * rendering of a vehicle being tinted fills the entire section as the
- * background; the wordmark / h1 / lead / CTAs / trust badges overlay it
- * as real DOM, centred.
+ * Full-width, tall (min 60vh mobile / 80vh desktop). A static 3D
+ * rendering of a Limo-tinted car occupies the right 60% of the
+ * section on desktop (full-bleed on mobile). Text + CTAs sit in the
+ * left column as real DOM, centred vertically.
  *
- * The 3D scene is gated client-side — weak mobiles + reduced-motion
- * users get a static poster instead, with no three.js bundle fetched.
- * See `components/marketing/hero-3d/index.tsx`.
+ * Left-column design element (the diagonal sweep below) isn't a
+ * legibility scrim — the copy column is already over empty dark
+ * background on desktop. It's a deliberate graphic layer: a tilted
+ * dark → transparent gradient from top-left plus a warm-gold glow
+ * pooled bottom-left, echoing the accent palette and giving the
+ * composition directional energy that matches an automotive hero.
  *
- * A radial dark scrim sits between the 3D layer and the text so light
- * reflections on the car never hurt copy legibility — regardless of
- * current camera angle.
- *
- * BrandMarquee stays directly below the hero as part of the redesign.
+ * BrandMarquee sits directly below as part of the redesign.
  */
 
 export function Hero({
@@ -36,31 +33,54 @@ export function Hero({
   pageKey?: WhatsAppPageKey;
 }) {
   return (
-    <TintProvider>
+    <>
       <section className="relative isolate overflow-hidden bg-grain">
-        {/* Background atmosphere — sits behind the 3D layer in case the
-            scene hasn't mounted yet or the perf gate falls back to poster. */}
+        {/* Background atmosphere — sits behind the 3D layer during
+            the brief dynamic-import loading window. */}
         <div
           aria-hidden
           className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,hsl(var(--accent)/0.18),transparent_55%),linear-gradient(180deg,hsl(0_0%_6%)_0%,hsl(0_0%_3%)_100%)]"
         />
 
-        {/* 3D layer. Absolutely positioned; pointer events land on the
-            canvas so users can drag-rotate the car. */}
+        {/* Static 3D hero car — Limo tint, no interactivity. On
+            desktop (lg+) the Canvas is sized to the right 60% of the
+            section, so the left stays clear for the copy. */}
         <div className="absolute inset-0 -z-10">
-          <Hero3DBackground />
+          <HeroCarStatic />
         </div>
 
-        {/* Contrast scrim over the 3D layer, so the text stays readable
-            against any camera angle the user drags to. Non-interactive
-            — doesn't block drag-to-rotate. */}
+        {/* Diagonal sweep overlay (desktop only) — sits between the
+            Canvas and the text (`z-0` vs Canvas at `-z-10` and text
+            at `z-10`). Top-left darkens and fades diagonally down to
+            transparent across the car, echoing motion. Non-interactive
+            so nothing below it loses click/drag affordance. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 -z-10"
+          className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
           style={{
             background:
-              "radial-gradient(ellipse at 30% 50%, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 40%, transparent 75%)",
+              "linear-gradient(115deg, rgba(0,0,0,0.75) 0%, rgba(0,0,0,0.5) 28%, rgba(0,0,0,0.15) 55%, rgba(0,0,0,0) 72%)",
           }}
+        />
+
+        {/* Warm accent glow pooled bottom-left (desktop only) — ties
+            the dark sweep back to the gold palette so the left side
+            reads as designed, not empty. Subtle; purely decorative. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 z-0 hidden lg:block"
+          style={{
+            background:
+              "radial-gradient(circle at 10% 100%, hsl(var(--accent) / 0.22) 0%, transparent 45%)",
+          }}
+        />
+
+        {/* Thin accent hairline on the very left edge — hints at a
+            vertical gutter without forcing a hard split. Desktop only;
+            looks fiddly on mobile. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-y-0 left-0 z-0 hidden w-px bg-gradient-to-b from-transparent via-accent/30 to-transparent lg:block"
         />
 
         {/* Foreground copy — real DOM, keyboard-focusable, SR-readable.
@@ -102,10 +122,6 @@ export function Hero({
                 </Button>
               </div>
 
-              {/* Interactive tint preview — below CTAs, above trust
-                  badges. Hidden when the perf gate disables 3D. */}
-              <TintPicker className="mt-8" />
-
               <ul
                 role="list"
                 className="pointer-events-auto mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]"
@@ -132,6 +148,6 @@ export function Hero({
 
       {/* Brand marquee — automotive context continues below the fold. */}
       <BrandMarquee />
-    </TintProvider>
+    </>
   );
 }

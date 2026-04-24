@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { Hero } from "@/components/marketing/hero";
+import { TintPreviewSection } from "@/components/marketing/tint-preview-section";
 import { SectionCta } from "@/components/marketing/section-cta";
 import { ServiceCard } from "@/components/marketing/service-card";
 import {
@@ -147,6 +148,10 @@ export default async function LandingPage() {
   return (
     <>
       <Hero pageKey="landing" />
+
+      {/* Interactive tint-preview — sits between the hero/marquee and
+          the services grid. Owns its own <TintProvider>. */}
+      <TintPreviewSection />
 
       {/* Services */}
       <section

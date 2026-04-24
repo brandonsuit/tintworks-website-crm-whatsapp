@@ -1,16 +1,25 @@
 {
-  "hooks": {
-    "Stop": [
-      {
-        "hooks": [
-          {
-            "type": "command",
-            "command": "cd \"$(git rev-parse --show-toplevel)\" && git status --porcelain | grep -q . && git add -A && git commit -m \"auto-deploy: $(date +%F)\" && git push origin main 2>&1 || true",
-            "timeout": 60,
-            "statusMessage": "Pushing to Railway..."
-          }
-        ]
-      }
-    ]
-  }
+  "_note": [
+    "Permissions opened up on 2026-04-23 at owner's explicit request.",
+    "All Bash commands, Edit/Write on any path, network fetches, and git",
+    "state-changing commands run without prompting for this workspace.",
+    "Auto-commit+push Stop hook remains DISABLED — see the separate",
+    "bullet in the chat transcript. The tree-status-only check from the",
+    "earlier neutered version is also gone: Stop fires with no hooks."
+  ],
+  "permissions": {
+    "defaultMode": "bypassPermissions",
+    "allow": [
+      "Bash(*)",
+      "Read(*)",
+      "Edit(*)",
+      "Write(*)",
+      "Glob(*)",
+      "Grep(*)",
+      "WebFetch(*)",
+      "WebSearch(*)"
+    ],
+    "deny": []
+  },
+  "hooks": {}
 }

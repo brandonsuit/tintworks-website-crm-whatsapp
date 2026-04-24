@@ -9,23 +9,23 @@ import { useEnable3D } from "./use-enable-3d";
 import { useTint } from "./tint-context";
 
 /**
- * Client wrapper for the 3D hero background.
+ * Client wrapper for the interactive tint-preview 3D scene.
  *
- *   - Decides whether to mount the three.js scene at all (see
- *     `useEnable3D` for the gating rules: mobile cores, env flag,
- *     prefers-reduced-motion).
- *   - On weak / opt-out / SSR / first-hydration: renders the static
- *     poster image. Zero three.js code is even requested.
- *   - When enabled: lazy-loads `./scene` via next/dynamic with
- *     ssr:false, so three.js ships in its own chunk and only when
- *     needed. The poster stays visible as the Suspense-level
- *     fallback until the scene is ready to paint.
- *
- * This component is a "background layer" — always absolutely positioned
- * to fill the hero. The text + CTAs sit on top, authored as real DOM.
+ *   - Renders inside its PARENT container (not full-bleed). The parent
+ *     controls aspect-ratio via its own classes (typically
+ *     `aspect-square md:aspect-[3/2]`).
+ *   - Runs the perf gate (hardwareConcurrency, reduced-motion, env
+ *     opt-out) via `useEnable3D`. On weak mobiles it falls back to the
+ *     static poster instead of mounting three.js.
+ *   - Reads the current tint config from `useTint()` OUTSIDE the
+ *     Canvas (R3F creates its own React root; outer-tree context
+ *     does not cross that boundary without a bridge) and passes it
+ *     as a plain prop to the lazy-loaded scene.
+ *   - three.js / R3F / drei all ship in the dynamic chunk — only
+ *     fetched when the gate permits.
  */
 
-const Scene = dynamic(() => import("./scene"), {
+const InteractiveScene = dynamic(() => import("./interactive-scene"), {
   ssr: false,
   loading: () => <SceneLoading />,
 });
@@ -34,16 +34,13 @@ const POSTER_SRC = "/models/hero-car-poster.jpg";
 const POSTER_ALT =
   "Vehicle being window tinted — 3D rendering unavailable, showing still image.";
 
-export function Hero3DBackground() {
+export function InteractiveTintCanvas() {
   const { enable3D, prefersReducedMotion } = useEnable3D();
-  // Read tint state OUTSIDE the Canvas — R3F's Canvas creates its own
-  // React root and outer-tree context doesn't cross that boundary
-  // without a bridge. Pass the config as a plain prop through to Model.
   const { config: tintConfig } = useTint();
 
   // Before the gate has decided (SSR, first hydration tick), show the
-  // poster. Avoids hydration mismatch and reserves the exact final
-  // layout so there's zero CLS when the gate resolves.
+  // poster. Avoids hydration mismatch and reserves the layout so
+  // there's zero CLS when the gate resolves.
   if (enable3D !== true) {
     return <Poster />;
   }
@@ -51,7 +48,7 @@ export function Hero3DBackground() {
   return (
     <div className="absolute inset-0">
       <Poster />
-      <Scene
+      <InteractiveScene
         prefersReducedMotion={prefersReducedMotion}
         tintConfig={tintConfig}
       />
@@ -66,23 +63,16 @@ function Poster() {
         src={POSTER_SRC}
         alt={POSTER_ALT}
         fill
-        priority
-        sizes="100vw"
+        sizes="(min-width: 1024px) 50vw, 100vw"
         className="object-cover"
       />
-      {/* Accent glow overlay echoing the site theme */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "radial-gradient(circle at 80% 30%, hsl(var(--accent) / 0.25), transparent 55%)",
+            "radial-gradient(circle at 50% 50%, hsl(var(--accent) / 0.18), transparent 60%)",
         }}
-      />
-      {/* Dark scrim to keep hero text legible against the image */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/70 to-background/20"
       />
     </div>
   );
@@ -90,7 +80,7 @@ function Poster() {
 
 function SceneLoading() {
   return (
-    <div className="absolute inset-0 flex items-end justify-end p-6">
+    <div className="absolute inset-0 flex items-end justify-end p-4">
       <div className="flex items-center gap-2 rounded-full border border-border bg-card/70 px-3 py-1.5 text-xs text-muted-foreground backdrop-blur">
         <Loader2 className="h-3.5 w-3.5 animate-spin text-accent" aria-hidden />
         Loading 3D view…

@@ -13,51 +13,41 @@ import { Model } from "./model";
 import type { TintConfig } from "./tint-levels";
 
 /**
- * 3D hero scene. Right-weighted composition with a subtle camera
- * showcase orbit — not a full spin.
+ * Interactive tint-preview scene. Used inside a contained panel on
+ * the landing page (3:2 desktop / square mobile) — NOT full-bleed.
  *
  * Composition
- *   - Model sits at origin, scaled in `model.tsx` to realistic
- *     world units (~1 m per unit).
- *   - Camera looks from upper-right-front at an offset target
- *     (`TARGET`), which pushes the car toward the right 30% of the
- *     frame without moving the model. Tune `TARGET[0]` to slide the
- *     car left/right; tune `CAMERA_POSITION` + `CAMERA_FOV` to
- *     tighten or loosen framing.
- *   - Soft `Environment preset="warehouse"` + warm key light carry
- *     the gold accent palette.
- *   - Strengthened `ContactShadows` anchor the car to a ground plane
- *     (opacity 0.78, tight blur).
+ *   - Model at origin, scaled in `model.tsx` to realistic world units.
+ *   - Camera centred on the car (target at origin) since this instance
+ *     sits in an aspect-constrained container — not offset like the
+ *     full-bleed hero is.
+ *   - Environment "warehouse" + warm key light for the gold palette.
  *
  * Animation
  *   - Model is stationary.
- *   - `CameraAnimator` drives `OrbitControls.setAzimuthalAngle()` on
- *     every frame with a ±12° sine oscillation over a 28 s period —
- *     gentle showcase arc, not a full 360° spin.
- *   - User drag pauses the orbit; a 4 s inactivity timer resumes it
- *     by computing a time offset so the sine position matches the
- *     user's released angle — no jarring snap back to centre.
+ *   - `CameraAnimator` drives OrbitControls.setAzimuthalAngle with a
+ *     sine oscillation — ±15° over 25 s. Slightly more pronounced than
+ *     the (now removed) hero orbit because this instance IS the main
+ *     interaction; users are here to see the car move.
+ *   - User drag pauses the orbit; a 4 s timer resumes it from the
+ *     user's release angle so there's no snap back to centre.
  *   - prefers-reduced-motion disables the orbit entirely. Drag still
- *     works, the scene just stays static until the user moves it.
+ *     works; the scene just sits still until the user moves it.
  *
- * All Environment presets ship inside the drei bundle — no external
- * HDR fetch — so nothing can 404 on Railway.
+ * Tint modulation happens in Model.tsx via the `tintConfig` prop.
  */
 
 const CAMERA_POSITION: [number, number, number] = [4, 1.2, 5];
-const CAMERA_FOV = 35;
-const TARGET: [number, number, number] = [-0.8, 0, 0];
+const CAMERA_FOV = 32;
+const TARGET: [number, number, number] = [0, 0, 0];
 
-// OrbitControls' azimuth convention: atan2(x, z), measured from +Z
-// toward +X. Pre-compute the base angle once so the animator can
-// oscillate around it without reading camera state each frame.
 const DX = CAMERA_POSITION[0] - TARGET[0];
 const DZ = CAMERA_POSITION[2] - TARGET[2];
 const BASE_AZIMUTH = Math.atan2(DX, DZ);
 
-// Showcase orbit: ±12° swing, 28 s full cycle.
-const ORBIT_AMPLITUDE = Math.PI / 15;
-const ORBIT_PERIOD_SEC = 28;
+// Showcase orbit: ±15° swing, 25 s full cycle.
+const ORBIT_AMPLITUDE = Math.PI / 12;
+const ORBIT_PERIOD_SEC = 25;
 const ORBIT_OMEGA = (2 * Math.PI) / ORBIT_PERIOD_SEC;
 
 // Inactivity window before the auto-orbit resumes after a user drag.
