@@ -6,10 +6,9 @@ import { useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 
 import {
-  GLASS_MATERIAL_NAME,
   MATTE_OPACITY_THRESHOLD,
   TINT_ANIMATION_SPEED,
-  TINT_MATERIAL_NAME,
+  TINT_MATERIAL_NAMES,
   type TintConfig,
 } from "./tint-levels";
 
@@ -17,22 +16,30 @@ import {
  * Loads and renders the compressed GLB.
  *
  * `MODEL_SCALE` normalises the Sketchfab export's tiny native units
- * (~7–24 cm bounding box) to scene units where 1 ≈ 1 m. Adjust this
- * constant when the .glb is replaced with an asset with different
- * native units.
+ * (~7–24 cm bounding box) to scene units where 1 ≈ 1 m.
  *
- * Two materials are modulated:
- *   1. PaletteMaterial001 — the tint-film layer. Opacity / colour /
- *      metalness / roughness all lerp toward the current `tintConfig`
- *      each frame.
- *   2. PaletteMaterial004 — the clear-glass pane. Left at native alpha
- *      for every level EXCEPT Limo, where `tintConfig.glassBlackout`
- *      forces its opacity to 1 and flips `transparent` to false. With
- *      film + glass both opaque at Limo you can no longer see the
- *      interior through the stack — true blackout.
+ * Tint targets: every material whose name appears in
+ * `TINT_MATERIAL_NAMES` (currently PaletteMaterial001 +
+ * PaletteMaterial004 — together they span every window on the car,
+ * verified via the debug/find-all-windows throwaway branch). Every
+ * mesh that uses one of those materials gets its own cloned instance
+ * so multiple Canvases can modulate independently without
+ * cross-contamination.
  *
- * Both materials are cloned on mount so drei's cached GLTF stays
- * pristine for HMR / future mounts / the other Canvas instance.
+ * Modulation rules
+ *   - opacity, base colour: lerped each frame toward `tintConfig`.
+ *   - metalness, roughness: lerped toward 0 and 1 (respectively)
+ *     once `tintConfig.opacity` crosses MATTE_OPACITY_THRESHOLD, so
+ *     Dark / Limo read as matte applied film rather than a mirror.
+ *   - When `tintConfig.blackout === true` (static hero only): force
+ *     `transparent: false` AND opacity = 1 regardless of config,
+ *     guaranteeing a solid opaque window that nothing behind can
+ *     show through.
+ *
+ * `hideInteriorMaterials`: optional list of material names whose
+ * meshes are set to `visible = false`. Belt-and-braces for the
+ * static hero — ensures the driver figure isn't visible even if any
+ * transparency quirk lets light leak through the blackout.
  */
 
 const MODEL_PATH = "/models/hero-car.glb";
@@ -40,19 +47,10 @@ const MODEL_SCALE = 12;
 
 useGLTF.preload(MODEL_PATH);
 
-type FilmRecord = {
+type TintRecord = {
   material: THREE.MeshStandardMaterial;
   nativeMetalness: number;
   nativeRoughness: number;
-};
-
-type GlassRecord = {
-  material: THREE.MeshStandardMaterial;
-  nativeOpacity: number;
-  nativeTransparent: boolean;
-  /** Clone of the glass's authored base colour so we can lerp back
-   *  to it when leaving a level that overrode glassColor. */
-  nativeColor: THREE.Color;
 };
 
 export function Model({
@@ -60,54 +58,34 @@ export function Model({
   hideInteriorMaterials,
 }: {
   tintConfig: TintConfig;
-  /** Optional list of material names whose meshes should be rendered
-   *  invisible on this instance. Used by the static hero to hide the
-   *  driver figure + any interior geometry so nothing reads through
-   *  the blackout glass. */
   hideInteriorMaterials?: readonly string[];
 }) {
   const { scene: originalScene } = useGLTF(MODEL_PATH);
-  // CRITICAL: drei's useGLTF returns ONE parsed scene for this URL
-  // (HTTP caching) — but the returned Object3D can only have one
-  // parent in the three.js scene graph. When two Canvases both do
-  // `<primitive object={scene}>` with the same reference, whichever
-  // mounts last yanks the scene out of the other's graph (and the
-  // first Canvas's `mesh.material = cloned` swaps get trampled too).
-  // Cloning the scene per-instance gives each Canvas its own scene
-  // tree + its own mesh instances to mutate safely.
-  //
-  // `scene.clone(true)` deep-clones the Object3D hierarchy. Geometry
-  // is shared by reference (fine — geometry is read-only at render
-  // time). Materials are shared by reference too (fine — we clone
-  // every material we intend to mutate in the effect below).
+  // Deep-clone the scene so each Canvas instance has its own Object3D
+  // tree. Drei caches one parsed scene per URL and would otherwise
+  // hand the same reference to every caller — which breaks when two
+  // Canvases both do <primitive object={scene}> (three.js allows only
+  // one parent per object).
   const scene = React.useMemo(
     () => originalScene.clone(true),
     [originalScene],
   );
 
-  const filmRef = React.useRef<FilmRecord[]>([]);
-  const glassRef = React.useRef<GlassRecord[]>([]);
-  // First useFrame after mount uses step=1 so the material snaps
-  // straight to its configured tint rather than visibly lerping from
-  // the GLB's native state. Matters most for the static hero, which
-  // is a locked-Limo render.
+  const tintRef = React.useRef<TintRecord[]>([]);
+  // First useFrame after mount uses step=1 so the material snaps to
+  // its target state rather than visibly lerping from the GLB's
+  // native (near-clear) value. Matters for the static hero, which is
+  // a locked-Limo render and should not fade-in.
   const firstFrameRef = React.useRef<boolean>(true);
 
-  // Stable targets. Re-used across frames; mutate via setRGB rather
-  // than allocating a new THREE.Color every frame.
+  // Stable colour target — mutated via setRGB each frame, no per-frame
+  // allocations.
   const targetColor = React.useMemo(() => new THREE.Color(), []);
-  const targetGlassColor = React.useMemo(() => new THREE.Color(), []);
 
-  // Clone tint film + clear glass materials on mount. Each Canvas
-  // instance runs this effect on ITS clone of the scene — so the
-  // two landing-page Canvases each get their own private clones.
-  // Also hides any meshes whose material name matches
-  // `hideInteriorMaterials` (used by the static hero to hide the
-  // driver figure behind the blackout glass).
   React.useEffect(() => {
-    const film: FilmRecord[] = [];
-    const glass: GlassRecord[] = [];
+    const records: TintRecord[] = [];
     const hideSet = new Set(hideInteriorMaterials ?? []);
+    const tintSet = new Set(TINT_MATERIAL_NAMES);
 
     scene.traverse((obj: THREE.Object3D) => {
       const mesh = obj as THREE.Mesh;
@@ -121,36 +99,24 @@ export function Model({
         return;
       }
 
-      if (std.name === TINT_MATERIAL_NAME) {
+      if (tintSet.has(std.name)) {
         const cloned = std.clone();
         cloned.transparent = true;
         mesh.material = cloned;
-        film.push({
+        records.push({
           material: cloned,
           nativeMetalness: std.metalness ?? 0,
           nativeRoughness: std.roughness ?? 1,
         });
-      } else if (std.name === GLASS_MATERIAL_NAME) {
-        const cloned = std.clone();
-        mesh.material = cloned;
-        glass.push({
-          material: cloned,
-          nativeOpacity: std.opacity ?? 1,
-          nativeTransparent: std.transparent,
-          nativeColor: std.color.clone(),
-        });
       }
     });
-    filmRef.current = film;
-    glassRef.current = glass;
+    tintRef.current = records;
     firstFrameRef.current = true;
   }, [scene, hideInteriorMaterials]);
 
-  // Per-frame ease toward the current tint config.
   useFrame((_state, delta) => {
-    const film = filmRef.current;
-    const glass = glassRef.current;
-    if (film.length === 0 && glass.length === 0) return;
+    const records = tintRef.current;
+    if (records.length === 0) return;
 
     // Framerate-independent lerp factor. Clamp to [0, 1] so a long
     // hitch can't overshoot the target (which would oscillate). On
@@ -160,16 +126,34 @@ export function Model({
       : Math.min(1, delta * TINT_ANIMATION_SPEED);
     firstFrameRef.current = false;
 
-    // ── Film layer ─────────────────────────────────────────────────
+    const matte = tintConfig.opacity >= MATTE_OPACITY_THRESHOLD;
+    const blackout = tintConfig.blackout === true;
+
     targetColor.setRGB(
       tintConfig.color[0],
       tintConfig.color[1],
       tintConfig.color[2],
     );
-    const matte = tintConfig.opacity >= MATTE_OPACITY_THRESHOLD;
 
-    for (const rec of film) {
+    for (const rec of records) {
       const { material } = rec;
+
+      if (blackout) {
+        // Static-hero path: force solid opaque black window.
+        // No lerp — snap and hold, so the composition doesn't
+        // visibly "settle" after mount.
+        material.opacity = 1;
+        if (material.transparent !== false) {
+          material.transparent = false;
+          material.needsUpdate = true;
+        }
+        material.color.copy(targetColor);
+        material.metalness = 0;
+        material.roughness = 1;
+        continue;
+      }
+
+      // Interactive / standard path: ease toward the config each frame.
       material.opacity = THREE.MathUtils.lerp(
         material.opacity,
         tintConfig.opacity,
@@ -189,40 +173,11 @@ export function Model({
         targetRoughness,
         step,
       );
-    }
-
-    // ── Clear-glass layer — only modulated at Limo ─────────────────
-    const glassOpacityTarget = tintConfig.glassBlackout ? 1 : undefined;
-    const glassTransparentTarget = tintConfig.glassBlackout
-      ? false
-      : undefined;
-
-    for (const rec of glass) {
-      const { material } = rec;
-      const opTarget = glassOpacityTarget ?? rec.nativeOpacity;
-      material.opacity = THREE.MathUtils.lerp(material.opacity, opTarget, step);
-
-      // Optional colour override (static hero passes [0,0,0] for a
-      // pure-black glass pane that hides the interior). When absent,
-      // lerp back to the material's authored base colour.
-      if (tintConfig.glassColor) {
-        targetGlassColor.setRGB(
-          tintConfig.glassColor[0],
-          tintConfig.glassColor[1],
-          tintConfig.glassColor[2],
-        );
-        material.color.lerp(targetGlassColor, step);
-      } else {
-        material.color.lerp(rec.nativeColor, step);
-      }
-
-      // `transparent` is a boolean — no lerp. Flipping mid-frame
-      // re-sorts the three.js render queue but that's a visual
-      // non-event at our scene size. Only write when it actually
-      // needs to change so we don't poke three's material cache.
-      const txTarget = glassTransparentTarget ?? rec.nativeTransparent;
-      if (material.transparent !== txTarget) {
-        material.transparent = txTarget;
+      // If we previously switched to opaque (blackout) and are now
+      // back in a non-blackout config, make sure transparent is on
+      // so the lerped opacity has effect.
+      if (!material.transparent) {
+        material.transparent = true;
         material.needsUpdate = true;
       }
     }

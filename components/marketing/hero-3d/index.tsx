@@ -38,16 +38,20 @@ export function InteractiveTintCanvas() {
   const { enable3D, prefersReducedMotion } = useEnable3D();
   const { config: tintConfig } = useTint();
 
-  // Before the gate has decided (SSR, first hydration tick), show the
-  // poster. Avoids hydration mismatch and reserves the layout so
-  // there's zero CLS when the gate resolves.
-  if (enable3D !== true) {
-    return <Poster />;
-  }
+  // Mutually exclusive render — never both at once:
+  //   - null during SSR + first hydration tick (before gate resolves).
+  //     Parent container already has `bg-card` to reserve layout, so
+  //     CLS is zero even without a poster placeholder.
+  //   - Poster only when the gate rejects 3D (weak mobile, reduced-
+  //     motion opt-out, or NEXT_PUBLIC_DISABLE_3D_MOBILE).
+  //   - InteractiveScene only when 3D is green-lit. The 3D canvas is
+  //     transparent (no clear colour) so the parent `bg-card` shows
+  //     through around the car — no poster needed underneath.
+  if (enable3D === null) return null;
+  if (enable3D === false) return <Poster />;
 
   return (
     <div className="absolute inset-0">
-      <Poster />
       <InteractiveScene
         prefersReducedMotion={prefersReducedMotion}
         tintConfig={tintConfig}

@@ -131,7 +131,9 @@ export default function Scene({
         camera={{ position: CAMERA_POSITION, fov: CAMERA_FOV }}
         gl={{ antialias: true, alpha: true }}
       >
-        <color attach="background" args={["#0A0A0A"]} />
+        {/* Canvas clear colour intentionally NOT set — transparent
+            canvas lets the parent container's bg-card tone show
+            through edges of the scene. */}
 
         <ambientLight intensity={0.25} />
         <directionalLight

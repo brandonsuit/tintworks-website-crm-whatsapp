@@ -13,36 +13,32 @@ import { TINT_LEVELS, type TintConfig } from "./tint-levels";
  *   - No OrbitControls, no drag, no auto-rotate. Camera is locked
  *     every frame via CameraLockOn so nothing can drift it off the
  *     model.
- *   - Locked Limo tint, with an extra `glassColor: [0, 0, 0]`
- *     override that's static-hero-only — forces the clear-glass
- *     pane to pure black, so the combined glass + film stack is a
- *     true blackout (no interior visible through the rear side
- *     window, etc.). The interactive section below keeps its
- *     standard shared-preset behaviour.
+ *   - Locked Limo tint, with a static-hero-only `blackout: true`
+ *     flag that forces the tint material (the full window set,
+ *     PaletteMaterial004) to `transparent: false` + opacity 1 +
+ *     pure-black colour — a guaranteed opaque window. The shared
+ *     interactive Limo preset leaves this undefined (opacity 0.98
+ *     with the transparent pipeline still on).
  *   - Camera is centred on the model (target [0, 0, 0]). The
  *     right-anchoring on desktop is achieved by sizing the Canvas
  *     itself to the right 60% of the hero in `hero-car-static.tsx`
  *     — not by offsetting the target, which fought readability and
  *     made the car look tucked into a corner.
- *
- * Tune starting values:
- *   - CAMERA_POSITION[1] for camera height (lower = more dynamic
- *     eye-level; higher = more top-down).
- *   - CAMERA_FOV for how tight the crop is (smaller = tighter).
  */
 
 const CAMERA_POSITION: [number, number, number] = [3.5, 1.0, 4.5];
 const CAMERA_FOV = 32;
 const TARGET: readonly [number, number, number] = [0, 0, 0];
 
-// Locked Limo, with a static-hero-only extra override on the clear-
-// glass pane: force its color to pure black so nothing behind it
-// (interior mesh, driver figure, seats) reads through. This keeps
-// the interactive section's shared LIMO preset untouched.
+// Locked Limo with the static-hero-only blackout flag on. Since
+// PaletteMaterial004 now covers EVERY window (front, rear, sides,
+// quarter), making that single material opaque is sufficient — no
+// need for any separate glass-layer override as in the previous
+// two-material approach.
 const LIMO_BASE = TINT_LEVELS.find((l) => l.id === "limo")!;
 const HERO_LIMO: TintConfig = {
   ...LIMO_BASE,
-  glassColor: [0, 0, 0],
+  blackout: true,
 };
 
 // The GLB's driver figure uses a material named "Ch01_body.001"
@@ -85,7 +81,10 @@ export default function StaticScene() {
         camera={{ position: CAMERA_POSITION, fov: CAMERA_FOV }}
         gl={{ antialias: true, alpha: true }}
       >
-        <color attach="background" args={["#0A0A0A"]} />
+        {/* Canvas clear colour intentionally NOT set — scene is
+            transparent so the hero's grid + accent-glow show through
+            around the car. `gl.alpha: true` ensures the buffer keeps
+            its alpha channel so the HTML behind the <canvas> shows. */}
 
         <ambientLight intensity={0.25} />
         <directionalLight
