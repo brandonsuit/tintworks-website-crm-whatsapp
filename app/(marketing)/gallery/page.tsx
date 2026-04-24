@@ -9,7 +9,7 @@ import { beforeAfterItems } from "@/lib/before-after";
 import { tintTypeLabel } from "@/gallery.config";
 import { ogImage } from "@/lib/og";
 
-export const revalidate = "force-static";
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: "Gallery — Car Window Tinting Leeds",
