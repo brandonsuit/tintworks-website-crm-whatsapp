@@ -203,6 +203,7 @@ export function QuoteWizard() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(parsed.data),
+        signal: AbortSignal.timeout(15000),
       });
       const payload = await res.json();
       if (!res.ok || !payload.ok) {

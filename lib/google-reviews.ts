@@ -27,6 +27,7 @@ export async function fetchGoogleReviews(): Promise<Review[]> {
           "X-Goog-FieldMask": "reviews",
         },
         next: { revalidate: 86400 },
+        signal: AbortSignal.timeout(5000),
       },
     );
 

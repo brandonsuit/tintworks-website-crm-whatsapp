@@ -262,6 +262,7 @@ export default async function LandingPage() {
                       loop
                       autoPlay
                       playsInline
+                      preload="metadata"
                       className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                     />
                   ) : (

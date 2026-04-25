@@ -45,8 +45,6 @@ import {
 const MODEL_PATH = "/models/hero-car.glb";
 const MODEL_SCALE = 12;
 
-useGLTF.preload(MODEL_PATH);
-
 type TintRecord = {
   material: THREE.MeshStandardMaterial;
   nativeMetalness: number;
@@ -83,6 +81,10 @@ export function Model({
   const targetColor = React.useMemo(() => new THREE.Color(), []);
 
   React.useEffect(() => {
+    useGLTF.preload(MODEL_PATH);
+  }, []);
+
+  React.useEffect(() => {
     const records: TintRecord[] = [];
     const hideSet = new Set(hideInteriorMaterials ?? []);
     const tintSet = new Set(TINT_MATERIAL_NAMES);
@@ -112,6 +114,10 @@ export function Model({
     });
     tintRef.current = records;
     firstFrameRef.current = true;
+
+    return () => {
+      records.forEach((r) => r.material.dispose());
+    };
   }, [scene, hideInteriorMaterials]);
 
   useFrame((_state, delta) => {

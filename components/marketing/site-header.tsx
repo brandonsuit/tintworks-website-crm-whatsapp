@@ -61,6 +61,7 @@ export function SiteHeader({
             width={200}
             height={40}
             priority
+            fetchPriority="high"
             className="h-8 w-auto md:h-10"
           />
         </Link>
