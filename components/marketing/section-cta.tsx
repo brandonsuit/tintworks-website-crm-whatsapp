@@ -36,7 +36,7 @@ export function SectionCta({
               "radial-gradient(circle at 85% 40%, hsl(var(--accent) / 0.35), transparent 55%)",
           }}
         />
-        <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+        <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
           Book in
         </p>
         <h2 className="mt-3 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-6xl">

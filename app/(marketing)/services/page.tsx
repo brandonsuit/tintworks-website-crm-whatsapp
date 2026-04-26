@@ -176,7 +176,7 @@ export default function ServicesPage() {
       {/* Packages */}
       <section className="container section-padding border-t border-border/60">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             Packages
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -241,7 +241,7 @@ export default function ServicesPage() {
       {/* Film types */}
       <section className="container section-padding border-t border-border/60">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             Film options
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -281,7 +281,7 @@ export default function ServicesPage() {
       {/* Benefits */}
       <section className="container section-padding border-t border-border/60 grid grid-cols-1 gap-10 md:grid-cols-2 md:items-start">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             Why ceramic
           </p>
           <h2 className="mt-2 font-display text-4xl uppercase leading-[0.95] tracking-tight md:text-5xl">

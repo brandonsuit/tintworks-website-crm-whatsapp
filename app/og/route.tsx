@@ -33,8 +33,8 @@ export async function GET(request: Request) {
           height: "100%",
           display: "flex",
           flexDirection: "row",
-          background: "#121417",
-          color: "#ffffff",
+          background: "#0A0A0A",
+          color: "#F6F1E6",
           padding: 72,
           fontFamily: "system-ui, -apple-system, Segoe UI, sans-serif",
           position: "relative",
@@ -48,7 +48,7 @@ export async function GET(request: Request) {
             left: 0,
             bottom: 0,
             width: 16,
-            background: "hsl(210, 100%, 56%)",
+            background: "#E8A33A",
           }}
         />
 
@@ -61,7 +61,7 @@ export async function GET(request: Request) {
             width: 600,
             height: 600,
             background:
-              "radial-gradient(circle, rgba(32,124,255,0.35), transparent 60%)",
+              "radial-gradient(circle, rgba(232,163,58,0.32), transparent 60%)",
             display: "flex",
           }}
         />
@@ -87,7 +87,7 @@ export async function GET(request: Request) {
               style={{
                 width: 6,
                 height: 40,
-                background: "hsl(210, 100%, 56%)",
+                background: "#E8A33A",
                 borderRadius: 2,
               }}
             />
@@ -122,7 +122,7 @@ export async function GET(request: Request) {
               justifyContent: "space-between",
               alignItems: "baseline",
               fontSize: 22,
-              color: "#94a3b8",
+              color: "#A8A8A8",
             }}
           >
             <span>Car window tinting · Holbeck, Leeds LS11</span>

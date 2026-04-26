@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 /*
- * Tintworks theme — dark, aggressive, tuning-scene.
+ * Tintworks theme — dark automotive workshop.
  * All tokens are HSL triples so Tailwind's `hsl(var(--x) / <alpha>)` works.
  *
- * Accent: warm gold #d2a02a (HSL 42 67% 49%) — LOCKED.
- * To retune: edit this file only.
+ * Brand accent: warm amber #E8A33A (HSL 36 79% 57%) — canonical, matches
+ * the logo wordmark + favicons. To retune: edit this file only.
  */
 
 @layer base {
@@ -31,8 +31,8 @@
     --muted: 0 0% 11%;
     --muted-foreground: 240 5% 65%;
 
-    /* Accent — warm gold #d2a02a. */
-    --accent: 42 67% 49%;
+    /* Accent — warm amber #E8A33A (matches logo wordmark + favicons). */
+    --accent: 36 79% 57%;
     --accent-foreground: 0 0% 4%;
 
     --destructive: 0 72% 51%;
@@ -40,7 +40,7 @@
 
     --border: 240 4% 16%;
     --input: 240 4% 16%;
-    --ring: 42 67% 49%;
+    --ring: 36 79% 57%;
 
     /* WhatsApp brand green — only on CTAs that explicitly open WhatsApp. */
     --whatsapp: 142 70% 45%;

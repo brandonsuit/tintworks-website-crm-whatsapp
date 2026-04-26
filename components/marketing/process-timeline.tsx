@@ -45,7 +45,7 @@ export function ProcessTimeline() {
             <div className="relative flex h-12 w-12 items-center justify-center rounded-sm border border-accent/50 bg-background text-accent shadow-glow-sm">
               <Icon className="h-5 w-5" aria-hidden />
             </div>
-            <p className="mt-5 font-display text-xs uppercase tracking-[0.25em] text-accent">
+            <p className="mt-5 font-display text-xs uppercase tracking-[0.25em] text-[hsl(var(--silver))]">
               Step {String(i + 1).padStart(2, "0")}
             </p>
             <h3 className="mt-2 font-display text-2xl uppercase tracking-tight">

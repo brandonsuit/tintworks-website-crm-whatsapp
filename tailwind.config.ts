@@ -2,15 +2,17 @@ import type { Config } from "tailwindcss";
 
 /**
  * Tintworks theme tokens live here. Retune the whole site by editing the
- * HSL triples below — every component reads from these CSS variables via
- * Tailwind's `bg-background`, `text-foreground`, `bg-accent` utilities etc.
+ * HSL triples in app/globals.css — every component reads from these CSS
+ * variables via Tailwind's `bg-background`, `text-foreground`, `bg-accent`
+ * utilities etc.
  *
  * Palette intent:
  *   - base:    near-black automotive feel (not pure #000 — slightly warm)
- *   - accent:  electric blue (punchy, cool, high-contrast on near-black)
+ *   - accent:  warm amber #E8A33A (matches logo wordmark + favicons)
+ *   - silver:  metallic tertiary for chrome highlights on chips/dividers
  *   - muted:   elevated surface for cards / nav background
  *
- * To swap the accent to red, change the --accent / --ring HSL values only.
+ * To swap the accent, change the --accent / --ring HSL values only.
  */
 
 const config: Config = {

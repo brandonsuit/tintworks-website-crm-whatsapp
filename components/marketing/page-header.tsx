@@ -57,7 +57,7 @@ export function PageHeader({
         </nav>
       )}
       {eyebrow && (
-        <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+        <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
           {eyebrow}
         </p>
       )}

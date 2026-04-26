@@ -32,7 +32,7 @@ export default function GalleryPage() {
       {/* Filterable grid */}
       <section className="container section-padding">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             Recent work
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight md:text-5xl">

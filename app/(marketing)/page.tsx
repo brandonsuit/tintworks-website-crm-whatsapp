@@ -157,7 +157,7 @@ export default async function LandingPage() {
         className="container section-padding border-t border-border/60"
       >
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             What we fit
           </p>
           <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
@@ -203,7 +203,7 @@ export default async function LandingPage() {
         />
         <div className="container relative z-10 section-padding">
           <FadeIn>
-            <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+            <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
               Local proof
             </p>
             <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -228,7 +228,7 @@ export default async function LandingPage() {
         <FadeIn>
           <div className="flex flex-wrap items-end justify-between gap-4">
             <div>
-              <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+              <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
                 Recent work
               </p>
               <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -286,7 +286,7 @@ export default async function LandingPage() {
           <FadeIn>
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div>
-                <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+                <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
                   Reviews
                 </p>
                 <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -320,7 +320,7 @@ export default async function LandingPage() {
       {/* Process */}
       <section className="container section-padding border-t border-border/60">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             How it works
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
@@ -335,7 +335,7 @@ export default async function LandingPage() {
       {/* FAQ */}
       <section className="container section-padding border-t border-border/60">
         <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+          <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
             FAQ
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">

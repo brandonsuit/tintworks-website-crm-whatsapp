@@ -40,7 +40,7 @@ export function TintPreviewSection() {
 
         <div className="container section-padding">
           <div className="max-w-4xl">
-            <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
+            <p className="font-display text-sm uppercase tracking-[0.35em] text-[hsl(var(--silver))]">
               Interactive preview
             </p>
             <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-6xl">
