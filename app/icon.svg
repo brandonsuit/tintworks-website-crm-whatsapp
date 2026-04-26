@@ -1,6 +1,19 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
   <rect width="64" height="64" fill="#0A0A0A"/>
-  <rect x="12" y="14" width="40" height="4" fill="#FFFFFF"/>
-  <rect x="30" y="14" width="4" height="32" fill="#FFFFFF"/>
-  <rect x="10" y="48" width="44" height="4" fill="#00B4FF"/>
+  <defs>
+    <linearGradient id="t" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0%" stop-color="#E8A33A" stop-opacity="0.2"/>
+      <stop offset="55%" stop-color="#E8A33A" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#E8A33A" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(3.2 9.8) scale(0.6)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M30 30L44 18L64 18L70 30Z" fill="url(#t)" stroke="#E8A33A" stroke-width="3"/>
+    <path d="M8 44C10 38 16 34 22 32L30 30L44 18L64 18L70 30L84 33C88 34 90 38 90 44" stroke="#F6F1E6" stroke-width="5"/>
+    <path d="M4 48L24 48" stroke="#F6F1E6" stroke-width="5"/>
+    <path d="M40 48L68 48" stroke="#F6F1E6" stroke-width="5"/>
+    <path d="M84 48L92 48" stroke="#F6F1E6" stroke-width="5"/>
+    <path d="M24 48A8 8 0 0 1 40 48" stroke="#F6F1E6" stroke-width="5"/>
+    <path d="M68 48A8 8 0 0 1 84 48" stroke="#F6F1E6" stroke-width="5"/>
+  </g>
 </svg>
