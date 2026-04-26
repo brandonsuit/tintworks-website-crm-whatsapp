@@ -25,13 +25,13 @@ import { Button } from "@/components/ui/button";
 import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Car Window Tinting Services Leeds — Full, Rear, Front & Van Tints",
+  title: "Window Tinting Services Leeds — Full Car, Rear, Van",
   description:
-    "Tint Works — ceramic, carbon and limo-black car window tinting in Leeds. Full car, rear set, front windows, windscreen sun strips, and van/commercial packages, fitted in-studio at our Holbeck workshop.",
+    "Ceramic, carbon and chameleon car window tinting in Holbeck, Leeds. Full car, rear set, front pair, sun strips, and commercial van packages.",
   alternates: { canonical: "/services" },
   openGraph: {
-    title: "Services — Car Window Tinting Leeds",
-    images: [ogImage("Services — Car Window Tinting Leeds")],
+    title: "Services — Tintworks Holbeck, Leeds",
+    images: [ogImage("Services — Tintworks Holbeck, Leeds")],
   },
 };
 

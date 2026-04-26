@@ -6,13 +6,13 @@ import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { ogImage } from "@/lib/og";
 
 export const metadata: Metadata = {
-  title: "Instant Quote — Car Window Tinting Leeds",
+  title: "Instant Quote — Car Window Tinting Leeds | Tintworks",
   description:
-    "Build your car window tinting quote in under two minutes. Pick vehicle, windows, shade, and extras — we'll reply on WhatsApp with a fitting slot.",
+    "Build a car window tinting quote in under two minutes. Pick vehicle, windows, shade. We'll reply on WhatsApp with pricing and a fitting slot.",
   alternates: { canonical: "/quote" },
   openGraph: {
-    title: "Instant Quote — Tint Works",
-    images: [ogImage("Instant Quote — Tint Works")],
+    title: "Instant Quote — Tintworks Holbeck, Leeds",
+    images: [ogImage("Instant Quote — Tintworks Holbeck, Leeds")],
   },
 };
 

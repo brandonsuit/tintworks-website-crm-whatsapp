@@ -14,13 +14,13 @@ import { ogImage } from "@/lib/og";
 import { socials, type SocialPlatform } from "@/lib/social";
 
 export const metadata: Metadata = {
-  title: "Contact — Tint Works Car Window Tinting Leeds",
+  title: "Contact Tintworks — Holbeck, Leeds LS11",
   description:
-    "Visit Tint Works at Brown Place, Holbeck, Leeds LS11. In-studio car window tinting only. Appointment only — message us on WhatsApp to book in.",
+    "Visit Tintworks at Brown Place, Holbeck, Leeds LS11. In-studio car window tinting. Appointment-only — WhatsApp us to book a fitting slot.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact Tint Works — Holbeck, Leeds",
-    images: [ogImage("Contact Tint Works — Holbeck, Leeds")],
+    title: "Contact Tintworks — Holbeck, Leeds LS11",
+    images: [ogImage("Contact Tintworks — Holbeck, Leeds LS11")],
   },
 };
 

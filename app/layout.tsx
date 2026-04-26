@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     template: `%s | ${business.name}`,
   },
   description:
-    "Professional car window tinting in Leeds. In-studio ceramic and carbon vehicle tints at our Holbeck workshop. Bring your car to us.",
+    "Studio-fitted ceramic, carbon and chameleon car window tinting in Holbeck, Leeds (LS11). 200+ five-star Google reviews, two-year fitting warranty.",
   applicationName: business.name,
   keywords: [
     "car window tinting Leeds",
@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     url: siteUrl,
     title: `${business.name} — Car Window Tinting Leeds`,
     description:
-      "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
+      "Ceramic, carbon and chameleon car window tinting, fitted in our Holbeck bay. Two-year fitting warranty, 200+ five-star Google reviews.",
     images: [
       {
         url: `/og?title=${encodeURIComponent(
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
         )}`,
         width: 1200,
         height: 630,
-        alt: "Tintworks — Car window tinting Leeds",
+        alt: "Tintworks — Car window tinting in Holbeck, Leeds",
       },
     ],
   },
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: `${business.name} — Car Window Tinting Leeds`,
     description:
-      "In-studio car window tinting in Holbeck, Leeds. Bring your vehicle to our workshop.",
+      "Ceramic, carbon and chameleon car window tinting, fitted in our Holbeck bay. Two-year fitting warranty, 200+ five-star Google reviews.",
     images: [
       `/og?title=${encodeURIComponent("Car Window Tinting Leeds — Tintworks")}`,
     ],
@@ -96,7 +96,7 @@ function LocalBusinessJsonLd() {
     "@type": "AutomotiveBusiness",
     name: business.name,
     description:
-      "Professional car window tinting in Leeds. In-studio ceramic and carbon tints at our Holbeck workshop.",
+      "Studio-fitted ceramic, carbon and chameleon car window tinting in Holbeck, Leeds. Two-year fitting warranty.",
     image: `${siteUrl}/og-default.png`,
     url: siteUrl,
     telephone: business.phoneTel,
@@ -117,9 +117,25 @@ function LocalBusinessJsonLd() {
     },
     // Appointment-only business — openingHoursSpecification omitted
     // deliberately so Google doesn't surface incorrect "open now" state.
-    areaServed: {
-      "@type": "City",
-      name: "Leeds",
+    areaServed: [
+      { "@type": "City", name: "Leeds" },
+      { "@type": "Place", name: "Holbeck, Leeds" },
+      { "@type": "Place", name: "Beeston, Leeds" },
+      { "@type": "Place", name: "Hunslet, Leeds" },
+      { "@type": "Place", name: "Morley, Leeds" },
+      { "@type": "Place", name: "Pudsey, Leeds" },
+      { "@type": "Place", name: "Rothwell, Leeds" },
+      { "@type": "Place", name: "Wetherby, Leeds" },
+      { "@type": "City", name: "Wakefield" },
+      { "@type": "City", name: "Bradford" },
+    ],
+    // Aggregate rating drawn from the 200+ Google reviews.
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "5",
+      reviewCount: "200",
+      bestRating: "5",
+      worstRating: "1",
     },
     sameAs: socials.map((s) => s.href),
   };

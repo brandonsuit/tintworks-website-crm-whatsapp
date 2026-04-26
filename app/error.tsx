@@ -34,8 +34,8 @@ export default function GlobalError({
             Something came off the rails.
           </h1>
           <p className="mt-4 max-w-prose text-muted-foreground">
-            Our apologies — the page hit an unexpected error. Try again, or
-            head back to the home page.
+            Sorry — the page hit an error. Try again, or head back to the
+            home page.
           </p>
           {error.digest && (
             <p className="mt-2 text-xs text-muted-foreground">

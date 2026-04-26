@@ -9,13 +9,13 @@ import { ogImage } from "@/lib/og";
 export const revalidate = false;
 
 export const metadata: Metadata = {
-  title: "Gallery — Car Window Tinting Leeds",
+  title: "Gallery — Car Window Tinting Leeds | Tintworks Holbeck",
   description:
-    "Recent car window tinting work from Tint Works in Leeds — filter the grid by film type, and click any tile to view full size.",
+    "Recent car window tints fitted by Tintworks in Holbeck, Leeds. BMW, Audi, Mercedes, VW, Ford Transit and more. Filter by film type.",
   alternates: { canonical: "/gallery" },
   openGraph: {
-    title: "Gallery — Tint Works",
-    images: [ogImage("Gallery — Tint Works")],
+    title: "Gallery — Tintworks Holbeck, Leeds",
+    images: [ogImage("Gallery — Tintworks Holbeck, Leeds")],
   },
 };
 

@@ -32,13 +32,13 @@ import { ogImage } from "@/lib/og";
 export const revalidate = 86400;
 
 export const metadata: Metadata = {
-  title: "Car Window Tinting Leeds — Ceramic, Carbon & Limo Tints",
+  title: "Car Window Tinting Leeds — Ceramic, Carbon, Chameleon",
   description:
-    "Tint Works — professional car window tinting in Leeds. Ceramic and carbon films fitted in-studio at our Holbeck workshop. 200+ 5-star reviews, 2-year fitting warranty.",
+    "Studio-fitted car window tinting in Holbeck, Leeds (LS11). Ceramic, carbon and chameleon films. 200+ five-star Google reviews, two-year fitting warranty.",
   alternates: { canonical: "/" },
   openGraph: {
-    title: "Car Window Tinting Leeds — Tint Works",
-    images: [ogImage("Car Window Tinting Leeds — Tint Works")],
+    title: "Car Window Tinting Leeds — Tintworks",
+    images: [ogImage("Car Window Tinting Leeds — Tintworks")],
   },
 };
 

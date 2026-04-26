@@ -38,11 +38,11 @@ export default function NotFound() {
         <section className="container py-20 md:py-28">
           <p className="text-xs uppercase tracking-widest text-accent">404</p>
           <h1 className="mt-3 font-display text-5xl uppercase tracking-tight text-balance md:text-6xl">
-            That page has drifted off the map.
+            That page took the long way home.
           </h1>
           <p className="mt-4 max-w-prose text-muted-foreground">
-            The link might be out of date — or we&apos;ve moved things
-            around. Head back home, or jump straight to a quote.
+            The link's either out of date or we've moved things around. Head
+            back to the home page, or jump straight to a quote.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <Button asChild variant="accent" size="lg">
