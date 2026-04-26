@@ -2,14 +2,14 @@
  * Gallery content source. Hard-coded for v1 — no CMS, no database.
  *
  * ─── How to swap in real photos ────────────────────────────────────────
- *   1. Drop files into `public/gallery/` (use a naming convention like
- *      `tint-ceramic-bmw-01.jpg`). Recommended dimensions: 1600×1200
- *      (4:3 ratio) so they sit neatly in the grid without cropping.
- *      Keep each image under ~300 KB — compress with something like
- *      Squoosh.app or `cwebp` to keep the page fast.
+ *   1. Drop files into `public/gallery/` as WebP (q=75-80, ~150 KB each).
+ *      Use a naming convention like `tint-ceramic-bmw-01.webp`.
+ *      Recommended dimensions: 1600×1200 (4:3) so they fit the grid
+ *      without cropping. Compress with Squoosh.app or `cwebp` — JPGs
+ *      also work but ship ~40% heavier for the same visual quality.
  *
  *   2. Swap each `src` below to a local path, e.g.
- *      `/gallery/tint-ceramic-bmw-01.jpg`.
+ *      `/gallery/tint-ceramic-bmw-01.webp`.
  *
  *   3. Update `alt` (written description for screen readers + SEO),
  *      `caption` (short visible label under the image), and `tintType`
@@ -39,49 +39,49 @@ export type GalleryItem = {
 
 export const galleryItems: GalleryItem[] = [
   {
-    src: "/gallery/glb35-front.jpg",
+    src: "/gallery/glb35-front.webp",
     alt: "Mercedes GLB35 AMG — front three-quarter view after full ceramic tint, Tintworks studio Leeds",
     caption: "Mercedes GLB35 AMG — Full Window Tints",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/lamborghini-gallardo.jpg",
+    src: "/gallery/lamborghini-gallardo.webp",
     alt: "Lamborghini Gallardo — 2 windows tinted at 35% by Tintworks Leeds",
     caption: "Lamborghini Gallardo — 2 Windows 35%",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/vw-golf.jpg",
+    src: "/gallery/vw-golf.webp",
     alt: "Volkswagen Golf — full window tint in Tintworks studio Leeds",
     caption: "Volkswagen MK8 — Rear Window Tints",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/bmw-1-series.jpg",
+    src: "/gallery/bmw-1-series.webp",
     alt: "BMW 1 Series — full window tint in Tintworks studio Leeds",
     caption: "BMW 1 Series — Full Window Tinting",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/bmw-x3.jpg",
+    src: "/gallery/bmw-x3.webp",
     alt: "BMW X3 — rear window tint in Tintworks studio Leeds",
     caption: "BMW X3 — Rear Window Tints",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/seat-leon-cupra.jpg",
+    src: "/gallery/seat-leon-cupra.webp",
     alt: "SEAT Leon Cupra 290 — full window tint in Tintworks studio Leeds",
     caption: "SEAT Leon Cupra 290 — Full Window Tinting",
     tintType: "ceramic",
   },
   {
-    src: "/gallery/ford-transit.jpg",
+    src: "/gallery/ford-transit.webp",
     alt: "Ford Transit Custom — pink haze chameleon windscreen tint by Tintworks Leeds",
     caption: "Transit Custom — Pink Haze Chameleon Windscreen",
     tintType: "chameleon",
   },
   {
-    src: "/gallery/audi-tt.jpg",
+    src: "/gallery/audi-tt.webp",
     alt: "Audi TT Coupe — full window tint in Tintworks studio Leeds",
     caption: "Audi TT Coupe — Full Window Tints",
     tintType: "ceramic",
