@@ -1,12 +1,11 @@
 import Link from "next/link";
-import { Star, MapPin, Phone } from "lucide-react";
+import { Star, ShieldCheck, MapPin } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
 import { HeroCarStatic } from "@/components/marketing/hero-car-static";
 import { BrandMarquee } from "@/components/marketing/brand-marquee";
-import { business } from "@/lib/business";
-import { telHref } from "@/lib/phone";
+import { googleReviewsProfileUrl } from "@/lib/reviews";
 import type { WhatsAppPageKey } from "@/lib/whatsapp/messages";
 
 export function Hero({
@@ -17,10 +16,11 @@ export function Hero({
   return (
     <>
       <section className="relative isolate overflow-hidden bg-grain">
-        {/* Background atmosphere */}
+        {/* Background atmosphere — tightened ellipse + reduced opacity so the
+            amber halo no longer bleeds into the text column. */}
         <div
           aria-hidden
-          className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_at_top,hsl(var(--accent)/0.22),transparent_55%),linear-gradient(180deg,hsl(0_0%_6%)_0%,hsl(0_0%_3%)_100%)]"
+          className="absolute inset-0 -z-20 bg-[radial-gradient(ellipse_70%_55%_at_75%_30%,hsl(var(--accent)/0.12),transparent_60%),linear-gradient(180deg,hsl(0_0%_6%)_0%,hsl(0_0%_3%)_100%)]"
         />
 
         {/* Accent glow pool */}
@@ -69,47 +69,63 @@ export function Hero({
                 <span className="text-accent">Holbeck</span>.
               </h1>
 
+              {/* Trust badges — sit between H1 and sub-headline so social
+                  proof lands before the buyer scrolls. */}
+              <ul
+                role="list"
+                className="pointer-events-auto mt-6 flex flex-wrap items-center gap-2"
+              >
+                <li>
+                  <a
+                    href={googleReviewsProfileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm transition-colors hover:border-accent hover:bg-accent/15"
+                  >
+                    <span className="flex" aria-hidden>
+                      {[0, 1, 2, 3, 4].map((i) => (
+                        <Star
+                          key={i}
+                          className="h-3.5 w-3.5 fill-accent text-accent"
+                        />
+                      ))}
+                    </span>
+                    <span>
+                      <strong>200+</strong> five-star Google reviews
+                    </span>
+                  </a>
+                </li>
+                <li className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--silver)/0.4)] bg-[hsl(var(--silver)/0.08)] px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
+                  <ShieldCheck
+                    className="h-3.5 w-3.5 text-[hsl(var(--silver))]"
+                    aria-hidden
+                  />
+                  <span>Two-year fitting warranty</span>
+                </li>
+                <li className="inline-flex items-center gap-2 rounded-full border border-[hsl(var(--silver)/0.4)] bg-[hsl(var(--silver)/0.08)] px-3 py-1.5 text-xs font-medium text-foreground backdrop-blur-sm">
+                  <MapPin
+                    className="h-3.5 w-3.5 text-[hsl(var(--silver))]"
+                    aria-hidden
+                  />
+                  <span>Studio-fitted, Leeds LS11</span>
+                </li>
+              </ul>
+
               <p className="mt-6 max-w-xl text-lg text-foreground/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)] md:text-xl">
                 Ceramic, carbon and chameleon films, cut and bedded in by
-                hand. 200+ five-star Google reviews. Two-year fitting
-                warranty.
+                hand at our Holbeck workshop.
               </p>
 
               <div className="pointer-events-auto mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="accent" size="xl" className="shadow-glow">
                   <Link href="/quote">Get a quote</Link>
                 </Button>
-                <WhatsAppCta pageKey={pageKey} appearance="filled" size="xl" />
-                <Button asChild variant="outline" size="xl" className="gap-2">
-                  <a
-                    href={telHref(business.phoneE164)}
-                    aria-label={`Call ${business.phoneDisplay}`}
-                  >
-                    <Phone className="h-4 w-4 text-accent" aria-hidden />
-                    {business.phoneDisplay}
-                  </a>
-                </Button>
+                <WhatsAppCta pageKey={pageKey} appearance="outline" size="xl" />
               </div>
 
-              <ul
-                role="list"
-                className="pointer-events-auto mt-8 flex flex-wrap items-center gap-x-8 gap-y-3 text-sm text-muted-foreground drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]"
-              >
-                <li className="flex items-center gap-2">
-                  <Star className="h-4 w-4 fill-accent text-accent" aria-hidden />
-                  <span>
-                    <strong className="text-foreground">200+</strong> 5-star
-                    Google reviews
-                  </span>
-                </li>
-                <li className="flex items-center gap-2">
-                  <MapPin className="h-4 w-4 text-accent" aria-hidden />
-                  <span>
-                    Studio-fitted in{" "}
-                    <strong className="text-foreground">Leeds</strong>
-                  </span>
-                </li>
-              </ul>
+              <p className="pointer-events-auto mt-3 text-xs text-[hsl(var(--silver))] drop-shadow-[0_1px_6px_rgba(0,0,0,0.55)]">
+                Reply on WhatsApp within the hour, Monday to Saturday.
+              </p>
             </div>
           </div>
         </div>

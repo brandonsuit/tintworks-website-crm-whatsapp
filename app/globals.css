@@ -46,6 +46,11 @@
     --whatsapp: 142 70% 45%;
     --whatsapp-foreground: 0 0% 100%;
 
+    /* Tertiary metallic accent — use for premium-feel chrome highlights on
+       chips, dividers, and secondary text where flat muted-grey reads
+       under-baked. ~ #A8A8A8. */
+    --silver: 0 0% 66%;
+
     /* Sharp geometric feel — max 4px radius. */
     --radius: 0.25rem;
   }
@@ -94,11 +99,13 @@
     mix-blend-mode: overlay;
   }
 
-  /* Radial accent glow — use behind hero headlines, CTAs etc. */
+  /* Radial accent glow — use behind hero headlines, CTAs etc.
+     Tuned down from 0.45 -> 0.22 so the halo lifts the area without
+     leaking into the text safe zone. */
   .accent-glow {
     background: radial-gradient(
       ellipse at center,
-      hsl(var(--accent) / 0.45) 0%,
+      hsl(var(--accent) / 0.22) 0%,
       hsl(var(--accent) / 0) 70%
     );
     filter: blur(60px);
