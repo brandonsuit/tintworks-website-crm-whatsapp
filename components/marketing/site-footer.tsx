@@ -43,7 +43,7 @@ export function SiteFooter({
                 src="/logo.svg"
                 alt="Tint Works"
                 width={200}
-                height={40}
+                height={41}
                 className="h-9 w-auto"
               />
             </Link>

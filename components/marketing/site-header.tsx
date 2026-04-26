@@ -59,7 +59,7 @@ export function SiteHeader({
             src="/logo.svg"
             alt="Tint Works"
             width={200}
-            height={40}
+            height={41}
             priority
             fetchPriority="high"
             className="h-8 w-auto md:h-10"
