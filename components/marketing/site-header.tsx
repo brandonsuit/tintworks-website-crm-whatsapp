@@ -71,9 +71,14 @@ export function SiteHeader({
             <Link
               key={link.href}
               href={link.href}
-              className="rounded-sm px-3 py-2 font-display text-base uppercase tracking-wider text-muted-foreground transition-colors hover:text-accent"
+              className="group relative rounded-sm px-3 py-2 font-display text-base uppercase tracking-wider"
             >
-              {link.label}
+              <span className="block h-4 overflow-hidden leading-none">
+                <span className="flex flex-col transition-transform duration-300 ease-out group-hover:-translate-y-1/2">
+                  <span className="text-muted-foreground">{link.label}</span>
+                  <span className="text-accent">{link.label}</span>
+                </span>
+              </span>
             </Link>
           ))}
         </nav>
