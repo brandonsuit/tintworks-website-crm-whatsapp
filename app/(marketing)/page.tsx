@@ -44,7 +44,7 @@ export const metadata: Metadata = {
 
 const services = [
   {
-    href: "/services#full-car",
+    href: "/services",
     icon: Sparkles,
     title: "Full car tint",
     description:
@@ -52,35 +52,35 @@ const services = [
     badge: "Most popular",
   },
   {
-    href: "/services#rear-only",
+    href: "/services",
     icon: Eye,
     title: "Rear set",
     description:
       "Rear sides + rear windscreen. Maximum privacy, heat rejection, and a factory-tidy finish.",
   },
   {
-    href: "/services#front-only",
+    href: "/services",
     icon: ShieldCheck,
     title: "Front windows",
     description:
       "UK law-compliant front pair (min 70% VLT). Cuts glare on motorway drives.",
   },
   {
-    href: "/services#sun-strip",
+    href: "/services",
     icon: Sun,
     title: "Windscreen sun strip",
     description:
       "Narrow gradient strip across the top of the windscreen — kills low-sun glare fast.",
   },
   {
-    href: "/services#commercial",
+    href: "/services",
     icon: Truck,
     title: "Commercial / van",
     description:
       "Transit, Sprinter, VW Transporter and more. Secure your tools, stay comfortable.",
   },
   {
-    href: "/services#chameleon",
+    href: "/services",
     icon: Palette,
     title: "Chameleon finish",
     description:
