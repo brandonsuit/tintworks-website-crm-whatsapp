@@ -59,15 +59,20 @@ export function Hero({
                 Leeds · Holbeck LS11
               </p>
 
+              {/* H1 — pick one. Option A is the default; Option B kept in this
+                  comment for swap-out without re-deploying.
+
+                  Option A: Window tints, fitted in [Holbeck].
+                  Option B: Studio-fitted [window tints] in Leeds. */}
               <h1 className="mt-6 font-display text-5xl uppercase leading-[0.95] tracking-tight text-balance drop-shadow-[0_2px_16px_rgba(0,0,0,0.65)] sm:text-6xl md:text-7xl lg:text-[6.5rem]">
-                Leeds&rsquo; Premier{" "}
-                <span className="text-accent">Window Tinting</span>
+                Window tints, fitted in{" "}
+                <span className="text-accent">Holbeck</span>.
               </h1>
 
               <p className="mt-6 max-w-xl text-lg text-foreground/90 drop-shadow-[0_1px_8px_rgba(0,0,0,0.55)] md:text-xl">
-                Ceramic, carbon and chameleon films fitted in-studio at our
-                Holbeck workshop. Heat rejection, UV protection, and a
-                factory-tidy finish.
+                Ceramic, carbon and chameleon films, cut and bedded in by
+                hand. 200+ five-star Google reviews. Two-year fitting
+                warranty.
               </p>
 
               <div className="pointer-events-auto mt-8 flex flex-wrap gap-3">

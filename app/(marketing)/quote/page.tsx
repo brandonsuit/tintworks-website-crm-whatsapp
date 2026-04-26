@@ -22,7 +22,7 @@ export default function QuotePage() {
       <PageHeader
         eyebrow="Instant quote"
         title="Build your quote in under two minutes."
-        lead="Tell us the vehicle, the windows, and the shade. We'll pre-fill WhatsApp with your details so you can tap send and we'll reply the same day."
+        lead="Pick the vehicle, the windows, and the shade. We'll pre-fill WhatsApp with your details — tap send, we'll reply the same day with pricing and a fitting slot."
         crumbs={[{ href: "/quote", label: "Quote" }]}
       />
 
@@ -33,12 +33,11 @@ export default function QuotePage() {
         <aside className="space-y-4 md:col-span-1">
           <div className="rounded-sm border border-border bg-card p-6">
             <h2 className="font-display text-lg uppercase tracking-tight">
-              Prefer to skip it?
+              Prefer to skip the wizard?
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
-              Drop us a WhatsApp message directly — send the make, model,
-              and which windows you want done. We&apos;ll reply with pricing
-              and a fitting slot.
+              Send a WhatsApp message instead. Make, model, and which windows
+              you want done is enough to start a quote — photos help.
             </p>
             <div className="mt-4">
               <WhatsAppCta pageKey="quote" appearance="filled" size="default" />
@@ -66,11 +65,11 @@ export default function QuotePage() {
           </div>
           <div className="rounded-sm border border-border bg-card p-6">
             <h2 className="font-display text-lg uppercase tracking-tight">
-              Your progress is saved
+              Progress is saved
             </h2>
             <p className="mt-2 text-sm text-muted-foreground">
               Close the tab and come back — we remember where you got to.
-              Cleared automatically once your quote is sent.
+              Cleared automatically once the quote is sent.
             </p>
           </div>
         </aside>

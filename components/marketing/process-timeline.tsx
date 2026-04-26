@@ -8,23 +8,23 @@ import { MessageSquare, CalendarCheck2, Car, Sparkles } from "lucide-react";
 const steps = [
   {
     icon: MessageSquare,
-    title: "Get an instant quote",
-    body: "Use the quote tool or message us on WhatsApp — we'll come back the same day.",
+    title: "Get a quote",
+    body: "Use the quote tool or send us a WhatsApp message. We'll come back the same day with pricing and a fitting slot.",
   },
   {
     icon: CalendarCheck2,
     title: "Book a slot",
-    body: "Pick a day that suits you. We work by appointment only so there's no waiting around.",
+    body: "Pick a day that suits you. Appointment-only, so no waiting around when you arrive.",
   },
   {
     icon: Car,
-    title: "Drop off your car",
-    body: "Bring it to our Holbeck workshop. Most tints are completed the same day.",
+    title: "Drop the car off",
+    body: "Brown Place, Holbeck (LS11). Wait at the studio or come back later — most jobs finish the same day.",
   },
   {
     icon: Sparkles,
-    title: "Drive away fresh",
-    body: "Collect your vehicle. 2-year fitting warranty, and we'll always answer aftercare questions.",
+    title: "Collect and drive",
+    body: "Two-year fitting warranty. We'll always pick up the phone for aftercare questions.",
   },
 ] as const;
 

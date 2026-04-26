@@ -36,19 +36,19 @@ export default function ContactPage() {
       <PageHeader
         eyebrow="Contact"
         title="Visit the Holbeck studio, or get in touch."
-        lead="Fastest route is WhatsApp — we'll usually reply within the hour during working times."
+        lead="WhatsApp is the fastest route. We aim to reply within the hour, Monday to Saturday."
         crumbs={[{ href: "/contact", label: "Contact" }]}
       />
 
       <section className="container pb-8">
         <div className="rounded-sm border border-accent/30 bg-accent/5 p-6 md:p-8">
           <h2 className="font-display text-xl uppercase tracking-tight text-accent">
-            In-studio only — bring your vehicle to us in Holbeck, Leeds
+            In-studio only. Bring the car to Holbeck.
           </h2>
           <p className="mt-3 text-sm text-muted-foreground">
-            All car window tinting is completed at our workshop on Brown
-            Place, Holbeck (LS11). We don&apos;t operate a mobile service.
-            By appointment only — message us on WhatsApp to arrange a booking.
+            All work is completed at our workshop on Brown Place, Holbeck
+            (LS11). No mobile or travelling service. Appointment-only —
+            drop us a WhatsApp message to arrange a slot.
           </p>
         </div>
       </section>
@@ -122,12 +122,12 @@ export default function ContactPage() {
           <FadeIn delay={0.06}>
             <Card className="p-6 hover-glow">
               <h2 className="font-display text-2xl uppercase tracking-tight">
-                Best way to reach us
+                Quickest way to reach us
               </h2>
               <p className="mt-2 text-sm text-muted-foreground">
-                WhatsApp is fastest — a short message with your vehicle
-                details gets us replying quickest. For formal quotes or
-                longer briefs, use email.
+                WhatsApp first. A short message with the make, model and which
+                windows you want done is enough to start a quote — photos
+                speed it up. Use email if you need it in writing.
               </p>
               <div className="mt-5 flex flex-wrap gap-3">
                 <WhatsAppCta
@@ -148,15 +148,45 @@ export default function ContactPage() {
             </Card>
           </FadeIn>
 
+          <FadeIn delay={0.1}>
+            <Card className="p-6 hover-glow">
+              <h2 className="font-display text-2xl uppercase tracking-tight">
+                What to expect when you arrive
+              </h2>
+              <ul className="mt-3 space-y-2 text-sm text-muted-foreground">
+                <li>
+                  <strong className="text-foreground">Where:</strong> Brown
+                  Place, Holbeck (LS11). Park kerbside on the road outside the
+                  bay — we'll bring the car in for fitting.
+                </li>
+                <li>
+                  <strong className="text-foreground">How long:</strong> Rear
+                  set: two to three hours. Full car: three to four. Sun strip:
+                  forty-five minutes.
+                </li>
+                <li>
+                  <strong className="text-foreground">Wait or come back:</strong>{" "}
+                  Whichever suits — we're easy. Just let us know on the day so
+                  we don't lock up while you're around the corner.
+                </li>
+                <li>
+                  <strong className="text-foreground">After:</strong> Don't
+                  wash the windows for three to five days while the film
+                  cures. Some cloudiness is normal — it clears on its own.
+                </li>
+              </ul>
+            </Card>
+          </FadeIn>
+
           {socials.length > 0 && (
-            <FadeIn delay={0.12}>
+            <FadeIn delay={0.14}>
               <Card className="p-6 hover-glow">
                 <h2 className="font-display text-2xl uppercase tracking-tight">
                   Follow the work
                 </h2>
                 <p className="mt-2 text-sm text-muted-foreground">
-                  Fresh installs go up on Instagram weekly. Facebook for longer
-                  write-ups and customer feedback.
+                  Fresh installs go up on Instagram weekly. Facebook for the
+                  longer write-ups and customer feedback.
                 </p>
                 <ul
                   className="mt-5 flex flex-wrap gap-3"

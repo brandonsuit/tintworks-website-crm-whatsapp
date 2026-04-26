@@ -24,8 +24,8 @@ export default function GalleryPage() {
     <>
       <PageHeader
         eyebrow="Gallery"
-        title="See the difference for yourself."
-        lead="Filter the grid by film type, and click any tile for a full-size view."
+        title="Recent tints, fitted in Holbeck."
+        lead="Every car here came through our Holbeck bay (LS11). Filter by film type, click any tile for a full-size view."
         crumbs={[{ href: "/gallery", label: "Gallery" }]}
       />
 
@@ -33,10 +33,10 @@ export default function GalleryPage() {
       <section className="container section-padding">
         <FadeIn>
           <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
-            Full portfolio
+            Recent work
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight md:text-5xl">
-            A rolling selection of recent work.
+            What we've been fitting.
           </h2>
         </FadeIn>
         <div className="mt-10">
@@ -46,8 +46,8 @@ export default function GalleryPage() {
 
       <SectionCta
         pageKey="gallery"
-        heading="Like what you see?"
-        lead="Send us the photo that caught your eye and we'll quote the same job for your car."
+        heading="See one you'd want on your car?"
+        lead="Send us the picture that caught your eye. We'll come back with pricing for the same job on yours."
       />
     </>
   );

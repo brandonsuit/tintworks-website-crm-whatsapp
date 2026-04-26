@@ -48,8 +48,8 @@ export function SiteFooter({
               />
             </Link>
             <p className="mt-4 max-w-sm text-sm text-muted-foreground">
-              Professional car window tinting in Leeds. In-studio only —
-              bring your vehicle to us in Holbeck.
+              Studio-fitted car window tinting in Holbeck, Leeds. Two-year
+              fitting warranty. 200+ five-star Google reviews.
             </p>
 
             <dl className="mt-6 space-y-3 text-sm">
@@ -149,8 +149,9 @@ export function SiteFooter({
               ))}
             </ul>
             <p className="mt-6 text-xs text-muted-foreground">
-              Serving Leeds and surrounding West Yorkshire — all work
-              completed in-studio at our Holbeck workshop.
+              Serving Leeds and West Yorkshire — Beeston, Hunslet, Morley,
+              Pudsey, Rothwell, Wetherby, Wakefield, Bradford and surrounding
+              postcodes.
             </p>
           </div>
         </div>

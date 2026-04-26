@@ -48,7 +48,7 @@ const services = [
     icon: Sparkles,
     title: "Full car tint",
     description:
-      "Every legal window wrapped. Ceramic or carbon film, dialled in to your shade of choice.",
+      "Every legal window. Ceramic or carbon, with the front pair held to UK-legal 70% VLT.",
     badge: "Most popular",
   },
   {
@@ -56,35 +56,35 @@ const services = [
     icon: Eye,
     title: "Rear set",
     description:
-      "Rear sides + rear windscreen. Maximum privacy, heat rejection, and a factory-tidy finish.",
+      "Rear sides plus rear screen. Privacy for kids, dogs, or kit. Two to three hours in our bay.",
   },
   {
     href: "/services",
     icon: ShieldCheck,
     title: "Front windows",
     description:
-      "UK law-compliant front pair (min 70% VLT). Cuts glare on motorway drives.",
+      "Front pair only, kept legal at 70%+ VLT. Cuts motorway glare without dropping daytime visibility.",
   },
   {
     href: "/services",
     icon: Sun,
     title: "Windscreen sun strip",
     description:
-      "Narrow gradient strip across the top of the windscreen — kills low-sun glare fast.",
+      "Narrow gradient strip across the top of the windscreen. Kills low-sun glare in 45 minutes.",
   },
   {
     href: "/services",
     icon: Truck,
     title: "Commercial / van",
     description:
-      "Transit, Sprinter, VW Transporter and more. Secure your tools, stay comfortable.",
+      "Transit, Sprinter, Vivaro, Transporter. Limo-dark rear glass for tools, stock, or campervan privacy.",
   },
   {
     href: "/services",
     icon: Palette,
     title: "Chameleon finish",
     description:
-      "Colour-shifting film that flips between blue, purple and gold. Show-car look with full UV and heat rejection.",
+      "Colour-shifts between blue, purple and gold under angle and light. Show-car finish, full UV and heat rejection underneath.",
     badge: "Statement",
   },
 ] as const;
@@ -95,12 +95,13 @@ const faqs: FaqItem[] = [
     a: (
       <>
         <p>
-          Yes — within the rules. UK law (Construction & Use Regulations) says:
+          Yes, within the rules. UK law (Construction & Use Regulations) says:
         </p>
         <ul className="mt-3 list-disc pl-5">
           <li>
             Front windscreen must let through at least{" "}
-            <strong className="text-foreground">75%</strong> of light (VLT).
+            <strong className="text-foreground">75%</strong> of light (VLT —
+            visible light transmission).
           </li>
           <li>
             Front side windows must let through at least{" "}
@@ -113,30 +114,30 @@ const faqs: FaqItem[] = [
           </li>
         </ul>
         <p className="mt-3">
-          We&apos;ll never fit a front tint that&apos;s below the legal limit.
+          We&apos;ll never fit a front tint below the legal limit.
         </p>
       </>
     ),
   },
   {
     q: "How long does it take?",
-    a: "Most tints are completed the same day. A full rear set typically takes 2–3 hours; a full car around 3–4 hours. We'll give you an exact slot when you book.",
+    a: "Most jobs are same-day. A rear set is two to three hours; a full car around three to four. We'll give you the exact slot when you book.",
   },
   {
     q: "How much does it cost?",
-    a: "Pricing depends on your vehicle and which windows you're doing. Use the instant quote tool for a same-day estimate, or message us on WhatsApp.",
+    a: "It depends on the vehicle and which windows you're doing. Use the quote tool for an instant estimate, or send us a WhatsApp message with the make and model.",
   },
   {
-    q: "How long does it last?",
-    a: "Our ceramic and carbon films are colour-stable — no purple fade. Fitting is covered by a 2-year warranty against peeling, bubbling or delamination.",
+    q: "How long does the tint itself last?",
+    a: "Our ceramic and carbon films are colour-stable for the life of the car — no purple fade, no bubbling, no peeling. The film outlasts most cars.",
   },
   {
     q: "Can I wash my car after?",
-    a: "Give it 3–5 days before washing the windows so the film can fully cure. You'll still see a little cloudiness during curing — that's normal and will vanish.",
+    a: "Hold off washing the windows for three to five days while the film cures. Some cloudiness during cure is normal — it clears as the moisture evaporates from underneath.",
   },
   {
-    q: "Do you offer a warranty?",
-    a: "Yes — 2-year fitting warranty on all work. If you ever have an issue, bring the car back.",
+    q: "What does the fitting warranty cover?",
+    a: "Two years on the workmanship — covers peeling, bubbling, or delamination. If anything goes wrong, bring the car back.",
   },
 ];
 
@@ -161,7 +162,7 @@ export default async function LandingPage() {
           </p>
           <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
             <h2 className="max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-6xl">
-              Built for every kind of vehicle.
+              Daily drivers, weekend cars, working vans.
             </h2>
             <Button asChild variant="ghost" size="sm">
               <Link href="/services" className="gap-1">
@@ -203,10 +204,10 @@ export default async function LandingPage() {
         <div className="container relative z-10 section-padding">
           <FadeIn>
             <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
-              By the numbers
+              Local proof
             </p>
             <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-              Leeds-local. Trusted by hundreds.
+              Holbeck-fitted. Two-hundred reviews. Five stars.
             </h2>
           </FadeIn>
           <div className="mt-10">
@@ -214,8 +215,8 @@ export default async function LandingPage() {
               stats={[
                 { value: 200, suffix: "+", label: "5-star Google reviews" },
                 { value: 5, suffix: "★", label: "Average rating" },
-                { value: 5, suffix: "+", label: "Years in the game" },
-                { value: 2, suffix: " yr", label: "Fitting warranty" },
+                { value: 5, suffix: "+", label: "Years tinting Leeds drivers" },
+                { value: 2, suffix: " yr", label: "Fitting warranty, no fade" },
               ]}
             />
           </div>
@@ -231,7 +232,7 @@ export default async function LandingPage() {
                 Recent work
               </p>
               <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-                A taste of the portfolio.
+                Tints we've fitted recently.
               </h2>
             </div>
             <Button asChild variant="ghost" size="sm">
@@ -289,7 +290,7 @@ export default async function LandingPage() {
                   Reviews
                 </p>
                 <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-                  What our customers say.
+                  Two hundred Leeds drivers, in their own words.
                 </h2>
               </div>
               <a
@@ -323,7 +324,7 @@ export default async function LandingPage() {
             How it works
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-            Four steps from enquiry to new glass.
+            From WhatsApp to fitted, in four steps.
           </h2>
         </FadeIn>
         <div className="mt-10">
@@ -338,7 +339,7 @@ export default async function LandingPage() {
             FAQ
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-            Answers before you book.
+            The questions we get asked most.
           </h2>
         </FadeIn>
         <div className="mt-10 max-w-3xl">

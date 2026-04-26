@@ -36,11 +36,11 @@ export const metadata: Metadata = {
 };
 
 const benefits = [
-  "Ceramic and carbon films — heat rejection up to 88%",
+  "Ceramic and carbon films, up to 88% solar heat rejection",
   "99% UV rejection — protects interior trim and skin on long drives",
-  "Factory-tidy finish, no peeling or purple fade",
-  "UK-legal VLT on front side windows on request",
-  "2-year warranty on the fitting workmanship",
+  "Factory-tidy finish: no peeling, bubbling, or purple fade",
+  "UK-legal VLT (70%+) on front side windows when requested",
+  "Two-year warranty on the fitting workmanship",
 ];
 
 const filmTypes = [
@@ -48,32 +48,32 @@ const filmTypes = [
     name: "Ceramic",
     icon: Sparkles,
     blurb:
-      "Our default recommendation. Highest heat rejection, signal-friendly (no phone or key-fob interference), and the cleanest long-term look.",
+      "Our default recommendation. Highest heat rejection, signal-friendly (no phone or key-fob interference), cleanest long-term look.",
   },
   {
     name: "Carbon",
     icon: ShieldCheck,
     blurb:
-      "A strong mid-tier option. Good heat rejection, matte finish, and doesn't fade to purple like cheap dyed films.",
+      "Strong mid-tier option. Good heat rejection, matte finish, and doesn't fade to purple like cheap dyed films.",
   },
   {
     name: "Chameleon",
     icon: Palette,
     blurb:
-      "Colour-shifting film that flips between blue, purple, and gold depending on the angle and light. Show-car finish, still offers proper UV and heat rejection. Built for people who want the glass to be a feature.",
+      "Colour-shifts between blue, purple and gold under angle and light. Show-car finish, full UV and heat rejection underneath. For when the glass should be a feature.",
     badge: "Statement",
   },
   {
     name: "Limo black",
     icon: Eye,
     blurb:
-      "Darkest legal tint for rear glass — maximum privacy for rear passengers, luggage, or commercial vans.",
+      "Darkest legal option for rear glass. Maximum privacy on the back seats, in the boot, or in a commercial van.",
   },
   {
     name: "Sun strips",
     icon: Sun,
     blurb:
-      "A narrow strip across the top of the windscreen to cut low-sun glare. Fitted on their own or added to any package.",
+      "Narrow strip across the top of the windscreen. Cuts low-sun glare. Fitted standalone or added to any package.",
   },
 ];
 
@@ -83,11 +83,11 @@ const servicePackages = [
     icon: Car,
     title: "Full car tint",
     blurb:
-      "Every legal window wrapped — rear glass, rear sides, front sides (to UK-legal 70% VLT), and sunroof if fitted.",
+      "Every legal window: rear glass, rear sides, front pair (held to UK-legal 70% VLT), and the sunroof if fitted.",
     points: [
-      "Best value per window",
-      "Full privacy + heat rejection",
-      "Front-side film kept legal (≥70% VLT)",
+      "Best per-window value",
+      "Front pair held to 70%+ VLT — UK law",
+      "Two-year fitting warranty included",
     ],
     badge: "Most popular",
   },
@@ -96,11 +96,11 @@ const servicePackages = [
     icon: Eye,
     title: "Rear set",
     blurb:
-      "Rear sides plus the rear windscreen. The classic privacy upgrade for family cars and dailies.",
+      "Rear sides plus the rear screen. The classic privacy upgrade for family cars and dailies.",
     points: [
-      "No UK VLT restriction on rear glass",
-      "Choose anything from 20% down to limo 5%",
-      "Typically completed in 2–3 hours",
+      "No UK VLT restriction on rear glass — 5%, 20%, 35%, your call",
+      "Two to three hours, same day",
+      "Pairs with a sun strip if motorway glare's the bigger problem",
     ],
   },
   {
@@ -108,11 +108,11 @@ const servicePackages = [
     icon: ShieldCheck,
     title: "Front windows",
     blurb:
-      "Cuts glare on motorway drives and evens out the look of an already-tinted rear.",
+      "Front pair only. Cuts motorway glare and evens out the look of an already-tinted rear.",
     points: [
-      "70% VLT minimum by law — we keep you compliant",
-      "Great pairing with a previously-tinted rear",
-      "UV protection for the driver",
+      "Held to 70% VLT minimum — UK law",
+      "Cuts daytime glare without dropping visibility",
+      "Often paired with a previously-tinted rear",
     ],
   },
   {
@@ -120,11 +120,11 @@ const servicePackages = [
     icon: Sun,
     title: "Windscreen sun strip",
     blurb:
-      "Narrow gradient strip across the top of the windscreen — stops low-sun glare dead.",
+      "Narrow gradient across the top of the windscreen. Cuts low-sun glare on the swept area.",
     points: [
+      "75% VLT minimum over the swept area — kept legal",
+      "45-minute fit",
       "Fitted standalone or added to any package",
-      "Must keep 75% VLT over swept area",
-      "Quick — typically a 45-minute job",
     ],
   },
   {
@@ -132,11 +132,11 @@ const servicePackages = [
     icon: Truck,
     title: "Commercial / van",
     blurb:
-      "Transit, Sprinter, VW Transporter, Vivaro and more. Rear-window privacy for tools, stock, or conversions.",
+      "Transit, Sprinter, Vivaro, Transporter and the rest. Rear-window privacy for tools, stock, or conversions.",
     points: [
-      "Limo-dark rear with matte finish",
+      "Limo-dark rear glass for tool security",
       "Useful for campervan conversions",
-      "Light-weight to a full-wrap treatment",
+      "Fleet bookings welcomed — ask for multi-van pricing",
     ],
   },
   {
@@ -144,11 +144,11 @@ const servicePackages = [
     icon: Palette,
     title: "Chameleon finish",
     blurb:
-      "Colour-shifting film that flips between blue, purple and gold depending on angle and light. Show-car finish that still does proper UV and heat rejection.",
+      "Colour-shifts between blue, purple and gold under angle and light. Show-car finish, with proper UV and heat rejection underneath.",
     points: [
       "Pairs with any package above",
-      "Full UV + heat rejection",
-      "Legal-VLT option available for the front",
+      "Full UV and heat rejection",
+      "Legal-VLT option available for the front pair",
     ],
     badge: "Statement",
   },
@@ -159,8 +159,8 @@ export default function ServicesPage() {
     <>
       <PageHeader
         eyebrow="Car window tinting Leeds"
-        title="Ceramic and carbon car tints, fitted in Holbeck."
-        lead="Bring your vehicle to the studio and drive away with a clean, heat-rejecting tint backed by a 2-year fitting warranty."
+        title="Ceramic, carbon and chameleon — fitted in Holbeck."
+        lead="Bring the car to our Holbeck bay (LS11). 200+ five-star Google reviews. Two-year fitting warranty."
         crumbs={[{ href: "/services", label: "Services" }]}
       />
 
@@ -245,7 +245,7 @@ export default function ServicesPage() {
             Film options
           </p>
           <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-            Four film types, one honest recommendation.
+            Five films. One honest recommendation.
           </h2>
         </FadeIn>
         <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
@@ -288,10 +288,10 @@ export default function ServicesPage() {
             Built for Yorkshire weather.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Ceramic films reject a significant portion of solar heat while
-            staying signal-friendly — no interference with your phone, key
-            fob, or DAB radio. They also block 99% of UV, which protects your
-            interior trim and anyone sitting in the back.
+            Ceramic films reject up to 88% of solar heat while staying
+            signal-friendly — no interference with your phone, key fob, or
+            DAB radio. They also block 99% of UV, which spares your interior
+            trim and anyone in the back seat.
           </p>
         </FadeIn>
         <ul className="space-y-3">
@@ -313,20 +313,20 @@ export default function ServicesPage() {
       <section className="container pb-4">
         <div className="rounded-sm border border-accent/30 bg-accent/5 p-6 md:p-8">
           <h3 className="font-display text-xl uppercase tracking-tight text-accent">
-            In-studio only — we don&rsquo;t travel to you
+            In-studio only. No mobile service.
           </h3>
           <p className="mt-3 text-sm text-muted-foreground">
-            All tinting is completed at our Holbeck workshop (LS11). The studio
-            is set up specifically for this work — controlled lighting, dust
-            management, and proper space to do the job properly.
+            All work happens at our Holbeck workshop (LS11). Controlled
+            lighting, dust management, and proper space — built for tint, not
+            crammed into the corner of a body shop.
           </p>
         </div>
       </section>
 
       <SectionCta
         pageKey="services"
-        heading="Ready to book your car in?"
-        lead="Send us the make, model, and which windows you want done — we'll come back with a quote and a fitting slot."
+        heading="Book the car in."
+        lead="Send the make, model, and which windows you want done. We'll come back the same day with pricing and a fitting slot."
       />
     </>
   );
