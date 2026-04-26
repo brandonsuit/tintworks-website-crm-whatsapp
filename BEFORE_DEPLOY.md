@@ -13,7 +13,6 @@ Grep the codebase for `TODO` to see every marker in context.
   - `pricingData.extras` — flat add-ons (ceramic upgrade, heat rejection, privacy, mobile).
 - [ ] **Gallery photos** — currently picsum placeholders. Swap in real images:
   - `gallery.config.ts` — grid items (9 seed entries).
-  - `lib/before-after.ts` — 3 before/after pairs for the slider at the top of `/gallery`. Drop pairs into `public/gallery/before-after/`.
 - [ ] **Real reviews** — `lib/reviews.ts` contains seed testimonials (marked `isPlaceholder: true`). When the Google Reviews API is wired up, replace the seed array and flip the flag.
 - [ ] **Google Business Profile URL** — `lib/reviews.ts` → `googleReviewsProfileUrl` is a plain search fallback. Swap for the canonical GBP URL once it exists.
 
