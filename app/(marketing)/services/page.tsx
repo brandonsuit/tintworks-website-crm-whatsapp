@@ -167,7 +167,7 @@ export default function ServicesPage() {
       <section className="container pb-4">
         <div className="flex flex-wrap gap-3">
           <Button asChild variant="accent" size="lg" className="shadow-glow">
-            <Link href="/quote">Get Instant Quote</Link>
+            <Link href="/quote">Get a quote</Link>
           </Button>
           <WhatsAppCta pageKey="services" appearance="filled" size="lg" />
         </div>
@@ -224,7 +224,7 @@ export default function ServicesPage() {
                       href="/quote"
                       className="inline-flex items-center gap-1 text-sm font-medium text-accent underline-offset-4 hover:underline"
                     >
-                      Quote this package
+                      Get a quote for this package
                       <ArrowRight className="h-4 w-4" aria-hidden />
                     </Link>
                   </div>

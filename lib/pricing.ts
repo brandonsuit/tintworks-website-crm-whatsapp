@@ -71,7 +71,7 @@ export const tintShadeLabels: Record<TintShade, string> = {
 };
 
 // ── Extras ───────────────────────────────────────────────────────────────────
-// NOTE: Mobile service is deliberately absent — Tint Works is studio-only.
+// NOTE: Mobile service is deliberately absent — Tintworks is studio-only.
 export const EXTRAS = ["ceramic", "heatRejection", "privacy"] as const;
 export type ExtraKey = (typeof EXTRAS)[number];
 

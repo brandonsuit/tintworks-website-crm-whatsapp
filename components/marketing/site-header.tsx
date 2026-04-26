@@ -53,11 +53,11 @@ export function SiteHeader({
         <Link
           href="/"
           className="flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-          aria-label="Tint Works — home"
+          aria-label="Tintworks — home"
         >
           <Image
             src="/logo.svg"
-            alt="Tint Works"
+            alt="Tintworks"
             width={200}
             height={41}
             priority
@@ -105,7 +105,7 @@ export function SiteHeader({
             </a>
           </Button>
           <Button asChild variant="halo" size="sm" className="rounded-full">
-            <Link href="/quote">Get Quote</Link>
+            <Link href="/quote">Get a quote</Link>
           </Button>
         </div>
 

@@ -36,12 +36,12 @@ export function SiteFooter({
           <div className="md:col-span-7">
             <Link
               href="/"
-              aria-label="Tint Works — home"
+              aria-label="Tintworks — home"
               className="inline-flex focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
             >
               <Image
                 src="/logo.svg"
-                alt="Tint Works"
+                alt="Tintworks"
                 width={200}
                 height={41}
                 className="h-9 w-auto"

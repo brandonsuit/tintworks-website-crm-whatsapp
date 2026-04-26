@@ -11,7 +11,7 @@ import { business } from "@/lib/business";
 import { cn } from "@/lib/utils";
 
 /**
- * "Chat on WhatsApp" CTA. Server-rendered — no interactivity beyond the link.
+ * "WhatsApp us" CTA. Server-rendered — no interactivity beyond the link.
  *
  * Place one in the header, one in the footer, and one inline on every service
  * page. The `pageKey` selects the pre-filled message so the customer's compose
@@ -38,7 +38,7 @@ export function WhatsAppCta({
   appearance = "filled",
   size = "default",
   className,
-  label = "Chat on WhatsApp",
+  label = "WhatsApp us",
 }: WhatsAppCtaProps) {
   const href = buildWaMeLink({
     phoneE164: business.phoneE164,

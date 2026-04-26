@@ -61,17 +61,17 @@ export function buildQuoteMessage(input: QuoteHandoffInput): string {
     : "Price on request";
 
   const lines = [
-    `Hi Tint Works! I'd like a quote:`,
+    `Hi Tintworks, I'd like a quote.`,
     ``,
-    `🚗 Vehicle: ${vehicleLine}`,
-    `🪟 Windows: ${windowsLine}`,
-    `🎨 Shade: ${shadeLine}`,
-    `➕ Extras: ${extrasLine}`,
-    `💷 Estimated: ${estimate}`,
-    `👤 Name: ${input.name}`,
-    `📞 Phone: ${input.phoneE164}`,
-    input.contactTime ? `⏰ Best time to contact: ${input.contactTime}` : null,
-    input.notes ? `📝 Notes: ${input.notes}` : null,
+    `Vehicle: ${vehicleLine}`,
+    `Windows: ${windowsLine}`,
+    `Shade: ${shadeLine}`,
+    `Extras: ${extrasLine}`,
+    `Estimated: ${estimate}`,
+    `Name: ${input.name}`,
+    `Phone: ${input.phoneE164}`,
+    input.contactTime ? `Best time to contact: ${input.contactTime}` : null,
+    input.notes ? `Notes: ${input.notes}` : null,
     input.shortCode ? `Ref: ${input.shortCode}` : null,
   ].filter(Boolean) as string[];
 

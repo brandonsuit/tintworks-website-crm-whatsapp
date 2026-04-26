@@ -14,9 +14,9 @@ import type { WhatsAppPageKey } from "@/lib/whatsapp/messages";
 
 export function SectionCta({
   pageKey,
-  heading = "Ready to transform your ride?",
-  lead = "Send us the make, model and windows — we'll come back the same day with a quote.",
-  primaryLabel = "Get Instant Quote",
+  heading = "Send us your make, model and windows.",
+  lead = "We'll come back the same day with pricing and a fitting slot in our Holbeck bay.",
+  primaryLabel = "Get a quote",
   primaryHref = "/quote",
 }: {
   pageKey: WhatsAppPageKey;

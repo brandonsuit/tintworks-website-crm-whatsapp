@@ -1,7 +1,7 @@
 /**
  * Per-page WhatsApp pre-fill templates.
  *
- * Every "Chat on WhatsApp" CTA across the site pulls from here. Keep copy
+ * Every "WhatsApp us" CTA across the site pulls from here. Keep copy
  * short and question-oriented — it lands in the customer's WhatsApp compose
  * box, so think of it as "what would you tap to send?" not marketing copy.
  *

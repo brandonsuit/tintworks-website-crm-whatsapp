@@ -72,7 +72,7 @@ export function Hero({
 
               <div className="pointer-events-auto mt-8 flex flex-wrap gap-3">
                 <Button asChild variant="accent" size="xl" className="shadow-glow">
-                  <Link href="/quote">Get Instant Quote</Link>
+                  <Link href="/quote">Get a quote</Link>
                 </Button>
                 <WhatsAppCta pageKey={pageKey} appearance="filled" size="xl" />
                 <Button asChild variant="outline" size="xl" className="gap-2">
