@@ -10,7 +10,6 @@ import {
   Sparkles,
   Truck,
   Car,
-  AlertTriangle,
   ArrowRight,
   Palette,
   Droplets,
@@ -19,7 +18,7 @@ import {
 import { PageHeader } from "@/components/marketing/page-header";
 import { SectionCta } from "@/components/marketing/section-cta";
 import { WhatsAppCta } from "@/components/marketing/whatsapp-cta";
-import { ShadeSwatches } from "@/components/marketing/shade-swatches";
+import { TintPreviewSection } from "@/components/marketing/tint-preview-section";
 import { FadeIn } from "@/components/marketing/stats-counter";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -236,51 +235,8 @@ export default function ServicesPage() {
         </div>
       </section>
 
-      {/* Shade reference */}
-      <section className="container section-padding border-t border-border/60">
-        <FadeIn>
-          <p className="font-display text-sm uppercase tracking-[0.35em] text-accent">
-            Shade guide
-          </p>
-          <h2 className="mt-2 max-w-3xl font-display text-4xl uppercase leading-[0.95] tracking-tight text-balance md:text-5xl">
-            Pick your shade. We&rsquo;ll keep you legal.
-          </h2>
-          <p className="mt-4 max-w-2xl text-muted-foreground">
-            The % shown is VLT — Visible Light Transmission. Lower % = darker
-            tint. Rear glass has no UK restriction; front sides must stay at
-            70% VLT or higher, and the windscreen at 75%+.
-          </p>
-        </FadeIn>
-        <div className="mt-10">
-          <ShadeSwatches />
-        </div>
-        <div className="mt-10 flex items-start gap-4 rounded-sm border border-accent/40 bg-accent/5 p-6">
-          <AlertTriangle
-            className="mt-0.5 h-5 w-5 shrink-0 text-accent"
-            aria-hidden
-          />
-          <div>
-            <h3 className="font-display text-lg uppercase tracking-tight text-accent">
-              UK law, in plain English
-            </h3>
-            <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
-              <li>
-                <strong className="text-foreground">Windscreen:</strong> 75% VLT
-                minimum. Only a sun strip is practical.
-              </li>
-              <li>
-                <strong className="text-foreground">Front sides:</strong> 70%
-                VLT minimum. We&apos;ll never fit below this.
-              </li>
-              <li>
-                <strong className="text-foreground">Rear sides + rear
-                windscreen:</strong> no restriction — pick anything from 5% to
-                70%.
-              </li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* Interactive tint preview */}
+      <TintPreviewSection />
 
       {/* Film types */}
       <section className="container section-padding border-t border-border/60">
