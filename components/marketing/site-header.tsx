@@ -87,7 +87,7 @@ export function SiteHeader({
               </span>
             </a>
           </Button>
-          <Button asChild variant="whatsapp" size="sm">
+          <Button asChild variant="whatsappHalo" size="sm" className="rounded-full">
             <a
               href={whatsAppHref}
               target="_blank"
@@ -99,7 +99,7 @@ export function SiteHeader({
               WhatsApp
             </a>
           </Button>
-          <Button asChild variant="accent" size="sm">
+          <Button asChild variant="halo" size="sm" className="rounded-full">
             <Link href="/quote">Get Quote</Link>
           </Button>
         </div>

@@ -23,6 +23,10 @@ const buttonVariants = cva(
           "bg-accent text-accent-foreground hover:bg-accent/90 shadow-[0_0_0_1px_hsl(var(--accent)/0.4)]",
         whatsapp:
           "bg-whatsapp text-whatsapp-foreground hover:bg-whatsapp/90",
+        halo:
+          "relative isolate bg-accent text-accent-foreground transition-colors duration-200 hover:bg-accent/95 before:content-[''] before:absolute before:inset-0 before:-m-2 before:rounded-full before:bg-accent before:opacity-40 before:blur-lg before:pointer-events-none before:-z-10 before:transition-all before:duration-300 before:ease-out hover:before:opacity-70 hover:before:blur-xl hover:before:-m-3",
+        whatsappHalo:
+          "relative isolate bg-whatsapp text-whatsapp-foreground transition-colors duration-200 hover:bg-whatsapp/95 before:content-[''] before:absolute before:inset-0 before:-m-2 before:rounded-full before:bg-whatsapp before:opacity-40 before:blur-lg before:pointer-events-none before:-z-10 before:transition-all before:duration-300 before:ease-out hover:before:opacity-70 hover:before:blur-xl hover:before:-m-3",
       },
       size: {
         default: "h-10 px-4 py-2",
