@@ -157,8 +157,20 @@ export function SiteFooter({
         </div>
 
         <div className="mt-12 flex flex-col gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground md:flex-row md:items-center md:justify-between">
-          <p>
-            © {year} {business.name}. All rights reserved.
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <span>© {year} {business.name}. All rights reserved.</span>
+            <span aria-hidden className="hidden md:inline text-muted-foreground/40">·</span>
+            <span>
+              Made by{" "}
+              <a
+                href="https://reshape.gg"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-foreground/90 underline-offset-4 hover:text-accent hover:underline"
+              >
+                reshape.gg
+              </a>
+            </span>
           </p>
           <ul className="flex gap-4">
             <li>
